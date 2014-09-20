@@ -10,20 +10,30 @@
  * Note:
  * The solution is guaranteed to be unique.
  */
-public class GasStation {
+ /*
+ 1.if final sum <0 , no solution exists
+ 2.when rem<0: The start point should be i + 1 why?
+   start ... i <0 if K is a solution between start ..i that k..i rem>0 then start ..i must be < 0
+   we can't reach k .
+ */
+public class Solution {
     public int canCompleteCircuit(int[] gas, int[] cost) {
-        if(gas == null || cost == null || gas.length != cost.length || gas.length == 0)
+        if(gas==null || cost==null || gas.length!=cost.length)
             return -1;
-        int total = 0, remain = 0;
+        int rem = 0;
+        int sum = 0;
         int j = -1;
-        for(int i = 0; i < gas.length; i++) {
-            total += gas[i] - cost[i];
-            remain += gas[i] - cost[i];
-            if(remain < 0) {
+        for(int i=0;i<gas.length;i++){
+            rem += (gas[i] - cost[i]);
+            sum += (gas[i] - cost[i]);
+            if(rem<0){
                 j = i;
-                remain = 0;
+                rem = 0;
             }
         }
-        return total >= 0 ? j + 1 : -1;
+        if(sum>=0)
+            return j+1;
+        else
+            return -1;
     }
 }
