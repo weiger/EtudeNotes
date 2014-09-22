@@ -1,5 +1,5 @@
 //http://poj.org/problem?id=1159
-
+//区间dp.dp[a][b] means steps from substring(a,b)
 public class PalidromeSolution {
     public static int stepstopal(String s){
   	int[][] dp = new int[s.length()][s.length()];
