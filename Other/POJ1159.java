@@ -27,6 +27,6 @@ public class PalidromeSolution {
     }
     
     public static void main(String[] args) {
-	    System.out.println(stepstopal("Ab3bd"));
+	    System.out.println(stepstopal("Ab3bd")); 
     }
 }
