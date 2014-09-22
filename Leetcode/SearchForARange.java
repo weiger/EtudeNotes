@@ -9,24 +9,14 @@
  * Given [5, 7, 7, 8, 8, 10] and target value 8,
  * return [3, 4]. 
  */
-public class SearchForARange {
-/*   O(n)
- *  public int[] searchRange(int[] A, int target) {
-        int[] res = new int[2];
-        int start = 0, end = A.length - 1;
-        for(; start < A.length - 1 && A[start] != target; start++);
-        for(; end >= start && A[end] != target; end--);
-        if(start > end) {
-            start = -1;
-            end = -1;
-        }
-        res[0] = start;
-        res[1] = end;
-        return res;
-    }
-*/
+public class Solution {
+
 /*    O(log n)    */
-//too many pits
+/*first search lower bound if target <= midd , high = mid - 1, if found beg is res[0]
+  if not found, beg is out of index or A[beg]!=target
+  then search upper bound if target >=, beg = mid + 1, if found end is res[1]
+  if not found, end is out of index or A[end]!=target
+*/
     public int[] searchRange(int[] A, int target) {
         int[] res = new int[2];
         int low = 0, high = A.length - 1, mid = 0;
@@ -52,7 +42,7 @@ public class SearchForARange {
     }
 }
 //O(n)
-public class Solution {
+
     public int[] searchRange(int[] A, int target) {
         int[] res = new int[2];
     	int flag = 0;
@@ -74,4 +64,19 @@ public class Solution {
     	}
     	return res;
     }
-}
+
+/*   O(n)
+ *  public int[] searchRange(int[] A, int target) {
+        int[] res = new int[2];
+        int start = 0, end = A.length - 1;
+        for(; start < A.length - 1 && A[start] != target; start++);
+        for(; end >= start && A[end] != target; end--);
+        if(start > end) {
+            start = -1;
+            end = -1;
+        }
+        res[0] = start;
+        res[1] = end;
+        return res;
+    }
+*/
