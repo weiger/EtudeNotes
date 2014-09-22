@@ -43,6 +43,5 @@ public class Solution {
                 int[] data = {186,186,150,200,160,130,197,220};
                 int res = chrous(data);
                 System.out.println(res);
-                
             }
         }
