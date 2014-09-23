@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Solution {
-
+    //O(n^2)
     public static int LIS1(int[] data) {
         int[] dp = new int[data.length];
         for (int i = 0; i < dp.length; i++) {
@@ -22,7 +22,7 @@ public class Solution {
         }
         return max;
     }
-
+    //O(n^2)
     public static int LIS2(int[] data) {
         int[] dp = new int[data.length];
         for (int i = 0; i < dp.length; i++) {
@@ -39,7 +39,7 @@ public class Solution {
         }
         return max;
     }
-
+    //O(nlogn)
     public static int LIS3(int[] data) {
         int[] helper = new int[data.length];
         int k = 0;
