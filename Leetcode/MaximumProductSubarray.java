@@ -2,7 +2,7 @@
 
 For example, given the array [2,3,-2,4],
 the contiguous subarray [2,3] has the largest product = 6.*/
-
+//keep update max,min by max * A[i],min*A[i],A[i]
 public class Solution {
     public int maxProduct(int[] A) {
         if (A.length==0) return 0;
