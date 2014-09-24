@@ -3,19 +3,20 @@
  * For example, given the array [−2,1,−3,4,−1,2,1,−5,4],
  * the contiguous subarray [4,−1,2,1] has the largest sum = 6.
  */ 
-public class MaximumSubarray {
-/********************** updated 2013/11/26 *********************/
+
+public class Solution {
     public int maxSubArray(int[] A) {
-        int max = Integer.MIN_VALUE, tempMax = 0;
-        for(int i = 0; i < A.length; i++) {
-            tempMax += A[i];
-            if(max < tempMax) 
-                max = tempMax;
-            if(tempMax < 0)
-                tempMax = 0;
+        int temp = 0;
+        int max = Integer.MIN_VALUE;
+        for(int x:A){
+            temp = temp + x;
+            max = Math.max(max,temp);
+            if(temp<0)
+                temp = 0;
         }
         return max;
     }
+}
 
 /****************** Below is from wikipedia ******************/
     public int maxSubArray(int[] A) {
