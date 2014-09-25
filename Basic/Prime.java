@@ -1,5 +1,5 @@
 public class Prime {
-    public static ArrayList<Integer> getPrime(int n){
+    public static ArrayList<Integer> getPrime(int n){ //under N
     	ArrayList<Integer> res =new ArrayList<Integer>();
     	boolean[] rec = new boolean[n];
     	for(int i=2;i<n;i++){
@@ -17,6 +17,36 @@ public class Prime {
     		    res.add(i);
     	}
     	return res;
+    }
+    public static ArrayList<Integer> getNPrime(int n) {
+        ArrayList<Integer> res = new ArrayList<Integer>();
+        int current = 2;
+        int sum = 0;
+
+        while (true) {
+            if (current > 2 && current % 2 == 0) {
+                current++;
+                continue;
+            }
+            int a = -1;
+            for (int i = 2; i < current; i++) {
+                if (current % i == 0) {
+                    a = 0;
+                    break;
+                    }
+            }
+        
+            if (a == -1) {
+                sum++;
+                res.add(current);
+                }
+    
+            if (sum == n) {
+                break;
+                }
+            current++;
+        }
+        return res;
     }
     public static boolean isPrime(int n) {
         if(n < 0)
