@@ -1,4 +1,23 @@
 public class Prime {
+    public static ArrayList<Integer> getPrime(int n){
+    	ArrayList<Integer> res =new ArrayList<Integer>();
+    	boolean[] rec = new boolean[n];
+    	for(int i=2;i<n;i++){
+    	    rec[i] = true;
+    	}
+    	for(int i=2;i<Math.sqrt(n);i++){
+    	    if(rec[i]==true){
+    		for(int j=i*i;j<n;j=j+i){
+    		    rec[j] = false;
+    		    }
+    	    }	
+    	}
+    	for(int i=2;i<n;i++){
+    	    if(rec[i])
+    		    res.add(i);
+    	}
+    	return res;
+    }
     public static boolean isPrime(int n) {
         if(n < 0)
             throw new IllegalArgumentException("negative number");
