@@ -42,9 +42,25 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
-import java.util.*;
+public class Solution {
+    public boolean isSymmetric(TreeNode root) {
+        if(root==null)
+            return true;
+        return helper(root.left,root.right);
+    }
+    public boolean helper(TreeNode p1,TreeNode p2){
+        if(p1==null && p2==null)
+            return true;
+        if(p1==null || p2==null)
+            return false;
+        if(p1.val==p2.val)
+            return helper(p1.left,p2.right)&&helper(p1.right,p2.left);
+        else
+            return false;
+    }
+}
 
-public class SymmetricTree {
+
     public boolean isSymmetric(TreeNode root) {
         return root == null || isSymmetricHelper(root.left, root.right);
     }
@@ -54,20 +70,6 @@ public class SymmetricTree {
             return p == null && q == null;
         return (p.val == q.val) && isSymmetricHelper(p.left, q.right) && isSymmetricHelper(p.right, q.left);
     } 
-public class Solution {
-    public boolean isSymmetric(TreeNode root) {
-        if(root==null) return true;
-		return isSym(root.left,root.right);
-    }
-    public boolean isSym(TreeNode p1,TreeNode p2){
-		if(p1==null && p2==null) return true;
-		if(p1==null || p2==null) return false;
-		if(p1.val==p2.val)
-			return isSym(p1.left,p2.right)&&isSym(p1.right,p2.left);
-		else
-		    return false;
-	}
-}
 /***********************************************************************************************************/
 
     public boolean isSymmetric(TreeNode root) {
