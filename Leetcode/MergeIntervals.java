@@ -39,6 +39,32 @@ class IntervalComparator implements Comparator<Interval> {
     }
 }
 //same idea
+public class Solution {
+    public List<Interval> merge(List<Interval> intervals) {
+        List<Interval> res = new ArrayList<Interval>();
+        if(intervals==null || intervals.size()==0)
+            return res;
+        Collections.sort(intervals,new comp());
+        int s = intervals.get(0).start;
+        int e = intervals.get(0).end;
+        for(Interval x:intervals){
+            if(x.start>e){
+                res.add(new Interval(s,e));
+                s = x.start;
+                e = x.end;
+            }else{
+                e = Math.max(e,x.end);
+            }
+        }
+        res.add(new Interval(s,e));
+        return res;
+    }
+    class comp implements Comparator<Interval>{
+        public int compare(Interval a, Interval b){
+            return a.start - b.start;
+        }
+    }
+}
 
 public clss MergeIntervals {
     public void quicksort(ArrayList<Interval> intervals, int low, int high) {
