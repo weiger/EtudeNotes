@@ -14,35 +14,31 @@
  *   (-1, 0, 1)
  *   (-1, -1, 2)
  */
-import java.util.*;
-
-public class ThreeSum {
-
-    public ArrayList<ArrayList<Integer>> threeSum(int[] num) {
-        ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
+public class Solution {
+    public List<List<Integer>> threeSum(int[] num) {
+        List<List<Integer>> res = new ArrayList<>();
         Arrays.sort(num);
-        for (int i = 0; i <= num.length - 2 && num[i] <= 0; i++) { //or i<num.length - 1
-            if (i > 0 && num[i] == num[i - 1])
+        for(int i = 0;i<num.length-2;i++){
+            if(i>0 && num[i]==num[i-1])
                 continue;
-            int j = i + 1;
-            int k = num.length - 1;
-            while (j < k) {
-                if (num[i] + num[j] + num[k] > 0) {
-                    k--;
-                } else if (num[i] + num[j] + num[k] < 0) {
-                    j++;
-                } else {
+            int left = i+1;
+            int right = num.length - 1;
+            while(left<right){
+                int sum = num[left] + num[right]+num[i];
+                if(sum>0)
+                    right--;
+                else if(sum<0)
+                    left++;
+                else{
                     ArrayList<Integer> list = new ArrayList<Integer>();
-                    list.add(num[i]);
-                    list.add(num[j]);
-                    list.add(num[k]);
+                    list.add(num[i]);list.add(num[left]);list.add(num[right]);
                     res.add(list);
-                    do {
-                        j++;
-                    } while (j < k && num[j] == num[j - 1]);
-                    do {
-                        k--;
-                    } while (j < k && num[k] == num[k + 1]);
+                    do{
+                        left++;
+                    }while(left<right&&num[left]==num[left-1]);
+                    do{
+                        right--;
+                    }while(right>left&&num[right]==num[right+1]);
                 }
             }
         }
