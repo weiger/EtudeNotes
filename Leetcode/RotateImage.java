@@ -8,21 +8,21 @@
  */
 public class Solution {
     public void rotate(int[][] matrix) {
-        
-        for(int i = 0;i<matrix.length;i++)
-            for(int j = 0;j<matrix[0].length-i;j++){
+        int len = matrix.length;
+        for(int i =0;i<len-1;i++){
+            for(int j=0;j<len-i;j++){
                 int tmp = matrix[i][j];
-                matrix[i][j] = matrix[matrix.length-j-1][matrix[0].length-i-1];
-                matrix[matrix.length-j-1][matrix[0].length-i-1] = tmp;
+                matrix[i][j] = matrix[len-1-j][len-1-i];
+                matrix[len-1-j][len-1-i] = tmp;
             }
-        
-        for(int i=0;i<matrix.length/2;i++)
-            for(int j=0;j<matrix[0].length;j++){
+        }
+        for(int i=0;i<len/2;i++){
+            for(int j=0;j<len;j++){
                 int tmp = matrix[i][j];
-                matrix[i][j] = matrix[matrix.length-1-i][j];
-                matrix[matrix.length-1-i][j] = tmp;
+                matrix[i][j] = matrix[len-1-i][j];
+                matrix[len-1-i][j] = tmp;
             }
-        
+        }
     }
 }
  
