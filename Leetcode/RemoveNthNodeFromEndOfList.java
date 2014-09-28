@@ -10,6 +10,25 @@
  * Given n will always be valid.
  * Try to do this in one pass.
  */
+public class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode cur1 = dummy;
+        ListNode cur2 = dummy;
+        int i = 0;
+        while(cur2.next!=null){
+            cur2 = cur2.next;
+            if(i>=n)
+                cur1 = cur1.next;
+            i++;
+        }
+        cur1.next = cur1.next.next;
+        return dummy.next;
+    }
+}
+ 
+ 
  public class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
         ListNode dummy = new ListNode(0);
