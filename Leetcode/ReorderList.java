@@ -9,9 +9,12 @@
  *     }
  * }
  */
-//Cut Linkedlist by fast slow pointer,second half must be less than first half
-//1-> 2-> 3-> 4-> 5  : 1-> 2-> 3 , 4-> 5 
-//1-> 2-> 3-> 4-> 5 ->6  :  1-> 2-> 3,  4-> 5 ->6 
+/*Cut Linkedlist by fast slow pointer,second half must be less than first half
+1-> 2-> 3-> 4-> 5  : 1-> 2-> 3 , 4-> 5 
+1-> 2-> 3-> 4-> 5 ->6  :  1-> 2-> 3,  4-> 5 ->6 
+
+切成两半，反转第二部分，然后交叉merge
+*/
 public class Solution {
     public void reorderList(ListNode head) {
         if(head==null||head.next==null) return;
