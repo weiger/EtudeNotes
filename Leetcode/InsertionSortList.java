@@ -12,6 +12,28 @@
  *     }
  * }
  */
+ public class Solution {
+    public ListNode insertionSortList(ListNode head) {
+        if(head==null || head.next==null)
+            return head;
+        ListNode cur1 = head.next;
+        while(cur1!=null){
+            ListNode cur2 = head;
+            while(cur2!=cur1 && cur2.val<cur1.val)
+                cur2 = cur2.next;
+            while(cur2!=cur1){
+                int tmp = cur1.val;
+                cur1.val = cur2.val;
+                cur2.val = tmp;
+                cur2 = cur2.next;
+            }
+            cur1 = cur1.next;
+        }
+        return head;
+    }
+}
+ 
+ 
 public class InsertionSortList {
     public ListNode insertionSortList(ListNode head) {
         if(head == null || head.next == null)
@@ -58,23 +80,4 @@ public class InsertionSortList {
         head = pStart.next;
         return head;
     }
-//Switch Node value
-public class Solution {
-    public ListNode insertionSortList(ListNode head) {
-        if(head==null || head.next==null) return head;
-        ListNode cur = head.next;
-        while(cur!=null){
-            ListNode temp = head;
-            while(temp.val<cur.val && temp!=cur)
-                temp = temp.next;
-            while(temp!=cur){
-                int tmp = temp.val;
-                temp.val = cur.val;
-                cur.val = tmp;
-                temp = temp.next;
-            }
-            cur = cur.next;
-        }
-        return head;
-    }
-}
+
