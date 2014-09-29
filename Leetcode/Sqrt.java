@@ -2,7 +2,22 @@
  * Implement int sqrt(int x).
  * Compute and return the square root of x.
  */
-
+/*
+判断非零，用double,迭代公式next = (cur + x/cur)/2 当last==next 结束
+*/
+public class Solution {
+    public int sqrt(int x) {
+        if(x<0)
+            return 0;
+        double last = 0;
+        double res = x;
+        while(last!=res){
+            last = res;
+            res = (res + x/res)/2;
+        }
+        return (int)res;
+    }
+}
 public class Sqrt {
 /*  public int sqrt(int x) {
         if(x < 100) {
