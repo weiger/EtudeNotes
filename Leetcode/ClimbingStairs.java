@@ -16,8 +16,6 @@ public class ClimbingStairs {
         return res[n];
     }
 
-/************************ updated 2013/11/20 ***********************/
-
     public int climbStairs(int n) {
         int a = 0, b = 1, res = 1;
         for(int i = 1; i <= n; i++) {
