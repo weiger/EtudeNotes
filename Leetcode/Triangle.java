@@ -15,7 +15,12 @@
  * Bonus point if you are able to do this using only O(n) extra space, where n is the total 
  * number of rows in the triangle.
  */
- //be careful direction of updating
+ /*be careful direction of updating
+[2],
+[3,4],
+[6,5,7],
+[4,1,8,3]
+ */
  public class Solution {
     public int minimumTotal(List<List<Integer>> triangle) {
         int[] dp = new int[triangle.size()];
