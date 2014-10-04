@@ -1,6 +1,19 @@
 /* 
  * Returns a pointer to the first occurrence of needle in haystack, or null if needle is not part of haystack.
  */
+ 
+//easy brutal
+public class Solution {
+    public String strStr(String haystack, String needle) {
+        if(needle==null || needle.length()==0 || haystack.equals(needle))
+            return haystack;
+        for(int i=0;i<=haystack.length()-needle.length();i++)
+            for(int j=0;needle.charAt(j)==haystack.charAt(i+j);j++)
+                if(j==needle.length()-1)
+                    return haystack.substring(i);
+        return null;
+    }
+}
 //brutal 1
 public class ImplementstrStr {
     public String strStr(String haystack, String needle) {
