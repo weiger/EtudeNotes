@@ -30,7 +30,24 @@ public class Solution {
         return head;
     }
 }
-
+public class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+        if(head==null || head.next==null)
+            return head;
+        ListNode cur = head.next;
+        ListNode pre = head;
+        while(cur!=null){
+            if(pre.val==cur.val){
+                pre.next = cur.next;
+                cur = pre.next;
+            }else{
+                pre = pre.next;
+                cur = cur.next;
+            }
+        }
+        return head;
+    }
+}
 
 public class RemoveDuplicatesFromSortedList {
     public ListNode deleteDuplicates(ListNode head) {
