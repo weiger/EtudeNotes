@@ -10,6 +10,22 @@
 
  * A = [3,2,1,0,4], return false.
  */
+public class Solution {
+    public boolean canJump(int[] A) {
+        int lim = A[0];
+        if(lim==A.length-1)
+            return true;
+        for(int i=0;i<=lim;i++){
+            if(i+A[i]>lim)
+                lim = i+ A[i];
+            if(i+A[i]>=A.length-1)
+                return true;
+        }
+        return false;
+    }
+}
+ 
+ 
 public class JumpGame {
     public boolean canJump(int[] A) {
         int maxIndex = 0;
