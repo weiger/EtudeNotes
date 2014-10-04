@@ -19,6 +19,35 @@
  * [1, 1, 6] 
  */
 //Same as CombinationSum I except eliminate same numbers in array
+
+public class Solution {
+    public List<List<Integer>> combinationSum2(int[] num, int target) {
+        List<List<Integer>> res = new ArrayList<>();
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        if(num==null || num.length==0)
+            return res;
+        Arrays.sort(num);
+        dfs(res,list,0,num,target,0);
+        return res;
+    }
+    public void dfs(List<List<Integer>> res,ArrayList<Integer> list,int sum,int[] num,int tar,int pos){
+        if(sum>tar)
+            return;
+        if(sum==tar){
+            res.add(new ArrayList<Integer>(list));
+        }
+        for(int i=pos;i<num.length;i++){
+            list.add(num[i]);
+            dfs(res,list,sum+num[i],num,tar,i+1);
+            list.remove(list.size()-1);
+            while(i<num.length-1 && num[i]==num[i+1]){
+                i++;
+            }
+        }
+    }
+}
+
+
 public class Solution {
     public ArrayList<ArrayList<Integer>> combinationSum2(int[] num, int target) {
         ArrayList<ArrayList<Integer>> res = new  ArrayList<ArrayList<Integer>>();
