@@ -1,4 +1,6 @@
 /*POJ 3974 还不太懂
+best explanation
+http://blog.csdn.net/love_cppandc/article/details/9715195
 http://leetcode.com/2011/11/longest-palindromic-substring-part-ii.html
 http://blog.sina.com.cn/s/blog_3fe961ae0101iwc2.html
 http://blog.sina.com.cn/s/blog_70811e1a01014esn.html
