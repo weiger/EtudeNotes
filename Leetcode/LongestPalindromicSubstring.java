@@ -2,37 +2,52 @@
  * Given a string S, find the longest palindromic substring in S. You may assume that the 
  * maximum length of S is 1000, and there exists one unique longest palindromic substring.
  */
-public class LongestPalindromicSubstring {
-/*
-    // Below cost O(n^2) time and O(n^2) space. 
+ //Manacher O(n)
+ public class Solution {
     public String longestPalindrome(String s) {
-        boolean[][] isPalin = new boolean[s.length()][s.length()];
-        for(int i = 0; i < s.length(); i++) {
-            isPalin[i][i] = true;
+        StringBuilder newStr = new StringBuilder();
+        newStr.append('#');
+        for (int i = 0; i < s.length(); i++) {
+            newStr.append(s.charAt(i));
+            newStr.append('#');
         }
-        int beginAt = 0, maxLen = 1;
-        for(int i = 0; i < s.length() - 1; i++) {
-            if(s.charAt(i) == s.charAt(i + 1)) {
-                isPalin[i][i + 1] = true;
-                beginAt = i;
-                maxLen = 2;
+
+        int[] rad = new int[newStr.length()];
+        int right = -1;
+        int id = -1;
+
+        for (int i = 0; i < newStr.length(); i++) {
+            int r = 1;
+            if (i <= right) {
+                r = Math.min(rad[id] - i + id, rad[2 * id - i]);
             }
+            while (i - r >= 0 && i + r < newStr.length()
+                && newStr.charAt(i - r) == newStr.charAt(i + r)) {
+                r++;
         }
-        for(int len = 3; len <= s.length(); len++) {
-            for(int i = 0; i < s.length() + 1 - len; i++) {
-                int j = i + len - 1;
-                if(s.charAt(i) == s.charAt(j) && isPalin[i + 1][j - 1]) {
-                    isPalin[i][j] = true;
-                    beginAt = i;
-                    maxLen = len;
-                }
-            }
+
+        if (i + r - 1 > right) {
+            right = i + r - 1;
+            id = i;
         }
-        return s.substring(beginAt, beginAt + maxLen);
+        rad[i] = r;
     }
 
+    int maxLength = 1;int mid = 0;
+    for(int i=0;i<rad.length;i++){
+        if(rad[i]>maxLength){
+            maxLength = rad[i];
+            mid = i;
+        }
+    }
 
-*/
+    return s.substring((mid-maxLength+1 )/2 , (mid + maxLength -1) /2);
+    }
+}
+ 
+ 
+public class LongestPalindromicSubstring {
+
     // O(n^2) time and no space cost 
     public String expandAroundcenterenter(String s, int i, int j) {
         int left = i, right = j;
