@@ -7,6 +7,45 @@ http://blog.sina.com.cn/s/blog_70811e1a01014esn.html
 http://blog.csdn.net/geniusluzh/article/details/8639759
 */
 
+import java.util.Scanner;
+
+public class Main {
+    public static int fast(String p)
+    {
+        p = "#"+p;
+	int ans = 1;
+        for (int i = 1; i<p.length(); ++i)
+        {
+            int s = i, e = i, t;
+            while (e + 1 <p.length()  && p.charAt(e + 1) == p.charAt(i)) ++e;
+            i = e;
+            while ( e + 1 <p.length() && p.charAt(s - 1) == p.charAt(e + 1)) {--s; ++e;}
+            if ((t = e - s + 1) > ans) ans = t;
+        }
+        return ans;
+    }
+
+    public static void main(String[] args) {
+	Scanner cin = new Scanner(System.in);
+	String str = null;
+
+	int m = 0;
+	m = cin.nextInt();
+	int[] res = new int[m];
+	for (int i = 0; i < m; i++) {
+	    str = cin.next();
+	    res[i] = fast(str);
+	}
+	for(int x:res)
+	    System.out.println(x);
+
+    }
+}
+
+
+
+
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
