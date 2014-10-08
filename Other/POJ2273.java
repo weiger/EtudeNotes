@@ -40,5 +40,5 @@ public class Main {
         else
             return (char) (letter % 26 + 'A' - 1);
     }
-
+    
 }
