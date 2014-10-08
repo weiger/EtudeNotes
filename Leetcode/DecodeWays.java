@@ -14,7 +14,10 @@
 
  * The number of ways decoding "12" is 2.
  */
-
+/* "0" if only singele "0 "no solution
+   if i=0 i-1=1 or i-1=2 still has solution dp[i+1] = dp[i-1]
+   if i!=0 dp[i+1]=dp[i] and if 10-26 dp[i+1]+=dp[i-1]
+*/
 public class DecodeWays {
     
     // O(n) time; O(n) space.
