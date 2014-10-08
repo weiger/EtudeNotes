@@ -40,7 +40,7 @@ public class DecodeWays {
         return dp[s.length()];
     }
 
-/**************************** updated 2014.04.06 *****************************/
+/* dp over dp*/
 
     // O(n) time; O(1) space.
     public int numDecodings(String s) {
