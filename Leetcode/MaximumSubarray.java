@@ -17,8 +17,34 @@ public class Solution {
         return max;
     }
 }
-
-/****************** Below is from wikipedia ******************/
+//local test right, leetcode WA
+public class Solution {
+    static int max = Integer.MIN_VALUE;
+    public int maxSubArray(int[] A) {
+        return helper(A,0,A.length-1);
+    }
+    public int helper(int[] A,int left,int right){
+        if(left>right)
+            return Integer.MIN_VALUE;
+        int mid =  left + (right-left)/2;
+        int lmax = helper(A,left,mid-1);
+        int rmax = helper(A,mid+1,right);
+        max = Math.max(max, Math.max(lmax, rmax));
+        int sum = 0,mlmax=0;
+        for(int i=mid-1;i>=left;i--){
+            sum+=A[i];
+            mlmax = Math.max(sum, mlmax);
+        }
+        sum = 0; int mrmax = 0;
+        for(int i=mid+1;i<=right;i++){
+            sum+=A[i];
+            mrmax = Math.max(sum, mrmax);
+        }
+        max = Math.max(max, mlmax+mrmax+A[mid]);
+        return max;
+    }
+}
+/*from wikipedia */
     public int maxSubArray(int[] A) {
         int max_so_far = A[0], max_ending_here = A[0];
         for(int i = 1; i < A.length; i++) {//recursion starts from 1.
