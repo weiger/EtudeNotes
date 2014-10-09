@@ -1,6 +1,7 @@
 /*
  * Divide two integers without using multiplication, division and mod operator.
  */
+ O(logn)
 public class DivideTwoIntegers {
 
 /**************************** updated 2014.03.08 *****************************/
