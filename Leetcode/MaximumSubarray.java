@@ -17,31 +17,34 @@ public class Solution {
         return max;
     }
 }
-//local test right, leetcode WA
+//divide and conquer?
 public class Solution {
-    static int max = Integer.MIN_VALUE;
     public int maxSubArray(int[] A) {
-        return helper(A,0,A.length-1);
+        int[] max = new int[1];
+        max[0] = Integer.MIN_VALUE;
+        return helper(A, 0, A.length - 1, max);
     }
-    public int helper(int[] A,int left,int right){
-        if(left>right)
+
+    public int helper(int[] A, int left, int right, int[] max) {
+        if (left > right)
             return Integer.MIN_VALUE;
-        int mid =  left + (right-left)/2;
-        int lmax = helper(A,left,mid-1);
-        int rmax = helper(A,mid+1,right);
-        max = Math.max(max, Math.max(lmax, rmax));
-        int sum = 0,mlmax=0;
-        for(int i=mid-1;i>=left;i--){
-            sum+=A[i];
+        int mid = left + (right - left) / 2;
+        int lmax = helper(A, left, mid - 1,max);
+        int rmax = helper(A, mid + 1, right,max);
+        max[0] = Math.max(max[0], Math.max(lmax, rmax));
+        int sum = 0, mlmax = 0;
+        for (int i = mid - 1; i >= left; i--) {
+            sum += A[i];
             mlmax = Math.max(sum, mlmax);
         }
-        sum = 0; int mrmax = 0;
-        for(int i=mid+1;i<=right;i++){
-            sum+=A[i];
+        sum = 0;
+        int mrmax = 0;
+        for (int i = mid + 1; i <= right; i++) {
+            sum += A[i];
             mrmax = Math.max(sum, mrmax);
         }
-        max = Math.max(max, mlmax+mrmax+A[mid]);
-        return max;
+        max[0] = Math.max(max[0], mlmax + mrmax + A[mid]);
+        return max[0];
     }
 }
 /*from wikipedia */
