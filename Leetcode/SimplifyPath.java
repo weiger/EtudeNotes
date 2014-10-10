@@ -6,22 +6,25 @@ path = "/a/./b/../../c/", => "/c"
 */
 public class Solution {
     public String simplifyPath(String path) {
-        if(path.length()==0) return null;
-        LinkedList<String> stack = new LinkedList<String>();
-        String[] temp = path.split("/");
-        for(String str:temp){
-            if(str.length()==0 || str.equals("."))
+        if(path==null)
+            return null;
+        String[] tmp = path.split("/");
+        Stack<String> stack = new Stack<String>();
+        for(int i=0;i<tmp.length;i++){
+            if(tmp[i].length()==0 || tmp[i].equals("."))
                 continue;
-            else if (str.equals("..")){
+            if(tmp[i].equals("..")){
                 if(!stack.isEmpty())
                     stack.pop();
             }else
-                stack.push(str);
+                stack.push(tmp[i]);
         }
         String res = "";
-        if(stack.isEmpty()) stack.push("");
-        while(!stack.isEmpty())
-            res+= "/" + stack.removeLast();
+        if(stack.isEmpty())
+            stack.push("");
+        while(!stack.isEmpty()){
+            res = "/" + stack.pop() + res;
+        }
         return res;
     }
 }
