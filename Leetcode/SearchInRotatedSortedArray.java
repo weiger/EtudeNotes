@@ -14,6 +14,35 @@
       A[start]>A[end], target>A[end],A[mid]<A[end]
  */
  public class Solution {
+    public boolean search(int[] A, int target) {
+        if(A.length==0 || A==null)
+            return false;
+        int beg = 0;
+        int end = A.length - 1;
+        while(beg<=end){
+            int mid  = beg + (end-beg)/2;
+            if(A[mid]==target)
+                return true;
+            else if(A[beg]<A[mid]){
+                if(A[beg]<=target && target<=A[mid])
+                    end = mid - 1;
+                else
+                    beg = mid + 1;
+            }else if(A[beg]>A[mid]){
+                if(A[mid]<=target && target<=A[end])
+                    beg = mid + 1;
+                else
+                    end = mid - 1;
+            }else
+                beg++; //beg++,--,end++,-- is all ok, deal with only one elements
+        }
+        return false;
+    }
+}
+ 
+ 
+ 
+ public class Solution {
     public int search(int[] A, int target) {
         if (A == null || A.length == 0)
 	    return -1;
