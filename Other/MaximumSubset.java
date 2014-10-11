@@ -59,6 +59,6 @@ public class Solution {
 
     public static void main(String[] args) {
 	int[] S = { 1, 2, 3, 4, 5 };
-	System.out.println(closestSubset(S, 7));
+	System.out.println(closestSubset(S, 7)); 
     }
 }
