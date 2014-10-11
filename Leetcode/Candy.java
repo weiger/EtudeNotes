@@ -6,7 +6,9 @@ You are giving candies to these children subjected to the following requirements
     Children with a higher rating get more candies than their neighbors.
 
 What is the minimum candies you must give? */
-
+/*
+What does the second iteration do? Only for dealing equation !
+*/
 public class Solution {
     public int candy(int[] ratings) {
         if(ratings==null || ratings.length==0) return 0;
