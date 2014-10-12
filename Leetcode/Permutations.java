@@ -7,29 +7,36 @@
  */
 import java.util.*;
 
-public class Permutations {
-/*************************** updated 2013/11/29 ******************************/
-
-    public ArrayList<ArrayList<Integer>> permute(int[] num) {
-        ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
-        if(num.length == 0)
+public class Solution {
+    public List<List<Integer>> permute(int[] num) {
+        List<List<Integer>> res = new ArrayList<>();
+        if(num==null || num.length==0)
             return res;
-        res.add(new ArrayList<Integer>());
-        for(int i = 0; i < num.length; i++) {
-            ArrayList<ArrayList<Integer>> newRes = new ArrayList<ArrayList<Integer>>();
-            for(int j = 0; j < res.size(); j++) {
-                for(int k = 0; k <= res.get(j).size(); k++) {
-                    ArrayList<Integer> list = new ArrayList<Integer>(res.get(j));
-                    list.add(k, num[i]);
-                    newRes.add(list);
-                }
-            }
-            res = newRes;
-        }
+        boolean[] rec = new boolean[num.length];
+        List<Integer> list = new ArrayList<>();
+        dfs(res,list,rec,num,0);
         return res;
     }
+    public void dfs(List<List<Integer>> res,List<Integer> list,boolean[] rec,int[] num,int deep){
+        if(deep==num.length){
+            res.add(new ArrayList<>(list));
+            return;
+        }
+        for(int i=0;i<num.length;i++){
+            if(!rec[i]){
+                rec[i] = true;
+                list.add(num[i]);
+                dfs(res,list,rec,num,deep+1);
+                rec[i] = false;
+                list.remove(list.size()-1);
+            }
+        }
+    }
+}
 
-/**************************** updated 2014/01/05 *****************************/
+
+
+public class Permutations {
 
     public ArrayList<ArrayList<Integer>> permute(int[] num) {
         ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
@@ -51,5 +58,24 @@ public class Permutations {
                 list.remove(list.size() - 1);
             }
         }
+    }
+    
+        public ArrayList<ArrayList<Integer>> permute(int[] num) {
+        ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
+        if(num.length == 0)
+            return res;
+        res.add(new ArrayList<Integer>());
+        for(int i = 0; i < num.length; i++) {
+            ArrayList<ArrayList<Integer>> newRes = new ArrayList<ArrayList<Integer>>();
+            for(int j = 0; j < res.size(); j++) {
+                for(int k = 0; k <= res.get(j).size(); k++) {
+                    ArrayList<Integer> list = new ArrayList<Integer>(res.get(j));
+                    list.add(k, num[i]);
+                    newRes.add(list);
+                }
+            }
+            res = newRes;
+        }
+        return res;
     }
 }
