@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner cin = new Scanner(System.in);
         int n = cin.nextInt();
-        int[] dp = new int[n+1];
+        int[] dp = new int[n];
         for(int i=1;i<=n;i++){
             for(int j=0,t=0;j<i;j++){
                 int x = cin.nextInt();
@@ -16,9 +16,10 @@ public class Main {
             }
         }
         int res = 0;
-        for(int i=1;i<=n;i++)
+        for(int i=0;i<n;i++)
             res = Math.max(res, dp[i]);
-        System.out.println(res);
+        System.out.print(res);
     }
 }
+
 
