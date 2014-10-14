@@ -16,6 +16,26 @@
 
  * Could you come up with an one-pass algorithm using only constant space? 
  */
+public class Solution {
+    public void sortColors(int[] A) {
+        if(A==null || A.length==0)
+            return;
+        int[] res = new int[3];
+        for(int i=0;i<A.length;i++){
+            res[A[i]]++;
+        }
+        int index = 0;
+        for(int i=0;i<res.length;i++){
+            while(res[i]!=0){
+                A[index++] = i;
+                res[i]--;
+            }
+        }
+    }
+} 
+ 
+ 
+ 
 public class SortColors {
 /**************************** updated 2013/12/11 *****************************/
 
