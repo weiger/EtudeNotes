@@ -11,7 +11,7 @@
 
  * For the purpose of this problem, we define empty string as valid palindrome.
  */
-
+//两端夹逼
 public class Solution {
     public boolean isPalindrome(String s) {
         int i = 0;
