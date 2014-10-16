@@ -6,6 +6,9 @@
  * Follow up:
  * Could you do this in-place?
  */
+ /*
+ Write a example , follow it to modify index
+ */
 public class Solution {
     public void rotate(int[][] matrix) {
         int len = matrix.length;
