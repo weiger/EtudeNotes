@@ -46,32 +46,34 @@
 }
  
  
-public class LongestPalindromicSubstring {
-
-    // O(n^2) time and no space cost 
-    public String expandAroundcenterenter(String s, int i, int j) {
-        int left = i, right = j;
-        while(left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
-            left--;
-            right++;
+public class Solution {
+     public String longestPalindrome(String s) {
+        if(s==null || s.length()==1 || s.length()==0)
+            return s;
+        String res = "";
+        for(int i=1;i<s.length();i++){
+            String exp1 = expand(s,i-1,i);
+            String exp2 = expand(s,i,i);
+            if(exp1.length()>res.length()){
+                res = exp1;
+            }
+            if(exp2.length()>res.length()){
+                res = exp2;
+            }
         }
-        return s.substring(left + 1, right);
-    }
-
-    public String longestPalindrome(String s) {
-        if(s.length() == 0)
-            return "";
-        String longest = "";
-        for(int i = 0; i < s.length(); i++) {
-            String expand = expandAroundcenterenter(s, i, i);
-            if(longest.length() < expand.length())
-                longest = expand;
-            expand = expandAroundcenterenter(s, i, i + 1);
-            if(longest.length() < expand.length())
-                longest = expand;
-        }
-        return longest;
-    }
+        return res;
+     }
+     public String expand(String s,int left,int right){
+         while(left>=0 && right<=s.length()-1){
+             if(s.charAt(left)==s.charAt(right)){
+                 left--;
+                 right++;
+             }else
+                break;
+         }
+         return s.substring(left+1,right);
+     }
+}
 
 
     //hard to understand and waste of time
