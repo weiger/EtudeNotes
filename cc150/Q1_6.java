@@ -57,7 +57,5 @@ public class Q1_6 {
 		System.out.print(y + " ");
 	    System.out.println();
 	}
-
     }
-
 }
