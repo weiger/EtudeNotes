@@ -38,10 +38,10 @@ public class SleepExample extends Thread {
     currentCount++;
 }
 
-public static void main(String[] args) {
-    new SleepExample("A").start();
-    new SleepExample("B").start();
-    new SleepExample("C").start();
-}
+    public static void main(String[] args) {
+        new SleepExample("A").start();
+        new SleepExample("B").start();
+        new SleepExample("C").start();
+    }
 
 }
