@@ -42,9 +42,20 @@ public class MergeKSortLists {
     }
 }
 /*********************************************************/
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
 public class Solution {
-    public ListNode mergeKLists(List<ListNode> lists) {
-    	if (lists.size() == 0)
+    public ListNode mergeKLists(ArrayList<ListNode> lists) {
+		if (lists.size() == 0)
 			return null;
  
 		//PriorityQueue is a sorted queue
@@ -63,7 +74,7 @@ public class Solution {
 		//add first node of each list to the queue
 		for (ListNode list : lists) {
 			if (list != null)
-				q.add(list);
+				q.offer(list);
 		}
  
 		ListNode head = new ListNode(0);
@@ -75,12 +86,13 @@ public class Solution {
  
 			//keep adding next element of each list
 			if (temp.next != null)
-				q.add(temp.next);
+				q.offer(temp.next);
  
 			prev = prev.next;
 		}
+ 
 		return head.next;
-    }
+	}
 }
 /**********************************************************/
 public class Solution {
