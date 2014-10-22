@@ -1,4 +1,4 @@
-public class Q2_4 {
+public class Q2_6 {
     
     public static ListNode findCycle(ListNode head){
         if(head==null)
