@@ -1,5 +1,5 @@
 public class Q2_4 {
-    public static ListNode partition(ListNode head, int x) {
+    public static ListNode partition1(ListNode head, int x) {
         if (head == null)
             return null;
         ListNode beforestart = null;
@@ -10,7 +10,7 @@ public class Q2_4 {
         while (cur != null) {
             ListNode tmp = cur.next;
             cur.next = null;
-            if (cur.val < x) {
+            if (cur.val <= x) {
                 if (beforestart == null) {
                     beforestart = cur;
                     beforeend = cur;
@@ -35,12 +35,59 @@ public class Q2_4 {
         return beforestart;
     }
 
+    public static ListNode partition2(ListNode head, int x) {
+        ListNode part1 = null;
+        ListNode part2 = null;
+
+        while (head != null) {
+            ListNode tmp = head.next;
+            if (head.val <= x) {
+                head.next = part1;
+                part1 = head;
+            } else {
+                head.next = part2;
+                part2 = head;
+            }
+            head = tmp;
+        }
+        if (part1 == null) {
+            return part2;
+        }
+        ListNode newhead = part1;
+        while (part1.next != null) {
+            part1 = part1.next;
+        }
+        part1.next = part2;
+        return newhead;
+    }
+
+    public static ListNode partition3(ListNode cur, int x) {
+
+        ListNode head = cur;
+        ListNode tail = cur;
+        while (cur != null) {
+            ListNode tmp = cur.next;
+            if (cur.val <= x) {
+                cur.next = head;
+                head = cur;
+            } else {
+                tail.next = cur;
+                tail = cur;
+            }
+            cur = tmp;
+        }
+        tail.next = null;
+        return head;
+    }
+
     public static void main(String[] args) {
         LinkedList list = new LinkedList();
         list.randomList(10);
         list.printList();
 
-        list.head = partition(list.head, 5);
+    // list.head = partition1(list.head, 5);
+    // list.head = partition2(list.head, 5);
+        list.head = partition3(list.head, 5);
         list.printList();
     }
 
