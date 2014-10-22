@@ -1,6 +1,6 @@
 import java.util.Stack;
 
-public class Q2_4 {
+public class Q2_7 {
     
     public static boolean isPalindrome(ListNode head){
         if(head==null || head.next==null)
