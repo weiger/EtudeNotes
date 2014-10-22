@@ -67,7 +67,7 @@ public class Main {
 
     public static void main(String args[]) {
         Main m = new Main();
-        m.init();
+        m.init(); 
         System.out.println(m.getMaxHeight());
     }
 }
