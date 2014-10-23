@@ -29,6 +29,25 @@ Return Value pf helper = Max(P,P+L,P+R)
 Java dont have reference,so use Array or global variable
 */
 public class Solution {
+    int max = Integer.MIN_VALUE;
+    public int maxPathSum(TreeNode root) {
+        helper(root);
+        return max;
+    }
+    public int helper(TreeNode root){
+        if(root==null)
+            return 0;
+        int L = helper(root.left);
+        int R = helper(root.right);
+        int now = root.val + Math.max(L+R,Math.max(R,Math.max(0,L)));
+        if(now>max)
+            max = now;
+        return root.val + Math.max(0,Math.max(R,L));
+    }
+}
+
+
+public class Solution {
     public int maxPathSum(TreeNode root) {
         int[] max = new int[1];
         max[0] = Integer.MIN_VALUE;
