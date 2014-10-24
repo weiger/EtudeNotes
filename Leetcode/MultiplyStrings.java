@@ -3,31 +3,28 @@
 
  * Note: The numbers can be arbitrarily large and are non-negative. 
  */
-public class MultiplyStrings {
+public class Solution {
     public String multiply(String num1, String num2) {
-        int len1 = num1.length(), len2 = num2.length();
-        int[] num = new int[len1 + len2];
-        for(int i = 0; i < len1; i++) {
-            int carry = 0;
-            int multiple1 = num1.charAt(len1 - 1 - i) - '0';
-            for(int j = 0; j < len2; j++) {
-                int multiple2 = num2.charAt(len2 - 1 - j) - '0';
-                carry = multiple1 * multiple2 + carry + num[len1 + len2 - 1 - i - j];
-                num[len1 + len2 - 1 - i - j] = carry % 10;
-                carry /= 10;
-            }
-            num [len1 - i - 1] = carry;
-        } 
-        int start = 0;
-        while(start < len1 + len2 && num[start] == 0) {
-            start++;
-        }
-        if(start == len1 + len2)
-            return "0";
-        String result = "";
-        for(int i = start; i < len1 + len2; i++) {
-            result += num[i];
-        }
-        return result;
+        int[] d = new int[num1.length()+num2.length()];
+    	String n1 = new StringBuffer(num1).reverse().toString();
+    	String n2 = new StringBuffer(num2).reverse().toString();
+
+    	for(int i=0;i<n1.length();i++){
+    	   for(int j =0;j<n2.length();j++){
+    	       d[i+j] += (n1.charAt(i)-'0')*(n2.charAt(j)-'0');
+    	   }
+    	}
+    	StringBuffer sb = new StringBuffer();
+    	for(int i=0;i<d.length;i++){
+    	    int digit = d[i]%10;
+    	    int cin = d[i]/10;
+    	    if(i+1<d.length)
+    		d[i+1]+=cin;
+    	    sb.insert(0, digit);
+    	}
+    	while(sb.charAt(0)=='0'&&sb.length()>1){
+    	    sb.deleteCharAt(0);
+    	}
+    	return sb.toString();
     }
 }
