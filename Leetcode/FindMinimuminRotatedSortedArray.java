@@ -5,6 +5,7 @@
 4.如果beg>mid,那么无序点在前半部分，mid也有可能是最小值，end = mid
 5.如果beg==mid,1.重复元素beg++ 2.只有两个元素且无序 beg++
 6.Return beg
+(while(beg<end) 可避免很多麻烦)
 */
 public class Solution {
     public int findMin(int[] num) {
