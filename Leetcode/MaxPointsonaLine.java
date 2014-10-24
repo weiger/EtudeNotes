@@ -7,44 +7,45 @@
  *     Point(int a, int b) { x = a; y = b; }
  * }
  */
-//brutal O(n^2)
+/*brutal O(n^2)
+1.注意扫描时避开基准
+2.扫描是记录完全相同的点
+3.注意K正无穷时候
+4.HashMap奇数，每次循环结束后注意清空
+*/
 public class Solution {
     public int maxPoints(Point[] points) {
-        if(points.length==0) return 0;
-        if(points.length==1 || points.length==2) return points.length;
+        if(points==null || points.length==0)
+            return 0;
         HashMap<Double,Integer> map = new HashMap<Double,Integer>();
         int max = 1;
-        int temp = 1;
         double k;
         for(int i=0;i<points.length;i++){
-            temp=1;
+            int count = 1;
             map.clear();
-            Point p1 = points[i];
             for(int j=0;j<points.length;j++){
-                Point p2 = points[j];
-                if(p1==p2) continue;
-                if(p1.x==p2.x && p1.y==p2.y){
-                    temp++;continue;
-                } 
-                
-                if(p1.x==p2.x) 
-                    k=Integer.MAX_VALUE;
-                else
-                    k=((double)p1.y-(double)p2.y)/((double)p1.x-(double)p2.x);    
-                
-                if(map.containsKey(k))
+                if(points[j]==points[i]){
+                    continue;
+                }
+                if(points[j].x==points[i].x && points[j].y==points[i].y){
+                    count++;continue;
+                }
+                if(points[j].x==points[i].x && points[j].y!=points[i].y){
+                    k = Integer.MAX_VALUE;
+                }else{
+                    k = ((double)points[j].y-(double)points[i].y)/((double)points[j].x-(double)points[i].x);
+                }
+                if(map.containsKey(k)){
                     map.put(k,map.get(k)+1);
-                else
+                }else{
                     map.put(k,1);
+                }
             }
-            int count = 0;
+            int tmp = 0;
             for(Integer x:map.values()){
-                if(x>count)
-                    count=x;
+                tmp = Math.max(x,tmp);
             }
-            count+=temp;
-            if(count>max)
-                max=count;
+            max = Math.max(max,tmp+count);
         }
         return max;
     }
