@@ -12,23 +12,21 @@
  */
 public class Solution {
     public List<String> letterCombinations(String digits) {
-        List<String> res = new ArrayList<String>();
-        String[] nums = {" ","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
-        String buffer = "";
-        helper(res,nums,digits,buffer,0);
+        List<String> res = new ArrayList<>();
+        String[] dig = {" ","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        helper(res,digits,dig,0,"");
         return res;
     }
-    public void helper(List<String> res,String[] nums,String digits,String buffer,int deep){
-        if(deep==digits.length()){
-            res.add(buffer);
+    public void helper(List<String> res,String digits,String[] dig,int pos,String buff){
+        if(pos==digits.length()){
+            res.add(buff);
             return;
         }
-        int index = digits.charAt(deep) - '0';
-        for(int i=0;i<nums[index].length();i++){
-            String temp = buffer;
-            buffer = buffer + nums[index].charAt(i);
-            helper(res,nums,digits,buffer,deep+1);
-            buffer = temp;
+        for(int i=0;i<dig[digits.charAt(pos)-'0'].length();i++){
+            String tmp = buff;
+            buff+=dig[digits.charAt(pos)-'0'].charAt(i);
+            helper(res,digits,dig,pos+1,buff);
+            buff = tmp;
         }
     }
 } 
