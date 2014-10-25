@@ -20,6 +20,28 @@
    3 [4..4] = [3,4]
  */
  public class Solution {
+    public List<List<Integer>> combine(int n, int k) {
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> list = new ArrayList<>();
+        helper(res,list,n,k,1);
+        return res;
+    }
+    public void helper(List<List<Integer>> res,List<Integer> list,int n,int k,int pos){
+        if(k==0){
+            res.add(new ArrayList<>(list));
+            return;
+        }
+        for(int i=pos;i<=n;i++){
+            list.add(i);
+            helper(res,list,n,k-1,i+1);
+            list.remove(list.size()-1);
+        }
+    }
+    
+}
+ 
+ 
+ public class Solution {
     public ArrayList<ArrayList<Integer>> combine(int n, int k) {
         ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
         ArrayList<Integer> list = new ArrayList<Integer>();
