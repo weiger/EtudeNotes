@@ -14,6 +14,42 @@
  *   (-1, 0, 1)
  *   (-1, -1, 2)
  */
+ public class Solution {
+    public List<List<Integer>> threeSum(int[] num) {
+        List<List<Integer>> res = new ArrayList<>();
+        Arrays.sort(num);
+        int sum;
+        for(int i=0;i<num.length-1;i++){
+            int left = i + 1;
+            int right = num.length - 1;
+            while(left<right){
+                sum = num[left] + num[i] + num[right];
+                if(sum<0){
+                    left++;
+                }else if(sum>0){
+                    right--;
+                }else{
+                    List<Integer> list = new ArrayList<>();
+                    list.add(num[i]);list.add(num[left]);list.add(num[right]);
+                    res.add(list);
+                    while(left<right && num[left]==num[left+1]){
+                        left++;
+                    }
+                    while(left<right && num[right]==num[right-1]){
+                        right--;
+                    }
+                    left++;
+                    right--;
+                }
+            }
+            while(i<num.length-1 && num[i]==num[i+1]){
+                i++;
+            }
+        }
+        return res;
+    }
+}
+ 
 public class Solution {
     public List<List<Integer>> threeSum(int[] num) {
         List<List<Integer>> res = new ArrayList<>();
