@@ -43,7 +43,7 @@ public class Solution {
             for(int j=0;j<N;j++){
                 if(p.charAt(j)=='*') continue;
                 boolean dot = (p.charAt(j)=='.');
-                boolean star = ((j+1)<p.length() && p.charAt(j+1)=='*');
+                boolean star = ((j+1)<N && p.charAt(j+1)=='*');
                 char c = p.charAt(j);
                 if(star){
                     dp[i+1][j+2] = ((dot || c==s.charAt(i)) && (dp[i][j] || dp[i][j+2])) || dp[i+1][j];
