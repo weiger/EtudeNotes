@@ -9,24 +9,28 @@
  *     The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
  * 
  */
-public class ThreeSumClosest {
+public class Solution {
     public int threeSumClosest(int[] num, int target) {
-        int result = Integer.MAX_VALUE;
+        if(num==null || num.length<3)
+            return 0;
+        int res = num[0] + num[1] + num[2];
         Arrays.sort(num);
-        for(int i = 0; i < num.length - 2; i++) {
-            int left = i + 1, right = num.length - 1;
-            while(left < right) {
-                int threeSum = num[i] + num[left] + num[right];
-                if(threeSum == target)
+        for(int i = 0;i<num.length-1;i++){
+            int left = i + 1;
+            int right = num.length - 1;
+            while(left<right){
+                int sum = num[i] + num[left] + num[right];
+                if(sum==target)
                     return target;
-                else if(threeSum < target)
-                    left++;
-                else 
+                else if(sum>target)
                     right--;
-                if(result == Integer.MAX_VALUE || Math.abs(result - target) > Math.abs(threeSum - target))
-                    result = threeSum;
+                else if(sum<target)
+                    left++;
+                    
+                if(Math.abs(sum - target)<Math.abs(res-target))
+                    res = sum;
             }
         }
-        return result;
+        return res;
     }
 }
