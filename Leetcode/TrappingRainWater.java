@@ -5,6 +5,35 @@
  * For example, 
  * Given [0,1,0,2,1,0,1,3,2,1,2,1], return 6.
  */
+ public class Solution {
+    public int trap(int[] A) {
+        if (A == null || A.length < 3)
+	    return 0;
+    	int[] left = new int[A.length];
+    	int[] right = new int[A.length];
+    	int lmax = Integer.MIN_VALUE;
+    	int rmax = Integer.MIN_VALUE;
+    	left[0] = 0;
+    	right[A.length - 1] = 0;
+    	for (int i = 1; i < A.length; i++) {
+    	    lmax = Math.max(lmax, A[i - 1]);
+    	    left[i] = lmax;
+    	}
+    	for (int i = A.length - 2; i >= 0; i--) {
+    	    rmax = Math.max(rmax, A[i + 1]);
+    	    right[i] = rmax;
+    	}
+    
+    	int sum = 0;
+    	for (int i = 0; i < A.length; i++) {
+    	    if (Math.min(left[i], right[i]) > A[i])
+    		sum += Math.min(left[i], right[i]) - A[i];
+    	}
+    	return sum;
+    }
+}
+ 
+ 
 public class Solution {
     public int trap(int[] A) {
         if(A.length<3)
@@ -32,42 +61,3 @@ public class Solution {
  
  
  
- 
-public class TrappingRainWater {
-    public int trap_1(int[] A) {
-        int[] lMax = new int[A.length], rMax = new int[A.length];
-        for(int i = 0; i < A.length; i++) {
-            lMax[i] = Math.max(lMax[i == 0 ? i : i - 1], A[i]); 
-            rMax[A.length - 1 - i] = Math.max(rMax[A.length - i - (i == 0 ? 1 : 0)], A[A.length - 1 - i]);
-        }
-        int res = 0;
-        for(int i = 1; i < A.length - 1; i++) {
-            res += Math.min(lMax[i], rMax[i]) - A[i];
-        }
-        return res;
-    } 
-
-
-    public int trap_2(int[] A) {
-        int res = 0, i = 0, j = A.length - 1;
-        while(i < j) {
-            int k;
-            if(A[i] < A[j]) {
-                k = i + 1;
-                while(A[i] > A[k]) {
-                    res += A[i] - A[k];
-                    k++;
-                }
-                i = k;
-            } else {
-                k = j - 1;
-                while(A[j] > A[k]) {
-                    res += A[j] - A[k];
-                    k--;
-                }
-                j = k;
-            }
-        }
-        return res;
-    }
-}
