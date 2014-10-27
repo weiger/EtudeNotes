@@ -33,7 +33,25 @@ public class Solution {
         }
     }
 } 
- 
+ public class Solution {
+    public void sortColors(int[] A) {
+        if(A==null || A.length==0)
+            return;
+        int[] tmp = new int[3];
+        for(int i=0;i<A.length;i++){
+            tmp[A[i]]++;
+        }
+        int idx = 0;
+        for(int i=0;i<A.length;i++){
+            while(tmp[idx]==0)
+                idx++;
+            if(tmp[idx]>0){
+                A[i] = idx;
+                tmp[idx]--;
+            }
+        }
+    }
+}
  
  
 public class SortColors {
