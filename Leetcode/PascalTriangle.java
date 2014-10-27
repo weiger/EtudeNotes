@@ -13,12 +13,12 @@
  * ]
  */
  /*
- [1],
+[1],
 [1,1],
 [1,2,1],
 [1,3,3,1],
 [1,4,6,4,1]
- more easier in t
+ more easier in tis way
  */
  public class Solution {
     public List<List<Integer>> generate(int numRows) {
