@@ -14,6 +14,21 @@ public class Solution {
         return null;
     }
 }
+public class Solution {
+    public String strStr(String haystack, String needle) {
+        if(needle==null || needle.length()==0 || haystack.equals(needle))
+            return haystack;
+        for(int i=0;i<=haystack.length()-needle.length();i++){
+            for(int j=0;j<needle.length();j++){
+                if(haystack.charAt(i+j)!=needle.charAt(j))
+                    break;
+                if(j==needle.length()-1)
+                    return haystack.substring(i);
+            }
+        }
+        return null;    
+    }
+}
 //brutal 1
 public class ImplementstrStr {
     public String strStr(String haystack, String needle) {
