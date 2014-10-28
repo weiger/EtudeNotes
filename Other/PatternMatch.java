@@ -18,24 +18,25 @@ public class Solution {
 
     public static boolean isMatch(String p, int pidx, String input, int start,
         Map<Character, String> map) {
-        if (start == input.length() && pidx == p.length())
-            return true;
-        char c = p.charAt(pidx);
-        if (map.get(c) != null) {
-            int len = map.get(c).length();
-            if (start + len > input.length()
-                || !input.substring(start, start + len).equals(map.get(c))) {
-                return false;
+    if (start == input.length() && pidx == p.length())
+        return true;
+    char c = p.charAt(pidx);
+    if (map.get(c) != null) {
+        int len = map.get(c).length();
+        if (start + len > input.length()
+            || !input.substring(start, start + len).equals(map.get(c))) {
+        return false;
         } else
         return isMatch(p, pidx + 1, input, start + len, map);
     } else {
         for (int len = 1; len <= input.length() - start; len++) {
-            map.put(c, input.substring(start, start + len));
-            if (isMatch(p, pidx + 1, input, start + len, map))
-                return true;
-            map.remove(c);
+        map.put(c, input.substring(start, start + len));
+        if (isMatch(p, pidx + 1, input, start + len, map))
+            return true;
+        map.remove(c);
         }
     }
     return false;
-  }
+    }
 }
+
