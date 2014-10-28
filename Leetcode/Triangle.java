@@ -21,6 +21,7 @@
 [6,5,7],
 [4,1,8,3]
 from bottom to up, dp initialize with last row
+from left to right !!!
  */
  public class Solution {
     public int minimumTotal(List<List<Integer>> triangle) {
