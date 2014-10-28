@@ -25,15 +25,15 @@ public class Solution {
         int len = map.get(c).length();
         if (start + len > input.length()
             || !input.substring(start, start + len).equals(map.get(c))) {
-        return false;
+            return false;
         } else
-        return isMatch(p, pidx + 1, input, start + len, map);
+            return isMatch(p, pidx + 1, input, start + len, map);
     } else {
         for (int len = 1; len <= input.length() - start; len++) {
-        map.put(c, input.substring(start, start + len));
-        if (isMatch(p, pidx + 1, input, start + len, map))
-            return true;
-        map.remove(c);
+            map.put(c, input.substring(start, start + len));
+            if (isMatch(p, pidx + 1, input, start + len, map))
+                return true;
+            map.remove(c);
         }
     }
     return false;
