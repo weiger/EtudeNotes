@@ -26,7 +26,50 @@
  * ]
  * 
  */
- 
+ public class Solution {
+    public List<String[]> solveNQueens(int n) {
+        List<String[]> res = new ArrayList<String[]>();
+        if(n<=0)
+            return res;
+        int[] chess = new int[n];
+        dfs(res,chess,0);
+        return res;
+    }
+    public void dfs(List<String[]> res,int[] chess,int deep){
+        if(deep==chess.length){
+            store(res,chess);
+            return;
+        }
+        for(int i=0;i<chess.length;i++){
+            chess[deep] = i;
+            if(isvalid(chess,deep)){
+                dfs(res,chess,deep+1);
+            }
+        }
+    }
+    public void store(List<String[]> res,int[] chess){
+        String[] list = new String[chess.length];
+        for(int i=0;i<chess.length;i++){
+            String tmp = "";
+            for(int j=0;j<chess.length;j++){
+                if(j==chess[i])
+                    tmp+="Q";
+                else
+                    tmp+=".";
+            }
+            list[i] = tmp;
+        }
+        res.add(list);
+    }
+    public boolean isvalid(int[] chess,int deep){
+        for(int i=0;i<deep;i++){
+            if(chess[deep] == chess[i] || Math.abs(chess[i]-chess[deep])==deep-i)
+                return false;
+        }
+        return true;
+    }
+   
+}
  //Derive from N-queen 2
 public class Solution {
     public List<String[]> solveNQueens(int n) {
