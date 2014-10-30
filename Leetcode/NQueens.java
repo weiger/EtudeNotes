@@ -68,7 +68,6 @@
         }
         return true;
     }
-   
 }
  //Derive from N-queen 2
 public class Solution {
