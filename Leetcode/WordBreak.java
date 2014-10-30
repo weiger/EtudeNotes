@@ -8,6 +8,27 @@
 
  * Return true because "leetcode" can be segmented as "leet code".
  */
+ //DP[i] means wheather the length i string can be broke
+ public class Solution {
+    public boolean wordBreak(String s, Set<String> dict) {
+        if(s==null || dict==null)
+            return false;
+        boolean[] dp = new boolean[s.length()+1];
+        dp[0] = true;
+        for(int i=1;i<=s.length();i++){
+            for(int j=0;j<i;j++){
+                if(dp[j] && dict.contains(s.substring(j,i))){
+                    dp[i] = true;
+                    break;
+                }
+            }
+        }
+        return dp[s.length()];
+    }
+}
+ 
+ 
+ 
 public class WordBrealen {
 /*  public boolean wordBreak(String s, Set<String> dict) {
         boolean[][] dp = new boolean[s.length()][s.length() + 1];
@@ -57,41 +78,6 @@ public class WordBrealen {
     }
 }
 */
-//Same Idea
-public class Solution {
-    public boolean wordBreak(String s, Set<String> dict) {
-        if(s==null && s.length()==0) return false;
-        boolean[] dp=new boolean[s.length()+1];
-        dp[0] = true;
-        for(int i=1;i<dp.length;i++){
-            for(int j=0;j<i;j++){
-                if(dp[j]==true && dict.contains(s.substring(j,i))){
-                    dp[i] = true;
-                    break;
-                }
-            }
-        }
-        return dp[s.length()];
-    }
-}
-//Same idea different direction
-public class Solution {
-    public boolean wordBreak(String s, Set<String> dict) {
-        if(s==null || s.length()==0) return false;
-        boolean[] possible = new boolean[s.length() + 1];
-        	possible[s.length()] = true;
-        	for (int i = s.length() - 1; i >= 0; i--) {
-        	    for (int j = s.length(); j > i; j--) {
-        		possible[i] = possible[j] && dict.contains(s.substring(i, j));
-        		if (possible[i])
-        		    break;
-        	    }
-        	}
-        return possible[0];
-    }
-}
-//
-
     public boolean wordBreak(String s, Set<String> dict) {
         boolean[] dp = new boolean[s.length() + 1];
         dp[0] = true;
