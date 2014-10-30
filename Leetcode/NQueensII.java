@@ -6,33 +6,33 @@ distinct solutions.
  * 
  */
 
-public class NQueensII {
+public class Solution {
     int res = 0;
     public int totalNQueens(int n) {
-        int[] board = new int[n];
-        dfs(board, 0);
+        if(n<=0)
+            return 0;
+        res = 0;
+        int[] chess = new int[n];
+        dfs(chess,0);
         return res;
     }
-
-    public void dfs(int[] board, int row) {
-        int n = board.length;
-        if(row == n)
+    public void dfs(int[] chess,int deep){
+        if(deep==chess.length){
             res++;
-        else {
-            for(int col = 0; col < n; col++) {
-                if(isSafeToPlace(board, row, col)) {
-                    board[row] = col;
-                    dfs(board, row + 1);
-                    board[row] = 0;
-                }
+            return;
+        }
+        for(int i=0;i<chess.length;i++){
+            chess[deep] = i;
+            if(isvalid(chess,deep)){
+                dfs(chess,deep+1);
             }
         }
     }
-
-    public boolean isSafeToPlace(int[] board, int row, int col) {
-        for(int i = 0; i < row; i++)
-            if(board[i] == col || Math.abs(row - i) == Math.abs(col - board[i]))
+    public boolean isvalid(int[] chess,int deep){
+        for(int i=0;i<deep;i++){
+            if(chess[i]==chess[deep] || Math.abs(chess[deep]-chess[i])==deep-i)
                 return false;
+        }
         return true;
     }
 }
