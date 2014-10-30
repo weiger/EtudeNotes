@@ -8,6 +8,7 @@
 
  * Return true because "leetcode" can be segmented as "leet code".
  */
+ 
  //DP[i] means wheather the length i string can be broke
  public class Solution {
     public boolean wordBreak(String s, Set<String> dict) {
@@ -26,7 +27,24 @@
         return dp[s.length()];
     }
 }
- 
+//dp[i] mean wheather the substring from i to end can be break
+public class Solution {
+    public boolean wordBreak(String s, Set<String> dict) {
+        if(s==null || dict==null)
+            return false;
+        boolean[] dp = new boolean[s.length()+1];
+        dp[s.length()] = true;
+        for(int i=s.length();i>=0;i--){
+            for(int j=s.length();j>i;j--){
+                if(dp[j] && dict.contains(s.substring(i,j))){
+                    dp[i] = true;
+                    break;
+                }
+            }
+        }
+        return dp[0];
+    }
+} 
  
  
 public class WordBrealen {
