@@ -54,3 +54,32 @@ public BinaryTreePreorderTraversal {
         return res;
     }
 }
+//Morris
+public class Solution {
+    public List<Integer> preorderTraversal(TreeNode root) {
+        ArrayList<Integer> res = new ArrayList<Integer>();
+        TreeNode cur = root;
+        TreeNode prev = null;
+        while (cur != null){
+            if (cur.left == null){
+                res.add(cur.val);
+                cur = cur.right;
+            }
+            else{
+                prev = cur.left;
+                while (prev.right != null && prev.right != cur)
+                    prev = prev.right;
+                if (prev.right == null){
+                    res.add(cur.val);
+                    prev.right = cur;
+                    cur = cur.left;
+                }
+                else{
+                    prev.right = null;
+                    cur = cur.right;
+                }
+            }
+        }
+        return res;
+    }
+}
