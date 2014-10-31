@@ -76,3 +76,60 @@ public class Solution {
         return res;
     }   
 }
+//Morris
+public class Solution {
+    public List<Integer> postorderTraversal(TreeNode root) {
+        ArrayList<Integer> res = new ArrayList<Integer>();
+        TreeNode dump = new TreeNode(0);;
+        dump.left = root;
+        TreeNode cur = dump, prev = null;
+        while (cur!=null)
+        {
+            if (cur.left == null){
+                cur = cur.right;
+            }
+            else{
+                prev = cur.left;
+                while (prev.right != null && prev.right != cur)
+                    prev = prev.right;
+
+                if (prev.right == null){
+                    prev.right = cur;
+                    cur = cur.left;
+                }
+                else{
+                    printReverse(cur.left, prev,res); 
+                    prev.right = null;
+                    cur = cur.right;
+                }
+            }
+        }
+        return res;
+    } 
+    public void reverse(TreeNode from, TreeNode to)
+    {
+        if (from == to)
+            return;
+        TreeNode x = from, y = from.right, z;
+        while (true){
+            z = y.right;
+            y.right = x;
+            x = y;
+            y = z;
+            if (x == to)
+                break;
+        }
+    }
+    public void printReverse(TreeNode from, TreeNode to,ArrayList<Integer> res){
+        reverse(from, to);
+        
+        TreeNode p = to;
+        while (true){
+            res.add(p.val);
+            if (p == from)
+                break;
+            p = p.right;
+        }
+        reverse(to, from);
+    }
+}
