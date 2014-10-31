@@ -112,9 +112,9 @@ class TreeIterator {
             return new TreeIterator(root);
         }
 }
-/**************************************************************/
-
-    public ArrayList<Integer> inorderTraversal(TreeNode root) {
+//Morris
+public class Solution {
+    public List<Integer> inorderTraversal(TreeNode root) {
         ArrayList<Integer> result = new ArrayList<Integer>();
         TreeNode cur = root;
         while(cur != null) {
