@@ -83,43 +83,6 @@ class BST {
             }
         }
     }
-
-    public String Serialization() {
-        StringBuilder sb = new StringBuilder();
-        SerialHelper(root, sb);
-        return sb.toString();
-    }
-
-    public void SerialHelper(TreeNode p, StringBuilder sb) {
-        if (p == null) {
-            sb.append('#');
-            return;
-        } else {
-            sb.append(p.val);
-            SerialHelper(p.left, sb);
-            SerialHelper(p.right, sb);
-        }
-    }
-
-    public void Derialization(String str) {
-        root = DerialHelper(str);
-    }
-
-    static int pos = 0;
-
-    public TreeNode DerialHelper(String str) {
-        if (str.charAt(pos) == '#')
-            return null;
-        else {
-            TreeNode p = new TreeNode(Integer.parseInt(str.charAt(pos) + ""));
-            pos++;
-            p.left = DerialHelper(str);
-            pos++;
-            p.right = DerialHelper(str);
-            return p;
-        }
-    }
-
     public void display() {
         final int height = 5, width = 64;
 
