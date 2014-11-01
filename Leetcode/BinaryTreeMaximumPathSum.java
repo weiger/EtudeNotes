@@ -30,6 +30,8 @@ Java dont have reference,so use Array or global variable
 */
 public class Solution {
     int max = Integer.MIN_VALUE;
+    /*don't initialize static int max = Integer.MIN_VALUE,
+    this value will be affected by previous test,because static max for solution can only be initialized one time*/
     public int maxPathSum(TreeNode root) {
         helper(root);
         return max;
