@@ -43,3 +43,25 @@ public class BalancedBinaryTree {
         return 1 + Math.max(leftDepth, rightDepth);
     }
 }
+public class Solution {
+    public boolean isBalanced(TreeNode root) {
+        if(getHeight(root)==-1)
+            return false;
+        else
+            return true;
+    }
+    public int getHeight(TreeNode p){
+        if(p==null)
+            return 0;
+        int leftheight = getHeight(p.left);
+        if(leftheight==-1)
+            return -1;
+        int rightheight = getHeight(p.right);
+        if(rightheight==-1)
+            return -1; 
+        if(Math.abs(leftheight-rightheight)>1)
+            return -1;
+        else
+            return Math.max(leftheight,rightheight)+1;
+    }
+}
