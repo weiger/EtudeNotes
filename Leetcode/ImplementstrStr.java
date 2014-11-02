@@ -170,6 +170,40 @@ public class Solution {
     	return null; // not found
     }
 }
+//short RK
+public class Solution {
+    public String strStr(String haystack, String needle) {
+        if (needle.length() == 0 || needle.equals(haystack))
+            return haystack;
+        if(haystack.length()<needle.length())
+            return null;
+        long Q = java.math.BigInteger.probablePrime(31, new java.util.Random()).longValue();
+        int R = 256;
+        int M = needle.length();
+        int N = haystack.length();
+        long phash = hash(needle,M,R,Q);
+        long txthash = hash(haystack,M,R,Q);
+        long RM = 1;
+        for(int i=1;i<needle.length();i++){
+            RM = (R*RM)%Q;
+        }
+        if(phash==txthash)
+            return haystack;
+        for(int i=M;i<haystack.length();i++){
+            txthash = (txthash + Q - RM * haystack.charAt(i-M)%Q)%Q;
+            txthash = (txthash*R + haystack.charAt(i))%Q;
+            if(txthash==phash)
+                return haystack.substring(i-M+1);
+        }
+        return null;
+    }
+    public long hash(String str,int M,int R,long Q){
+    	long h = 0;
+    	for (int i = 0; i < M; i++)
+    	    h = (R * h + str.charAt(i)) % Q;
+    	return h;
+    }
+}
 //RabinKarp
 public class Solution {
     public String strStr(String haystack, String needle) {
