@@ -173,35 +173,36 @@ public class Solution {
 //short RK
 public class Solution {
     public String strStr(String haystack, String needle) {
-        if (needle.length() == 0 || needle.equals(haystack))
+        if(haystack.equals(needle) || needle.length()==0)
             return haystack;
         if(haystack.length()<needle.length())
             return null;
         long Q = java.math.BigInteger.probablePrime(31, new java.util.Random()).longValue();
-        int R = 256;
         int M = needle.length();
         int N = haystack.length();
-        long phash = hash(needle,M,R,Q);
-        long txthash = hash(haystack,M,R,Q);
+        int R = 256;
         long RM = 1;
-        for(int i=1;i<needle.length();i++){
-            RM = (R*RM)%Q;
+        for(int i=1;i<M;i++){
+            RM = (RM * R)%Q;
         }
-        if(phash==txthash)
+        long patternhash = hash(needle,M,R,Q);
+        long txthash = hash(haystack,M,R,Q);
+        if(patternhash==txthash)
             return haystack;
-        for(int i=M;i<haystack.length();i++){
-            txthash = (txthash + Q - RM * haystack.charAt(i-M)%Q)%Q;
-            txthash = (txthash*R + haystack.charAt(i))%Q;
-            if(txthash==phash)
+        for(int i=M;i<N;i++){
+            txthash = (txthash + Q - RM*(haystack.charAt(i-M))%Q)%Q;
+            txthash = (txthash * R + haystack.charAt(i))%Q;
+            if(patternhash==txthash)
                 return haystack.substring(i-M+1);
         }
         return null;
     }
     public long hash(String str,int M,int R,long Q){
-    	long h = 0;
-    	for (int i = 0; i < M; i++)
-    	    h = (R * h + str.charAt(i)) % Q;
-    	return h;
+        long h = 0;
+        for(int i=0;i<M;i++){
+            h = (R * h + str.charAt(i))%Q;
+        }
+        return h;
     }
 }
 //RabinKarp
