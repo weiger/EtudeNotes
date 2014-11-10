@@ -15,18 +15,18 @@ public class Solution {
     }
 }
 public class Solution {
-    public String strStr(String haystack, String needle) {
-        if(needle==null || needle.length()==0 || haystack.equals(needle))
-            return haystack;
+    public int strStr(String haystack, String needle) {
+        if(needle.length()==0 || haystack.equals(needle))
+            return 0;
         for(int i=0;i<=haystack.length()-needle.length();i++){
             for(int j=0;j<needle.length();j++){
-                if(haystack.charAt(i+j)!=needle.charAt(j))
+                if(needle.charAt(j)!=haystack.charAt(i+j))
                     break;
                 if(j==needle.length()-1)
-                    return haystack.substring(i);
+                    return i;
             }
         }
-        return null;    
+        return -1;
     }
 }
 //brutal 1
