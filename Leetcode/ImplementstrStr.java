@@ -145,7 +145,7 @@ public class Solution {
 public class Solution {
     public String strStr(String haystack, String needle) {
         if (needle.length() == 0 || needle.equals(haystack))
-	    return haystack;
+	    return 0;
     	int R = 256;
     	// position of rightmost occurrence of c in the pattern
     	int[] right = new int[R];
@@ -165,9 +165,9 @@ public class Solution {
     		    }
     	    }
     	    if (skip == 0)
-    		return haystack.substring(i); // found
+    		return i; // found
     	}
-    	return null; // not found
+    	return -1; // not found
     }
 }
 //short RK
