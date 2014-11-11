@@ -6,27 +6,21 @@ class MinStack {
         if(stack2.isEmpty()||x<=stack2.peek())
             stack2.push(x);
     }
-
+    //return type of peek() is reference
     public void pop() {
-        int val;
         if(!stack1.isEmpty()){
-            val = stack1.pop();
-            if(val==stack2.peek())
+            if((int)stack1.peek()==(int)stack2.peek()){
                 stack2.pop();
+            }
+            stack1.pop();
         }
     }
 
     public int top() {
-        if(!stack1.isEmpty())
-            return stack1.peek();
-        else
-            return -1;
+        return stack1.peek();
     }
 
     public int getMin() {
-        if(!stack2.isEmpty())
-            return stack2.peek();
-        else
-            return -1;
+        return stack2.peek();
     }
 }
