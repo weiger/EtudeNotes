@@ -5,49 +5,49 @@ public class SortingClassic {
 			for (int j = 0; j < data.length - 1 - i; j++)
 				if (data[j] > data[j + 1])
 					swap(data, j, j + 1);
+	}
+
+	public static void selectionsort(int[] data) {
+		for (int i = 0; i < data.length; i++)
+			for (int j = i; j < data.length; j++)
+				if (data[j] < data[i])
+					swap(data, i, j);
+	}
+
+	public static void insertionsort(int[] data) {
+
+		for (int i = 1; i < data.length; i++) {
+			int tmp = data[i];
+			int j = i;
+			while (j > 0 && tmp < data[j - 1]) {
+				data[j] = data[j - 1];
+				j--;
 			}
-
-			public static void selectionsort(int[] data) {
-				for (int i = 0; i < data.length; i++)
-					for (int j = i; j < data.length; j++)
-						if (data[j] < data[i])
-							swap(data, i, j);
-					}
-
-					public static void insertionsort(int[] data) {
-
-						for (int i = 1; i < data.length; i++) {
-							int tmp = data[i];
-							int j = i;
-							while (j > 0 && tmp < data[j - 1]) {
-								data[j] = data[j - 1];
-								j--;
-							}
-							data[j] = tmp;
-						}
+			data[j] = tmp;
+		}
 	/*
 	 * for (int i = 1; i < data.length; i++) { for (int j = i - 1; j >= 0 &&
 	 * data[j] > data[j + 1]; j--) { swap(data, j, j + 1); } }
 	 */
-}
-public static void quickSort(int[] A){
-	quicksorthelper(A,0,A.length-1);
-}
-
-public static void quicksorthelper(int[] A, int beg, int end) {
-	if(beg<end){
-		int pivot = A[end];
-		int index = beg;
-		for(int i=beg;i<end;i++){
-			if(A[i]<=pivot){
-				swap(A,index++,i);
-			}
-		}
-		swap(A,index,end);
-		quicksorthelper(A,beg,index-1);
-		quicksorthelper(A,index+1,end);
 	}
-}
+	public static void quickSort(int[] A){
+		quicksorthelper(A,0,A.length-1);
+	}
+
+	public static void quicksorthelper(int[] A, int beg, int end) {
+		if(beg<end){
+			int pivot = A[end];
+			int index = beg;
+			for(int i=beg;i<end;i++){
+				if(A[i]<=pivot){
+					swap(A,index++,i);
+				}
+			}
+			swap(A,index,end);
+			quicksorthelper(A,beg,index-1);
+			quicksorthelper(A,index+1,end);
+		}
+	}
     /*public static void quicksort(int[] data) {
 		quicksorthelper(data, 0, data.length - 1);
     }
@@ -95,7 +95,7 @@ public static void quicksorthelper(int[] A, int beg, int end) {
 				A[child] = tmp;
 				root = child;
 			}else
-				return;
+			return;
 		}
 	}
 	public static void mergesort(int[] data){
