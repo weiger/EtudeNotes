@@ -20,8 +20,8 @@ public class SortingClassic {
 	    int tmp = data[i];
 	    int j = i;
 	    while (j > 0 && tmp < data[j - 1]) {
-		data[j] = data[j - 1];
-		j--;
+			data[j] = data[j - 1];
+			j--;
 	    }
 	    data[j] = tmp;
 	}
@@ -30,23 +30,40 @@ public class SortingClassic {
 	 * data[j] > data[j + 1]; j--) { swap(data, j, j + 1); } }
 	 */
     }
-
-    public static void quicksort(int[] data) {
-	quicksorthelper(data, 0, data.length - 1);
+    public static void quickSort(int[] A){
+		quicksorthelper(A,0,A.length-1);
+	}
+	
+	public static void quicksorthelper(int[] A, int beg, int end) {
+	if(beg<end){
+		int pivot = A[end];
+		int index = beg;
+		for(int i=beg;i<end;i++){
+			if(A[i]<=pivot){
+				swap(A,index++,i);
+			}
+		}
+		swap(A,index,end);
+		quicksorthelper(A,beg,index-1);
+		quicksorthelper(A,index+1,end);
+		}
+	}
+    /*public static void quicksort(int[] data) {
+		quicksorthelper(data, 0, data.length - 1);
     }
 
     public static void quicksorthelper(int[] data, int beg, int end) {
-	if (beg >= end)
-	    return;
-	int index = beg;
-	for (int i = beg; i < end; i++) {
-	    if (data[i] <= data[end])
-		swap(data, i, index++);
-	}
-	swap(data, index, end);
-	quicksorthelper(data, beg, index - 1);
-	quicksorthelper(data, index, end);
-    }
+		if (beg >= end)
+		    return;
+		int index = beg;
+		for (int i = beg; i < end; i++) {
+		    if (data[i] <= data[end])
+			swap(data, i, index++);
+		}
+		swap(data, index, end);
+		quicksorthelper(data, beg, index - 1);
+		quicksorthelper(data, index, end);
+    }*/
 
     public static void heapsort(int[] data) {
 	heapify(data, data.length);
