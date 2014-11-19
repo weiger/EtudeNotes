@@ -161,5 +161,4 @@ public class SortingClassic {
 		mergesort(data);
 		print(data);
 	}
-
 }
