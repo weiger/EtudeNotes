@@ -133,7 +133,25 @@ public class SortingClassic {
 			i++;k++;
 		}
 	}
-
+	public static void countingSort(int[] A, int beg, int end) {
+		int[] rec = new int[end];
+		for (int i = 0; i < A.length; i++) {
+			rec[A[i]]++;
+		}
+		int index = 0;
+		for (int i = 0; i < rec.length; i++) {
+			while (rec[i] > 0) {
+				A[index++] = i;
+				rec[i]--;
+			}
+		}
+	}
+	
+	public static void generate(int[] A, int beg, int end) {
+		for (int i = 0; i < A.length; i++) {
+			A[i] = (int) (beg + Math.random() * (end - beg));
+		}
+	}
 	public static int[] generatearray(int n) {
 		int[] array = new int[n];
 		for (int i = 0; i < n; i++) {
