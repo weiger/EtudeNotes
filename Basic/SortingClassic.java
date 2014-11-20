@@ -6,59 +6,67 @@ public class Solution {
                     swap(data, j, j + 1);
             }
 
-            public static void selectionsort(int[] data) {
-                for (int i = 0; i < data.length; i++)
-                    for (int j = i; j < data.length; j++)
-                        if (data[j] < data[i])
-                            swap(data, i, j);
-                    }
-
-                    public static void insertionsort(int[] data) {
-
-                        for (int i = 1; i < data.length; i++) {
-                            int tmp = data[i];
-                            int j = i;
-                            while (j > 0 && tmp < data[j - 1]) {
-                                data[j] = data[j - 1];
-                                j--;
-                            }
-                            data[j] = tmp;
-                        }
-    /*
-     * for (int i = 1; i < data.length; i++) { for (int j = i - 1; j >= 0 &&
-     * data[j] > data[j + 1]; j--) { swap(data, j, j + 1); } }
-     */
-}
-
-public static void quickSort(int[] A) {
-    quicksorthelper(A, 0, A.length - 1);
-}
-
-public static void quicksorthelper(int[] A, int beg, int end) {
-    if (beg < end) {
-        int pivot = A[end];
-        int index = beg;
-        for (int i = beg; i < end; i++) {
-            if (A[i] <= pivot) {
-                swap(A, index++, i);
+    public static void selectionsort(int[] data) {
+        for (int i = 0; i < data.length; i++)
+            for (int j = i; j < data.length; j++)
+                if (data[j] < data[i])
+                    swap(data, i, j);
             }
-        }
-        swap(A, index, end);
-        quicksorthelper(A, beg, index - 1);
-        quicksorthelper(A, index + 1, end);
-    }
-}
 
-    /*
-     * public static void quicksort(int[] data) { quicksorthelper(data, 0,
-     * data.length - 1); }
-     * 
-     * public static void quicksorthelper(int[] data, int beg, int end) { if
-     * (beg >= end) return; int index = beg; for (int i = beg; i < end; i++) {
-     * if (data[i] <= data[end]) swap(data, i, index++); } swap(data, index,
-     * end); quicksorthelper(data, beg, index - 1); quicksorthelper(data, index,
-     * end); }
-     */
+    public static void insertionsort(int[] data) {
+
+        for (int i = 1; i < data.length; i++) {
+            int tmp = data[i];
+            int j = i;
+            while (j > 0 && tmp < data[j - 1]) {
+                data[j] = data[j - 1];
+                j--;
+            }
+            data[j] = tmp;
+        }
+
+     /*for (int i = 1; i < data.length; i++){ 
+              for (int j = i - 1; j >= 0 &&data[j] > data[j + 1]; j--) 
+                { swap(data, j, j + 1); } 
+            }*/
+
+    }
+
+    public static void quickSort(int[] A) {
+        quicksorthelper(A, 0, A.length - 1);
+    }
+
+    public static void quicksorthelper(int[] A, int beg, int end) {
+        if (beg < end) {
+            int pivot = A[end];
+            int index = beg;
+            for (int i = beg; i < end; i++) {
+                if (A[i] <= pivot) {
+                    swap(A, index++, i);
+                }
+            }
+            swap(A, index, end);
+            quicksorthelper(A, beg, index - 1);
+            quicksorthelper(A, index + 1, end);
+        }
+    }
+
+    public static void quicksort(int[] data) {
+        quicksorthelper(data, 0, data.length - 1);
+    }
+
+    /*public static void quicksorthelper(int[] data, int beg, int end) {
+    if (beg >= end)
+        return;
+    int index = beg;
+    for (int i = beg; i < end; i++) {
+        if (data[i] <= data[end])
+        swap(data, i, index++);
+    }
+    swap(data, index, end);
+    quicksorthelper(data, beg, index - 1);
+    quicksorthelper(data, index, end);
+    }*/
 
     public static void heapSort(int[] A) {
         heapfy(A, A.length);
@@ -203,8 +211,9 @@ public static void quicksorthelper(int[] A, int beg, int end) {
     public static void main(String[] args) {
         int[] data = generate(10, 0, 20);
         print(data);
-    // countingSort(data,0,10);
+        // countingSort(data,0,10);
         data = radixSort(data);
         print(data);
+
     }
 }
