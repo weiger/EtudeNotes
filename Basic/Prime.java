@@ -1,4 +1,5 @@
 public class Prime {
+    //Sieve of Eratosthenes
     public static ArrayList<Integer> getPrime(int n){ //under N
     	ArrayList<Integer> res =new ArrayList<Integer>();
     	boolean[] rec = new boolean[n];
