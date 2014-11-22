@@ -13,41 +13,47 @@
  *  ]
  */
 
-import java.util.*;
-
-public class PalindromePartitioning {
-    
-    public ArrayList<ArrayList<String>> partition(String s) {
-        ArrayList<ArrayList<String>> res = new ArrayList<ArrayList<String>>();
-        ArrayList<String> list = new ArrayList<String>();
-        if (s.length() == 1) {
+public class Solution {
+    public List<List<String>> partition(String s) {
+        List<List<String>> res = new ArrayList<>();
+        List<String> list = new ArrayList<>();
+        if(s.length()==1){
             list.add(s);
             res.add(list);
             return res;
         }
-        if (isPalindrome(s)) {
+        if(isP(s)){
             list.add(s);
             res.add(list);
         }
-        for (int i = 1; i < s.length(); i++) {
-            if (isPalindrome(s.substring(0, i))) {
-                ArrayList<ArrayList<String>> temp = partition(s.substring(i));
-                for (ArrayList<String> subList : temp) {
-                    subList.add(0, s.substring(0, i));
-                    res.add(subList);
+        for(int i=1;i<s.length();i++){
+            if(isP(s.substring(0,i))){
+                List<List<String>> tmp = partition(s.substring(i));
+                for(List<String> sub:tmp){
+                    sub.add(0,s.substring(0,i));
+                    res.add(sub);
                 }
             }
         }
         return res;
     }
-
-    public boolean isPalindrome(String s) {
+    public boolean isP(String s){
+        int beg = 0;
+        int end = s.length()-1;
+        while(beg<end){
+            if(s.charAt(beg)!=s.charAt(end))
+                return false;
+            beg++;
+            end--;
+        }
+        return true;
+    }
+    /*public boolean isPalindrome(String s) {
         for (int i = 0; i < s.length() / 2; i++) 
             if (s.charAt(i) != s.charAt(s.length() - 1 - i))
                 return false;
         return true;
-    }
-
+    }*/
 }
 /************************************************/
 public class Solution {
