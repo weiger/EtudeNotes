@@ -95,19 +95,15 @@ class TreeIterator {
                 stack.push(current);
                 current = current.left;
             }
-    
-    
             current = stack.pop();
             TreeNode node = current;
             current = current.right;
-    
             return node;
         }
     
         public boolean hasNext() {
             return (!stack.isEmpty() || current != null);
         }
-    
         public static TreeIterator iterator(TreeNode root) {
             return new TreeIterator(root);
         }
