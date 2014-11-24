@@ -42,7 +42,7 @@ public class Solution {
         return 1 + Math.max(left,right);
     }
 }
-/*****************************************************************************/
+//best solution
 
     public boolean isBalanced(TreeNode root) {
         return balancedHelper(root) >= 0;
