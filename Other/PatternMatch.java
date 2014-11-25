@@ -1,10 +1,12 @@
 /*
+http://www.careercup.com/question?id=5164018295635968
 find if   string follows the same pattern and return 0 or 1. 
 Examples: 1) Pattern : "abba", input: "redblueredblue" should return 1. 
 2) Pattern: "aaaa", input: "asdasdasdasd" should return 1. 
 3) Pattern: "aabb", input: "xyzabcxzyabc" should return 0. 
 */
 //bug
+
 import java.util.HashMap;
 import java.util.Map;
 
