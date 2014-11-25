@@ -4,6 +4,7 @@ Examples: 1) Pattern : "abba", input: "redblueredblue" should return 1.
 2) Pattern: "aaaa", input: "asdasdasdasd" should return 1. 
 3) Pattern: "aabb", input: "xyzabcxzyabc" should return 0. 
 */
+//bug
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,7 +45,4 @@ public class Solution {
 	}
 	    return false;
     }
-
 }
-
-
