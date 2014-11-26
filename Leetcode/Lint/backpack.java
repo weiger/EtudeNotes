@@ -13,9 +13,8 @@ public class Solution {
     		int v = A.get(j - 1);
     		if (i < v)
     		    dp[i][j] = dp[i][j - 1];
-    		else {
+    		else 
     		    dp[i][j] = Math.max(dp[i][j - 1], v + dp[i - v][j - 1]);
-    		    }
     	    }
     	}
     	return dp[m][A.size()];
