@@ -1,3 +1,27 @@
+public class Solution {
+    /**
+     * @param m: An integer m denotes the size of a backpack
+     * @param A: Given n items with size A[i]
+     */
+    public int backPack(int m, ArrayList<Integer> A) {
+        if (m == 0 || A.size() == 0)
+    	    return 0;
+    	int[] dp = new int[m + 1];
+    	for (int i = 1; i <= A.size(); i++) {
+    	    for (int j = m; j >= 0; j--) {
+    		int v = A.get(i - 1);
+    		if(j<v)
+    		    dp[j] = dp[j];
+    		else
+    		    dp[j] = Math.max(dp[j], dp[j-v]+v);
+    	    }
+    	}
+    	return dp[m];
+    }
+}
+
+
+
 //TLE
 public class Solution {
     /**
