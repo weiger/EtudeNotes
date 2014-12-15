@@ -140,4 +140,47 @@ class ThreadB extends Thread {
 	    notify();
 	}
     }
+    
+public class Solution {
+    public static void main(String[] args) {
+	ThreadChar t1 = new ThreadChar("*");
+	ThreadChar t2 = new ThreadChar("+");
+	ThreadChar t3 = new ThreadChar("-");
+	t1.start();
+	t2.start();
+	t3.start();
+    }
+}
+
+class ThreadChar extends Thread {
+    String str;
+    static int i = 0;
+    static int flag = 1;
+
+    ThreadChar(String str) {
+	this.str = str;
+    }
+
+    public void run() {
+	while (i < 150) {
+	    if (flag == 1 && str.equals("*")) {
+
+		System.out.print("*");
+		flag = 2;
+		i++;
+	    } else if (flag == 2 && str.equals("+")) {
+
+		System.out.print("+");
+		flag = 3;
+		i++;
+	    } else if (flag == 3 && str.equals("-")) {
+
+		System.out.print("-");
+		flag = 1;
+		i++;
+	    }
+
+	}
+    }
+}    
 }
