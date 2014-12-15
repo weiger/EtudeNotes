@@ -42,26 +42,22 @@ public class PermutationSequence {
 //Time Limit Exceeded
 public class Solution {
     public String getPermutation(int n, int k) {
-        String str = "";
-    	ArrayList<String> res = new ArrayList<String>();
-    	boolean[] isVistend = new boolean[n + 1];
-    	helper(res, str, isVistend, 1, n, n);
-    	return res.get(k-1);
+        ArrayList<String> res = new ArrayList<String>();
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        helper(res,list,n,"");
+        return res.get(k-1);
     }
-    public static void helper(ArrayList<String> res, String str,
-	    boolean[] isVistend, int m, int n, int k) {
-    	if (k == 0) {
-    	    res.add(str);
-    	    return;
-    	}
-    	for (int i = m; i <= n; i++) {
-    	    if (!isVistend[i]) {
-    		str = str + i;
-    		isVistend[i] = true;
-    		helper(res, str, isVistend, m, n, k - 1);
-    		isVistend[i] = false;
-    		str = str.substring(0, str.length() - 1);
-    	    }
-    	}
+    public void helper(ArrayList<String> res,ArrayList<Integer> list,int n,String str){
+        if(list.size()==n){
+            res.add(str);
+            return;
+        }
+        for(int i=1;i<=n;i++){
+            if(!list.contains(i)){
+                list.add(i);
+                helper(res,list,n,str+i);
+                list.remove(list.size()-1);
+            }
+        }
     }
 }
