@@ -50,3 +50,97 @@ fwrite($fhandle, $fileData);
 fclose($fhandle);
 echo("File Uploaded Successfully!");
 ?>
+
+/*********************************/
+<script>
+function goBack() {
+	window.history.back()
+}
+</script>
+<body>
+	<?php   
+	//var_dump($_POST);
+	$link = mysqli_connect("mysql","iloveoottat","selina1031","cmpe207data");
+	if (!$link)
+	{
+		die('Could not connect: ' . mysqli_error());
+	} 	
+
+	mysqli_select_db($link,"cmpe207data") or die("Could not select database");
+ 
+	$query = "SELECT * FROM info";   
+	$result = mysqli_query($link,$query) or die("Query failed");  	
+
+	$QueryOption = isset($_POST['QueryOption']) ? $_POST['QueryOption']:null;
+
+	switch ($QueryOption) {
+    case "0":
+		    echo "<table border='2'>\n"; 
+			echo "<tr><td>ID</td><td>First Name</td> <td>Last Name</td> <td>Gender</td> <td>Courses</td></tr>"; 
+			while ($line = mysqli_fetch_array($result, MYSQL_ASSOC)) {        
+				echo "\t<tr>\n";        
+					foreach ($line as $col_value) {            print "\t\t<td>$col_value</td>\n";        }        
+				echo"\t</tr>\n";    }    
+			echo "</table>\n";   
+        break;
+    case '1':
+			echo "<table border='2'>\n"; 
+        	echo "<tr><td>ID</td></td></tr>"; 
+			while ($line = mysqli_fetch_array($result, MYSQL_ASSOC)) {        
+				echo "\t<tr>\n";
+					print "\t\t<td>".$line['student']."</td>\n";  
+				echo"\t</tr>\n"; 
+			}    
+			echo "</table>\n"; 
+        break;
+    case '2':
+			echo "<table border='2'>\n"; 
+        	echo "<tr><td>FirstName</td></td></tr>"; 
+			while ($line = mysqli_fetch_array($result, MYSQL_ASSOC)) {        
+				echo "\t<tr>\n";
+					print "\t\t<td>".$line['firstname']."</td>\n";  
+				echo"\t</tr>\n"; 
+			}    
+			echo "</table>\n"; 
+        break;
+    case '3':
+    		echo "<table border='2'>\n"; 
+        	echo "<tr><td>LastName</td></td></tr>"; 
+			while ($line = mysqli_fetch_array($result, MYSQL_ASSOC)) {        
+				echo "\t<tr>\n";
+					print "\t\t<td>".$line['lastname']."</td>\n";  
+				echo"\t</tr>\n"; 
+			}    
+			echo "</table>\n"; 
+        break;
+    case '4':
+    		echo "<table border='2'>\n"; 
+        	echo "<tr><td>Gender</td></td></tr>"; 
+			while ($line = mysqli_fetch_array($result, MYSQL_ASSOC)) {        
+				echo "\t<tr>\n";
+					print "\t\t<td>".$line['sex']."</td>\n";  
+				echo"\t</tr>\n"; 
+			}    
+			echo "</table>\n"; 
+        break;  
+    case '5':
+    		echo "<table border='2'>\n"; 
+        	echo "<tr><td>Courses</td></td></tr>"; 
+			while ($line = mysqli_fetch_array($result, MYSQL_ASSOC)) {        
+				echo "\t<tr>\n";
+					print "\t\t<td>".$line['course']."</td>\n";  
+				echo"\t</tr>\n"; 
+			}    
+			echo "</table>\n"; 
+        break;    
+	}
+
+	
+	mysqli_free_result($result);    
+ 
+
+	mysqli_close($link);
+	?>
+
+	<button onclick="goBack()">Go Back</button>
+</body>
