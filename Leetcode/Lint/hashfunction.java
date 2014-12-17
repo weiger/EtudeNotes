@@ -14,7 +14,7 @@ Given a string as a key and the size of hash table, return the hash value of thi
 Example
 For key="abcd" and size=100, return 78
 */
-
+//TLE
 import java.math.BigInteger;
 class Solution {
     /**
