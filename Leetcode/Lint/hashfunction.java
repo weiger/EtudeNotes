@@ -14,25 +14,34 @@ Given a string as a key and the size of hash table, return the hash value of thi
 Example
 For key="abcd" and size=100, return 78
 */
-//TLE
-import java.math.BigInteger;
 class Solution {
-    /**
-     * @param key: A String you should hash
-     * @param HASH_SIZE: An integer
-     * @return an integer
-     */
-    public int hashCode(char[] key,int HASH_SIZE) {
-    	BigInteger res = new BigInteger("0");
-    	for (int i = 0; i < key.length; i++) {
-    	    int c = key[i];
-    	    BigInteger tmp = new BigInteger("33");
-    	    BigInteger ch = new BigInteger(String.valueOf(c));
-    	    res = res.add(ch.multiply(tmp.pow(key.length-1-i)));
-    	    res = res.mod(new BigInteger(String.valueOf(HASH_SIZE)));
-    	}
-    	
-    	res.mod(new BigInteger(String.valueOf(HASH_SIZE)));
-    	return res.intValue();
+    public int hashCode(char[] key, int HASH_SIZE) {
+        long v = 0;
+    
+        for (int i = 0; i < key.length; i++) {
+            v = (v * 33 % HASH_SIZE + key[i] % HASH_SIZE) % HASH_SIZE;
+        }
+        return (int) v;
     }
-};
+}
+
+//TLE
+class Solution {
+    public int hashCode(char[] key,int HASH_SIZE) {
+    	long res = 0;
+    	int len = key.length;
+    	for (int i = 0; i < key.length; i++) {
+    	    char c = key[i];
+    	    long tmp = 1;
+    	    int n = len - 1 - i;
+    	    while (n >= 1) {
+        		tmp *= 33;
+        		n--;
+        		while (tmp > Integer.MAX_VALUE)
+        		    tmp %= HASH_SIZE;
+    	    }
+    	    res += c * tmp;
+    	}
+    	return (int) (res % HASH_SIZE);
+    }
+}
