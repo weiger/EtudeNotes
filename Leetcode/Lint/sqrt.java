@@ -21,3 +21,23 @@ class Solution {
         return (int)res;
     }
 }
+
+class Solution {
+    /**
+     * @param x: An integer
+     * @return: The sqrt of x
+     */
+    public int sqrt(int x) {
+        int beg = 1;
+        int end = x;
+        while(beg <= end){
+            int mid = beg + (end - beg) / 2;
+            if( x / mid >=mid ){
+                beg = mid + 1;
+            }else{
+                end = mid - 1;
+            }
+        }
+        return beg - 1;
+    }
+}
