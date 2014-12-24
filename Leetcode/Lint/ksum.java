@@ -29,4 +29,24 @@ public class Solution {
     	return dp[k][target];
     }
 }
+//TLE
+public class Solution {
+    int res = 0;
+    public int kSum(int A[], int k, int target) {
+    	helper(A, 0, k, target);
+    	return res;
+    }
+
+    public void helper(int[] A, int beg, int k, int target) {
+    	if (k < 0 || target < 0)
+    	    return;
+    	if (k == 0 && target == 0) {
+    	    res++;
+    	    return;
+	    }
+    	for (int i = beg; i < A.length; i++) {
+    	    helper(A, i + 1, k - 1, target - A[i]);
+    	}
+    }
+}
 
