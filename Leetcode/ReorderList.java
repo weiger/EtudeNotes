@@ -17,8 +17,10 @@
 */
 public class Solution {
     public void reorderList(ListNode head) {
-        if(head==null||head.next==null) return;
-	    ListNode slow = head;ListNode fast = head;
+        if(head==null||head.next==null) 
+        	return;
+	    ListNode slow = head;
+	    ListNode fast = head;
 	    while(fast.next!=null && fast.next.next!=null){
     		slow = slow.next;
     		fast = fast.next.next;
@@ -27,7 +29,7 @@ public class Solution {
 	    ListNode cur2 = reverse(slow.next);//reverse second half
 	    slow.next = null;
 	    //merge
-	    while(cur2!=null){
+	    while(cur1!=null && cur2!=null){
     		ListNode temp1 = cur1.next;
     		ListNode temp2 = cur2.next;
     		cur1.next = cur2;
@@ -37,7 +39,8 @@ public class Solution {
 	    }
     }
     public ListNode reverse(ListNode head){
-	    if(head==null||head.next==null) return head;
+	    if(head==null||head.next==null) 
+	    	return head;
 	    ListNode pre = head;ListNode cur = head.next;
 	    while(cur!=null){
     		ListNode temp = cur.next;
