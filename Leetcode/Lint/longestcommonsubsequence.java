@@ -15,27 +15,25 @@ public class Solution {
      * @return: The length of longest common subsequence of A and B.
      */
     public int longestCommonSubsequence(String A, String B) {
-        int m = A.length();
-        int n = B.length();
-        int[][] dp = new int[m+1][n+1];
-        for(int i=0;i<=m;i++){
+        int[][] dp = new int[A.length()+1][B.length()+1];
+        dp[0][0] = 0;
+        for(int i = 1; i <= A.length(); i++){
             dp[i][0] = 0;
         }
-        for(int j=0;j<=n;j++){
-            dp[0][j] = 0;
+        for(int i = 1; i <= B.length(); i++){
+            dp[0][i] = 0;
         }
-        for(int i=1;i<=m;i++){
-            for(int j=1;j<=n;j++){
-               if(A.charAt(i-1)==B.charAt(j-1)){
-                   dp[i][j] = dp[i-1][j-1] + 1;
-               }else if(dp[i][j-1]>=dp[i-1][j]){
-                   dp[i][j] = dp[i][j-1];
-               }else{
-                   dp[i][j] = dp[i-1][j];
-               }
+        for(int i = 1; i <= A.length(); i++){
+            for(int j = 1; j <= B.length(); j++){
+                if(A.charAt(i-1) == B.charAt(j-1)){
+                    dp[i][j] = dp[i-1][j-1] + 1;
+                }else{
+                    dp[i][j] = Math.max(dp[i - 1][j - 1],Math.max(dp[i - 1][j],dp[i][j - 1]));
+                }
             }
         }
-        return dp[m][n];
+        return dp[A.length()][B.length()];
     }
 }
+
 
