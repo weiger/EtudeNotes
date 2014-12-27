@@ -30,3 +30,26 @@ public class Solution {
         return key;
     }
 }
+
+public class Solution {
+    /**
+     * @param nums: a list of integers
+     * @return: find a  majority number
+     */
+    public int majorityNumber(ArrayList<Integer> nums) {
+        int time = 0;
+        int res = 0;
+        for(int x: nums){
+            if(time == 0){
+                time = 1;
+                res = x;
+            }else if(res == x){
+                time++;
+            }else{
+                time--;
+            }
+        }
+        return res;
+    }
+}
+
