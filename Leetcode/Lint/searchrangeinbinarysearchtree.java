@@ -22,6 +22,17 @@ For example, if k1 = 10 and k2 = 22, then your function should print 12, 20 and 
  *     }
  * }
  */
+/**
+ * Definition of TreeNode:
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left, right;
+ *     public TreeNode(int val) {
+ *         this.val = val;
+ *         this.left = this.right = null;
+ *     }
+ * }
+ */
 public class Solution {
     /**
      * @param root: The root of the binary search tree.
@@ -38,10 +49,15 @@ public class Solution {
     public void helper(ArrayList<Integer> res,TreeNode p,int min,int max){
         if(p == null)
             return;
-        helper(res,p.left,min,max);
+        if(p.val >= min){
+            helper(res,p.left,min,max);
+        }
         if(p.val >= min && p.val <= max){
             res.add(p.val);
         }
-        helper(res,p.right,min,max);
+        if(p.val <= max){
+            helper(res,p.right,min,max);
+        }
     }
 }
+
