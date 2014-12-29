@@ -22,7 +22,7 @@ public class Solution {
                 return num[beg];
             }
             if(num[beg] < num[mid]){
-                beg = mid;
+                beg = mid + 1;
             }else if(num[beg] > num[mid]){
                 end = mid;
             }else
