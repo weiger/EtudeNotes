@@ -3,28 +3,28 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class LRUCache extends LinkedHashMap<Integer, Integer> {
-	private int capacity;
+    private int capacity;
 
-	public LRUCache(int capacity) {
-		super(16, 0.75f, true);
-		this.capacity = capacity;
-	}
-	//重写父类get，为null时范围-1
-	public Integer get(Object key) {
-		Integer v = super.get(key);
-		if (v != null)
-			return v;
-		else
-			return -1;
-	}
-	//重写父类方法，当超过缓存容量时，就删除最老的
-	public boolean removeEldestEntry(Map.Entry<Integer, Integer> eldest) {
-		return size() > capacity;
-	}
+    public LRUCache(int capacity) {
+        super(16, 0.75f, true);
+        this.capacity = capacity;
+    }
+    //重写父类get，为null时范围-1
+    public Integer get(Object key) {
+        Integer v = super.get(key);
+        if (v != null)
+            return v;
+        else
+            return -1;
+    }
+    //重写父类方法，当超过缓存容量时，就删除最老的
+    public boolean removeEldestEntry(Map.Entry<Integer, Integer> eldest) {
+        return size() > capacity;
+    }
 
-	public void set(int key, int value) {
-		super.put(key, value);
-	}
+    public void set(int key, int value) {
+        super.put(key, value);
+    }
 }
 //from programcreek
 import java.util.LinkedHashMap;
@@ -68,8 +68,8 @@ public class LRUCache extends LinkedHashMap<Integer, Integer> {
             }else{
                 map.remove(end.key);
                 deleteNode(end);
-				setHead(newnode);
-				map.put(key, newnode);
+                setHead(newnode);
+                map.put(key, newnode);
             }
         }
     }
@@ -84,19 +84,19 @@ public class LRUCache extends LinkedHashMap<Integer, Integer> {
         head = cur;
     }
     public void deleteNode(DoubleLinkedListNode node){
-		DoubleLinkedListNode pre = node.pre;
-		DoubleLinkedListNode post = node.next;
-		if (pre != null) {
-			pre.next = post;
-		} else {
-			head = post;
-		}
+        DoubleLinkedListNode pre = node.pre;
+        DoubleLinkedListNode post = node.next;
+        if (pre != null) {
+            pre.next = post;
+        } else {
+            head = post;
+        }
 
-		if (post != null) {
-			post.pre = pre;
-		} else {
-			end = pre;
-		}
+        if (post != null) {
+            post.pre = pre;
+        } else {
+            end = pre;
+        }
     }
 }
 class DoubleLinkedListNode{
