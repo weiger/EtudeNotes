@@ -1,6 +1,6 @@
 #begin
 Description:
-"The Shell Game" involves three shells/cups/etc upturned on a playing surface, with a ball placed underneath one of them. 
+The Shell Game involves three shells/cups/etc upturned on a playing surface, with a ball placed underneath one of them. 
 The shells are then rapidly swapped round, and the game involves trying to track the swaps and, once they are complete, 
 identifying the shell containing the ball.
 
