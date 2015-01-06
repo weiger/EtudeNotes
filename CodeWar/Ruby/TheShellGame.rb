@@ -16,6 +16,7 @@ The final swap doesn't affect the position of the ball.
 So
 moves = [[0,1], [1,2], [1, 0]]
 find_the_ball(0, moves) == 2
+
 #end
 
 def find_the_ball start, moves
