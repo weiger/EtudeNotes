@@ -16,38 +16,15 @@
  * Throw an exception? Good, but what if throwing an exception is not an option? You would 
  * then have to re-design the function (ie, add an extra parameter). 
  */
-public class ReverseInteger {
-    public int reverse(int x) {
-        int result = 0;
-        while(x != 0) {
-            result = result * 10 + x % 10;
-            x /= 10;
-        }
-        return result;
-    }
-}
-//naive stupid method
 public class Solution {
     public int reverse(int x) {
-        int flag = 0;
-        if(x==0)
-            return 0;
-        if(x<0){
-            x = -x;
-            flag = 1;
+        double res = 0;
+        while(x != 0){
+            res = res * 10 + x % 10;
+            x /= 10;
+            if(res > Integer.MAX_VALUE || res < Integer.MIN_VALUE)
+                return 0;
         }
-        Queue<Integer> queue = new LinkedList<Integer>();
-        int cur = x;
-        while(cur!=0){
-            queue.offer(cur%10);
-            cur = cur / 10;
-        }
-        int res = 0;
-        while(!queue.isEmpty()){
-            res = res * 10 + queue.poll();
-        }
-        if(flag==1)
-            res = - res;
-        return res;
-    }   
+        return (int)res;
+    }
 }
