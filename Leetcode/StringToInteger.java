@@ -25,57 +25,31 @@
  * is returned. 
  */
  //+ - space non-number >max <min
- public class Solution {
+public class Solution {
     public int atoi(String str) {
-        if(str==null || str.length()==0) 
+        if(str == null || str.length() == 0)
             return 0;
-        str = str.trim();
-        double res = 0;
-        int flag = 0;
-        int i=0;
-        if(str.charAt(0)=='-'){
-            flag = 1;i++;
-        }
-        else if(str.charAt(0)=='+')
-            i++;
-        
-        while(i<=str.length()-1 && str.charAt(i)>='0' && str.charAt(i)<='9'){
-            res = res * 10 + (str.charAt(i)-'0');
-            i++;
-        }
-        if(flag==1)
-            res=-res;
-        if(res>Integer.MAX_VALUE)
-            res =  Integer.MAX_VALUE;
-        if(res<Integer.MIN_VALUE)
-            res =  Integer.MIN_VALUE;
-        return (int)res;
-    }
-}
- 
-public class StringToInteger {
-    public int atoi(String str) {
-        if(str.length() == 0)
-            return 0;
+        int i = 0;
         boolean positive = true;
-        int i = 0; 
-        long result = 0;
-        while(i < str.length() && str.charAt(i) == ' ') {
-            i++;
-        }
-        if(str.charAt(i) == '+' || str.charAt(i) == '-') {
-            positive = str.charAt(i) == '+';
-            i++;
-        }
-        for(; i < str.length(); i++) {
-            if(str.charAt(i) >= '0' && str.charAt(i) <= '9')
-                result = 10 * result + (str.charAt(i) - '0');
+        str = str.trim();
+        if(str.charAt(0) == '+' || str.charAt(0) == '-'){
+            if(str.charAt(0) == '+')
+                positive = true;
             else
-                break;
+                positive = false;
+            i++;
         }
-        result = positive ? result : -result;
-        result = (result > Integer.MAX_VALUE) ? Integer.MAX_VALUE : result;
-        result = (result < Integer.MIN_VALUE) ? Integer.MIN_VALUE : result;
-        return (int) result;
+        double res = 0;
+        for(; i < str.length(); i++){
+            if(str.charAt(i) < '0' || str.charAt(i) > '9')
+                break;
+            int c = str.charAt(i) - '0';
+            if(!positive && -(10 * res + c) <= Integer.MIN_VALUE )
+    		    return Integer.MIN_VALUE;
+            if(positive && 10 * res + c >= Integer.MAX_VALUE)
+    		    return Integer.MAX_VALUE;
+            res = res * 10 + c;
+        }
+        return positive ? (int)res : -(int)res;
     }
 }
