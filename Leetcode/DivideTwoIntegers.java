@@ -3,9 +3,6 @@
  */
  O(logn)
 public class DivideTwoIntegers {
-
-/**************************** updated 2014.03.08 *****************************/
-
     public int divide(int dividend, int divisor) {
         boolean flag = true;
         if (dividend > 0 && divisor < 0 || dividend < 0 && divisor > 0)
