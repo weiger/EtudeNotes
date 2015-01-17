@@ -43,14 +43,12 @@ public class ReverseLinkedListII {
         return head;
     }
 
-/*****************************************************************************/
-
     public ListNode reverseBetween(ListNode head, int m, int n) {
         if(head == null)
             return head;
         ListNode runner = head, first = null;
         ArrayList<Integer> list = new ArrayList<Integer>();
-        while(n > 0) {
+        while(n >= 0) {
             if(m == 1)
                 first = runner;
             if(m <= 1)
@@ -65,8 +63,6 @@ public class ReverseLinkedListII {
         }
         return head;
     }
-
-/*****************************************************************************/
 
     public ListNode reverseBetween(ListNode head, int m, int n) {
         if(m == n)
@@ -93,8 +89,6 @@ public class ReverseLinkedListII {
             head = prev;
         return head;
     }
-
-/***************************** updated 2014.01.24 ****************************/
 
     public ListNode reverse(ListNode head) {
         if(head == null || head.next == null)
