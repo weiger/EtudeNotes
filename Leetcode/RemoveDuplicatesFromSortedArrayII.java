@@ -21,8 +21,6 @@ public class RemoveDuplicatesFromSortedArrayII {
         return index;
     }
 
-/**************************** updated 2013/12/26 *****************************/
-
     public int removeDuplicates(int[] A) {
         if(A.length == 0 || A.length == 1)
             return A.length;
