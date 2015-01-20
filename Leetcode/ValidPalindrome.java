@@ -11,10 +11,9 @@
 
  * For the purpose of this problem, we define empty string as valid palindrome.
  */
-//两端夹逼
 public class Solution {
     public boolean isPalindrome(String s) {
-        int i = 0;
+                int i = 0;
         int j = s.length()-1;
         while(i<j){
             char a = s.charAt(i);
@@ -23,10 +22,11 @@ public class Solution {
                 i++;
             else if((b<'0'||b>'9') && (b<'a'||b>'z') && (b<'A'||b>'Z'))
                 j--;
-            else if(a!=b && Math.abs(a-b)!= 32)
-                return false;
-            else{
+            else if(a==b || Math.abs(a-b) == 32){
                 i++;j--;
+            }
+            else{
+                return false;
             }
         }
         return true;
