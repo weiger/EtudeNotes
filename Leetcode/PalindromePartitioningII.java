@@ -6,7 +6,6 @@
  * For example, given s = "aab",
  * Return 1 since the palindrome partitioning ["aa","b"] could be produced using 1 cut.
  */
-package info.mitcc.leetcode;
 
 public class PalindromePartitioningII {
 	public int minCut(String s) {
