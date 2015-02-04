@@ -11,8 +11,6 @@
  */
 public class LongestValidParentheses {
 
-/**************************** updated 2014.04.04 *****************************/
-
     public int longestValidParentheses(String s) {
         Stack<Integer> stack = new Stack<Integer>();
         int answer = 0;
@@ -30,8 +28,6 @@ public class LongestValidParentheses {
         }
         return answer;
     }
-
-/*****************************************************************************/
 
     public int longestValidParentheses(String s) {
         return Math.max(helper(s, 0, s.length(), 1, '('), 
@@ -55,8 +51,6 @@ public class LongestValidParentheses {
         }
         return maxLen;
     }
-
-/*****************************************************************************/
 
     public int longestValidParentheses(String s) {
         int len = s.length();
