@@ -40,20 +40,29 @@ public class Solution {
         return max;
     }
     //O(nlogn)
-    public static int LIS3(int[] data) {
-        int[] helper = new int[data.length];
-        int k = 0;
-        helper[0] = data[0];
-        for (int i = 1; i < data.length; i++) {
-            if (data[i] >= helper[k])
-                helper[++k] = data[i];
-            else {
-                int pos = binarySearch(data, data[i], k);
-                helper[pos] = data[i];
-            }
-        }
-        return k + 1;
-    }
+	public static int LIS3(int[] data) {
+		int[] helper = new int[data.length];
+		int k = 0;
+		helper[0] = -1;
+		for (int i = 0; i < data.length; i++) {
+			if (data[i] >= helper[k])
+				helper[++k] = data[i];
+			else {
+				int beg = 1;
+				int end = k;
+				while (beg <= end) {
+					int mid = beg + (end - beg) / 2;
+					if(data[i] > helper[mid]){
+						beg = mid + 1;
+					}else{
+						end = mid - 1;
+					}
+				}
+				helper[beg] = data[i];
+			}
+		}
+		return k;
+	}
 
     public static int binarySearch(int[] data, int num, int k) {
         int beg = 0;
