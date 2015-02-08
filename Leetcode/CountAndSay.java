@@ -35,7 +35,6 @@ public class Solution {
 
 
 public class CountAndSay {
-/***************************** updated 2014.01.10 ****************************/
 
     public String countAndSay(int n) {
         String res = "1";
