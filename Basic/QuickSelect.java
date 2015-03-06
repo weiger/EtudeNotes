@@ -1,4 +1,3 @@
-
 public class Solution {
     public static int quickselect(int[] A,int k){
         if(k<0 || k>A.length-1)
@@ -8,7 +7,7 @@ public class Solution {
             int j = partition(A,beg,end);
             if(j<k) beg = j+1;
             else if(j>k) end = j-1;
-            else return A[k];       
+            else return A[j - 1];       
         }
         return A[k];
     }
