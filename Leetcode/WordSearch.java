@@ -70,3 +70,57 @@ public class Solution {
         return b1||b2||b3||b4;
     }
 }
+//8 方向搜最长1 序列
+public class Solution {
+	static int res = 0;
+
+	static void solve(int[][] num) {
+		for (int i = 0; i < num.length; i++) {
+			for (int j = 0; j < num[0].length; j++) {
+				dfs(num, i, j, 1);
+			}
+		}
+	}
+
+	static void dfs(int[][] board, int i, int j, int deep) {
+		int tmp = board[i][j];
+		if(tmp == 0)
+			return;
+		res = Math.max(res, deep);
+		board[i][j] = 0;
+		if (i - 1 >= 0 && board[i - 1][j] == 1)
+			dfs(board, i - 1, j, deep + 1);
+		if (j - 1 >= 0 && board[i][j - 1] == 1)
+			dfs(board, i, j - 1, deep + 1);
+		if (i + 1 < board.length && board[i + 1][j] == 1)
+			dfs(board, i + 1, j, deep + 1);
+		if (j + 1 < board[0].length
+				&& board[i][j + 1] == 1)
+			dfs(board, i, j + 1, deep + 1);
+		if(i - 1 >=0 && j + 1 < board[0].length && board[i - 1][j + 1] == 1)	
+			dfs(board,i - 1, j + 1, deep + 1);
+		if(i - 1 >=0 && j - 1 >= 0 && board[i - 1][j - 1] == 1)
+			dfs(board,i - 1, j - 1, deep + 1);
+		if (i + 1 < board.length && j + 1 < board[0].length && board[i + 1][j + 1] == 1)
+			dfs(board,i + 1, j + 1, deep + 1);
+		if (i + 1 < board.length && j - 1 >= 0 && board[i + 1][j - 1] == 1)
+			dfs(board,i + 1, j - 1, deep + 1);
+		board[i][j] = tmp;
+		
+	}
+
+	public static void main(String args[]) throws IOException {
+		Scanner cin = new Scanner(System.in);
+		int a = cin.nextInt();
+		int b = cin.nextInt();
+		int[][] num = new int[a][b];
+		for (int i = 0; i < a; i++) {
+			for (int j = 0; j < b; j++) {
+				num[i][j] = cin.nextInt();
+			}
+		}
+		solve(num);
+		System.out.println(res);
+
+	}
+}
