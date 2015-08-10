@@ -23,7 +23,6 @@
 import java.util.*;
 
 public class Subsets {
-/**************************** updated 2014/01/01 *****************************/
     public static String convertInt2BinStr(int n, int len) {
         String s = Integer.toBinaryString(n);
         while(s.length() < len) {
@@ -47,8 +46,6 @@ public class Subsets {
         }
         return res;
     }
-
-/*****************************************************************************/
     
     public ArrayList<ArrayList<Integer>> subsets(int[] S) {
         ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
@@ -64,8 +61,6 @@ public class Subsets {
         }
         return res;
     }
-
-/*****************************************************************************/
 
     public void dfs(int[] S, int pos, ArrayList<ArrayList<Integer>> res, 
             ArrayList<Integer> list) {
