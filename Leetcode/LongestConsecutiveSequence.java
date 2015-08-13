@@ -11,7 +11,6 @@
 import java.util.*;
 
 public class LongestConsecutiveSequence {
-/****************************** updated 2014.01.15 ***************************/
     // time complexity is O(nlogn)
      public int longestConsecutive(int[] num) {
         Arrays.sort(num);
