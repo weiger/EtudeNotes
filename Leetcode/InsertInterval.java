@@ -37,36 +37,3 @@
         return intervals;
     }
 }
-//
-public class InsertInterval {
-    public ArrayList<Interval> insert(ArrayList<Interval> intervals, Interval newInterval) {
-        int left = -1, right = -1;
-        boolean leftIn = false, rightIn = false;
-        for(int i = 0; i < intervals.size(); i++) {
-            if(newInterval.start >= intervals.get(i).start) {
-                left = i;
-                leftIn = (newInterval.start <= intervals.get(left).end) ? true : false;
-            }
-            if(newInterval.end >= intervals.get(i).start) {
-                right = i;
-                rightIn = (newInterval.end <= intervals.get(right).end) ? true : false;
-            }
-        }  
-        if(left == right) {
-            if(leftIn && !rightIn) 
-                intervals.get(right).end = newInterval.end;
-            if(!leftIn && !rightIn)
-                intervals.add(left + 1, newInterval);
-        } else {
-            intervals.get(right).start = leftIn ? intervals.get(left).start : newInterval.start;
-            if(!rightIn)
-                intervals.get(right).end = newInterval.end;
-            for(int i = right - 1; i >= left + 1; i--) {
-                intervals.remove(i);
-            }
-            if(leftIn)
-                intervals.remove(left);
-        }
-        return intervals;
-    }
-}
