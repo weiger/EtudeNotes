@@ -37,7 +37,6 @@ public class Solution {
     }
 }
 public class BinaryTreeInorderTraversal {
-/************************ updated 2013/11/30 ************************/
     public ArrayList<Integer> inorderTraversal(TreeNode root) {
         ArrayList<Integer> res = new ArrayList<Integer>();
         if(root != null) {
@@ -48,7 +47,6 @@ public class BinaryTreeInorderTraversal {
         return res;
     }
 
-/**************************************************************/
 
     public ArrayList<Integer> inorderTraversal(TreeNode root) {
         ArrayList<Integer> res = new ArrayList<Integer>();
@@ -68,7 +66,7 @@ public class BinaryTreeInorderTraversal {
         }
         return res;
     }
-/**************************************************************/
+
 public class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> res = new ArrayList<>();
