@@ -1,3 +1,21 @@
+//
+public class Solution {
+    public int countPrimes(int n) {
+        boolean[] rec = new boolean[n];
+        Arrays.fill(rec, true);
+        int count = 0;
+        for(int i = 2 ; i < n; i++){
+            if(rec[i]){
+                count++;
+                for(int j = 2; j * i < n; j++){
+                    rec[j * i] = false;
+                }
+            }
+        }
+        return count;
+    }
+}
+//Sieve of Eratosthenes
 public class Solution {
     public int countPrimes(int n) {
         int cnt = 0;
