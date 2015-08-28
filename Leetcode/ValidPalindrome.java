@@ -13,20 +13,29 @@
  */
 public class Solution {
     public boolean isPalindrome(String s) {
-                int i = 0;
-        int j = s.length()-1;
-        while(i<j){
-            char a = s.charAt(i);
-            char b = s.charAt(j);
-            if( (a<'0'||a>'9') && (a<'a'||a>'z') && (a<'A'||a>'Z'))
-                i++;
-            else if((b<'0'||b>'9') && (b<'a'||b>'z') && (b<'A'||b>'Z'))
-                j--;
-            else if(a==b || Math.abs(a-b) == 32){
-                i++;j--;
-            }
-            else{
+        if(s ==  null || s.length() <= 1){
+            return true;
+        }
+        int beg = 0;
+        int end = s.length() - 1;
+        while(beg < s.length() && s.charAt(beg) == ' '){
+            beg++;
+        }
+        while(end >= 0 && s.charAt(end) == ' '){
+            end--;
+        }
+        while(beg < end){
+            char a = s.charAt(beg);
+            char b = s.charAt(end);
+            if((a < 'a' || a > 'z') && (a < 'A' || a > 'Z') && (a < '0' || a > '9')){
+                beg++;
+            }else if((b < 'a' || b > 'z') && (b < 'A' || b > 'Z') && (b < '0' || b > '9')){
+                end--;
+            }else if(a != b && Math.abs(a - b) != Math.abs('a' - 'A')){
                 return false;
+            }else{
+                beg++;
+                end--;
             }
         }
         return true;
