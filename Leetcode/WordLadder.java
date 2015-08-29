@@ -72,32 +72,3 @@ public class Solution {
         return 0;
     }
 }
-public class Solution {
-    public int ladderLength(String start, String end, Set<String> dict) {
-        if(start==null || end==null || dict==null || start.length()!=end.length())
-            return 0;
-        Queue<String> queue = new LinkedList<String>();
-        Queue<Integer> dist = new LinkedList<Integer>();
-        queue.offer(start);
-        dist.offer(1);
-        while(!queue.isEmpty()){
-            String str = queue.poll();
-            Integer curdist = dist.poll();
-            if(str.equals(end))
-                return curdist;
-            for(int i=0;i<str.length();i++){
-                char[] arr = str.toCharArray();
-                for(char c='a';c<='z';c++){
-                    arr[i] = c;
-                    String newstr = new String(arr);
-                    if(dict.contains(newstr)){
-                        queue.offer(newstr);
-                        dist.offer(curdist+1);
-                        dict.remove(newstr);
-                    }
-                }
-            }
-        }
-        return 0;
-    }
-}
