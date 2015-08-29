@@ -1,23 +1,4 @@
-/*
- * Given a roman numeral, convert it to an integer.
-
- * Input is guaranteed to be within the range from 1 to 3999.
- * I = 1;
- * V = 5;
- * X = 10;
- * L = 50;
- * C = 100;
- * D = 500;
- * M = 1000;
- *
- * the numeral I can be placed before V and X to make 4 units (IV) and 9 units 
- * (IX respectively)
- * X can be placed before L and C to make 40 (XL) and 90 (XC respectively)
- * C can be placed before D and M to make 400 (CD) and 900 (CM) according to 
- * the same pattern
- * 
- */
-public class RomanToInteger {
+public class Solution {
     public int romanToInt(String s) {
         HashMap<Character, Integer> map = new HashMap<Character, Integer>();
         map.put('I', 1);
@@ -27,10 +8,27 @@ public class RomanToInteger {
         map.put('C', 100);
         map.put('D', 500);
         map.put('M', 1000);
-        int res = map.get(s.charAt(s.length() - 1));
-        for(int i = s.length() - 2; i >= 0; i--) 
-            res += (map.get(s.charAt(i)) < map.get(s.charAt(i + 1)) ? -1 : 1) * 
-                map.get(s.charAt(i));
+        if (s == null || s.isEmpty()) return 0;
+        if (s.length() == 1) {
+            return map.get(s.charAt(0));
+        }
+    
+        int i = 0;
+        int res = 0;
+        while (i < s.length()) {
+            int current = map.get(s.charAt(i));
+            int forward = 0;
+            if (i + 1 < s.length()) {
+                forward = map.get(s.charAt(i + 1));
+            }
+            if (current >= forward) {
+                res += current;
+                i++;
+            } else {
+                res += forward - current;
+                i += 2;
+            }
+        }
         return res;
     }
 }
