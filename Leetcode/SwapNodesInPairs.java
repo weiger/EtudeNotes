@@ -20,6 +20,29 @@
  */
  public class Solution {
     public ListNode swapPairs(ListNode head) {
+        if(head == null || head.next == null){
+            return head;
+        }
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode cur = dummy;
+        while(true){
+            ListNode p = cur.next;
+            if(p == null || p.next == null){
+                break;
+            }
+            ListNode q = p.next;
+            cur.next = q;
+            p.next = q.next;
+            q.next = p;
+            cur = p;
+        }
+        return dummy.next;
+    }
+}
+ 
+ public class Solution {
+    public ListNode swapPairs(ListNode head) {
         if(head == null || head.next == null)
             return head;
         ListNode dummy = new ListNode(0);
@@ -41,7 +64,7 @@
 }
  
  
-public class SwapNodesInPairs {
+public class Solution {
     public ListNode swapPairs(ListNode head) {
         if(head == null || head.next == null)
             return head;
