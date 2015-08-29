@@ -9,32 +9,7 @@
  * A simple improvement uses O(m + n) space, but still not the best solution.
  * Could you devise a constant space solution?
  */
-public class SetMatrixZeroes {
-/*  public void setZeroes(int[][] matrix) {
-        Queue<Integer> queue = new LinkedList<Integer>();
-        int m = matrix.length;
-        int n = matrix[0].length;
-        for(int i = 0; i < m; i++) {
-            for(int j = 0; j < n; j++) {
-                if(matrix[i][j] == 0) {
-                    queue.offer(i * n + j);
-                }
-            }
-        }
-        while(!queue.isEmpty()) {
-            int val = queue.poll();
-            int row = val / n;
-            int col = val % n;
-            for(int i = 0; i < m; i++) {
-                matrix[i][col] = 0;
-            } 
-            for(int j = 0; j < n; j++) {
-                matrix[row][j] = 0;
-            }
-        }
-    }
-*/
-//O(1)   
+
 public class Solution {
     public void setZeroes(int[][] matrix) {
         boolean rowonezero = false;
@@ -81,25 +56,28 @@ public class Solution {
             for(int i=0;i<matrix.length;i++)
                 matrix[i][0] = 0;
         }
-            
     }
 }
+
 //O(m+n)
 public class Solution {
     public void setZeroes(int[][] matrix) {
-        int[] zeroRow = new int[matrix.length];
-        int[] zeroCol = new int[matrix[0].length];
-        for(int i=0;i<matrix.length;i++)
-            for(int j =0;j<matrix[0].length;j++){
-                if(matrix[i][j]==0){
-                    zeroRow[i] = 1;
-                    zeroCol[j] = 1;
+        boolean[] row = new boolean[matrix.length];
+        boolean[] col = new boolean[matrix[0].length];
+        for(int i = 0; i < matrix.length; i++){
+            for(int j = 0 ; j < matrix[0].length; j++){
+                if(matrix[i][j] == 0){
+                    row[i] = true;
+                    col[j] = true;
                 }
             }
-         for(int i=0;i<matrix.length;i++)
-            for(int j =0;j<matrix[0].length;j++){
-                if(zeroRow[i] == 1 || zeroCol[j] == 1)
+        }
+        for(int i = 0; i < matrix.length; i++){
+            for(int j = 0; j < matrix[0].length; j++){
+                if(row[i] || col[j]){
                     matrix[i][j] = 0;
-            }    
+                }
+            }
+        }
     }
 }
