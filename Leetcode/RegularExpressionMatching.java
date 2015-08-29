@@ -28,6 +28,30 @@
  */
 public class Solution {
     public boolean isMatch(String s, String p) {
+        //一定是P先用完，终止条件
+        if(p.length() == 0){
+            return s.length() == 0;
+        }
+        //终止条件
+        if(p.length() == 1){
+            return s.length() == 1 && (s.equals(p) || p.charAt(0) == '.');
+        }
+        //如果没*,匹配各自第一个元素，然后继续往后
+        if(p.charAt(1) != '*'){
+            return s.length() > 0 && (s.charAt(0) == p.charAt(0) || p.charAt(0) == '.') && isMatch(s.substring(1), p.substring(1));
+        }
+        //如果有*，先不用*，直接跨过2个字符去进行尝试，不成功就算了
+        if(isMatch(s, p.substring(2))){
+            return true;
+        }
+        //如果*前面的字符和s第一个相同，可以跨过这个字符做下一次尝试， 这也是最后的机会
+        return s.length() > 0 && (s.charAt(0) == p.charAt(0) || p.charAt(0) == '.') && isMatch(s.substring(1), p);
+    }
+} 
+ 
+ 
+public class Solution {
+    public boolean isMatch(String s, String p) {
         if(s==null || p==null) return false;
          int M = s.length();
          int N = p.length();
@@ -55,23 +79,6 @@ public class Solution {
          return dp[M][N];
     }
 } 
- 
-public class RegularExpressionMatching {
-    public boolean isMatch(String s, String p) {
-        if(p.length() == 0)
-            return s.length() == 0;
-        else if(p.length() == 1)
-            return p.equals(s) || s.length() == 1 && p.equals(".");
-        else {
-            if(p.charAt(1) != '*') 
-                return s.length() > 0 && (p.charAt(0) == s.charAt(0) || p.charAt(0) == '.') 
-                    && isMatch(s.substring(1), p.substring(1));
-            if(isMatch(s, p.substring(2)))
-                return true;
-            return s.length() > 0 && (p.charAt(0) == s.charAt(0) || p.charAt(0) == '.') && isMatch(s.substring(1), p);
-        }
-    }
-}
 
 public static boolean isMatch(String s, String p) {  
         return isM(s, p, 0, 0);  
