@@ -23,7 +23,6 @@ public class ConvertSortedListToBinarySearchTree {
         root.right = sortedListToBSTHelper(head, mid + 1, end);
         return root;
     }
-/***************************** updated 2014.01.10 ****************************/
 /*1 2 3 4 5 6
       s   f
   1 2 3 4 5 
