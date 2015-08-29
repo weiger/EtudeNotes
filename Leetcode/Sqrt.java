@@ -20,18 +20,17 @@ public class Solution {
 }
 
 public class Solution {
-    public int sqrt(int x) {
-        if(x<0) return 0;
+    public int mySqrt(int x) {
         long beg = 0;
-        long end = x/2 + 1;
-        while(beg<=end){
-            long mid = (beg + end)/2;
-            long sq = mid * mid;
-            if(sq == x) return (int)mid;
-            else if(sq<x){
+        long end = x;
+        while(beg <= end){
+            long mid = beg + (end - beg) / 2;
+            if( mid * mid == x){
+                return (int)mid;
+            }else if(mid * mid < x){
                 beg = mid + 1;
-            }else{
-                end = mid -1;
+            }else if(mid * mid > x){
+                end = mid - 1;
             }
         }
         return (int)end;
