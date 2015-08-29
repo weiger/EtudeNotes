@@ -1,3 +1,100 @@
+public class LRUCache {
+    Map<Integer, Node> map;
+    int len;
+    int capacity;
+    Node head;
+    Node end;
+    public LRUCache(int capacity) {
+        head = null;
+        end = null;
+        map = new HashMap<Integer, Node>();
+        this.len = 0;
+        this.capacity = capacity;
+    }
+
+    public int get(int key) {
+        if(map.containsKey(key)){
+            Node curNode = map.get(key);
+            int val = curNode.value;
+            deleteNode(curNode);
+            setHead(curNode);
+            return val;
+        }else{
+            return -1;
+        }
+    }
+
+    public void set(int key, int value) {
+        if(map.containsKey(key)){
+            Node curNode = map.get(key);
+            curNode.value = value;
+            deleteNode(curNode);
+            setHead(curNode);
+        }else{
+            Node newNode = new Node(key, value);
+            if(len == capacity){
+                map.remove(end.key);
+                deleteNode(end);
+                setHead(newNode);
+                map.put(key, newNode);
+            }else{
+                setHead(newNode);
+                map.put(newNode.key, newNode);
+                len++;
+            }
+        }
+    }
+
+    public void setHead(Node node){
+        if(head != null){
+            node.next = head;
+            node.pre = null;
+            head.pre = node;
+            head = node;
+        }else{
+            node.pre = null;
+            node.next = null;
+            head = node;
+            end = node;
+        }
+    }
+
+    public void deleteNode(Node node){
+        Node pre = node.pre;
+        Node post = node.next;
+        if(pre != null){
+            if(post != null){
+                post.pre = pre;
+                pre.next = post;
+            }else{
+                pre.next = null;
+                end = pre;
+            }
+        }else{
+            if(post != null){
+                post.pre = null;
+                head = post;
+            }else{
+                head = null;
+                end = null;
+            }
+        }
+    }
+}
+
+class Node{
+    int key;
+    int value;
+    Node next;
+    Node pre;
+    Node(int key, int value){
+        this.key = key;
+        this.value = value;
+        next = null;
+        pre = null;
+    }
+}
+
 //cheating method
 import java.util.LinkedHashMap;
 import java.util.Map;
