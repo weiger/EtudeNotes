@@ -11,18 +11,21 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
-public class ConvertSortedArrayToBinarySearchTree {
-    public TreeNode sortedArrayToBST(int[] num) {
-        return helper(num, 0, num.length - 1);
-    }
-
-    public TreeNode helper(int[] num, int start, int end) {
-        if(start > end)
+public class Solution {
+    public TreeNode sortedArrayToBST(int[] nums) {
+        if(nums == null || nums.length == 0){
             return null;
-        int mid = start + (end - start) / 2;
-        TreeNode root = new TreeNode(num[mid]);
-        root.left = helper(num, start, mid - 1);
-        root.right = helper(num, mid + 1, end);
-        return root;
+        }
+        return helper(nums, 0, nums.length - 1);
+    }
+    public TreeNode helper(int[] nums, int beg, int end){
+        if(beg > end){
+            return null;
+        }
+        int mid = beg + (end - beg) / 2;
+        TreeNode node = new TreeNode(nums[mid]);
+        node.left = helper(nums, beg, mid - 1);
+        node.right = helper(nums, mid + 1, end);
+        return node;
     }
 }
