@@ -36,3 +36,38 @@ class Solution {
         return intervals;
     }
 }
+
+class Solution {
+    /**
+     * Insert newInterval into intervals.
+     * @param intervals: Sorted interval list.
+     * @param newInterval: A new interval.
+     * @return: A new sorted interval list.
+     */
+    public ArrayList<Interval> insert(ArrayList<Interval> intervals, Interval newInterval) {
+        ArrayList<Interval> result = intervals;
+        // write your code here
+        result.add(newInterval);
+        Collections.sort(result, new comp());
+        if(result.size() == 1){
+            return result;
+        }
+        for(int i = 1; i < intervals.size(); i++){
+            Interval pre = intervals.get(i - 1);
+            Interval cur = intervals.get(i);
+            if(cur.start > pre.end){
+                continue;
+            }
+            cur.start = Math.min(pre.start, cur.start);
+            cur.end = Math.max(pre.end, cur.end);
+            result.remove(i - 1);i--;
+        }
+        return result;
+    }
+    
+    class comp implements Comparator<Interval>{
+        public int compare(Interval a, Interval b){
+            return a.start - b.start;
+        }
+    }
+}
