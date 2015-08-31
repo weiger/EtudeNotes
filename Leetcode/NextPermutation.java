@@ -24,32 +24,31 @@ Ex:  6  8  7  4  3  2
 3.  "7" 8  "6"  4  3  2
 4.   7 "2  3  4  6  8"   reverse mark + 1 to end of array, return
 */
-public class NextPermutation {
-
-    public void nextPermutation(int[] num) {
-        for (int i = num.length - 2; i >= 0; i--) {
-            if (num[i] < num[i + 1]) {
-                for (int j = num.length - 1; j > i; j--) {
-                    if (num[j] > num[i]) {
-                        swap(num, i, j);
-                        reverse(num, i + 1, num.length - 1);
-                        return ;
+public class Solution {
+    public void nextPermutation(int[] nums) {
+        for(int i = nums.length - 2; i >= 0; i--){
+            if(nums[i] < nums[i + 1]){
+                for(int j = nums.length - 1; j > i; j--){
+                    if(nums[j] > nums[i]){
+                        int tmp = nums[i];
+                        nums[i] = nums[j];
+                        nums[j] = tmp;
+                        reverse(nums, i + 1, nums.length - 1);
+                        return;
                     }
                 }
             }
         }
-        reverse(num, 0, num.length - 1);
-    }
-
-    public void swap(int[] array, int i, int j) {
-        int temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
+        reverse(nums, 0, nums.length - 1);
     }
     
-    public void reverse(int[] array, int start, int end) {
-        for (int i = start; i <= (start + end) / 2; i++)
-            swap(array, i, start + end - i);
+    public void reverse(int[] nums, int beg, int end){
+        while(beg < end){
+            int tmp = nums[beg];
+            nums[beg] = nums[end];
+            nums[end] = tmp;
+            beg++;
+            end--;
+        }
     }
-
 }
