@@ -1,4 +1,4 @@
-/* 什么鬼！
+// 什么鬼！
 public class Solution {
     /**
      * @param A: Given an integer array with no duplicates.
@@ -27,4 +27,3 @@ public class Solution {
         return stack.pop();
     }
 }
-*/
