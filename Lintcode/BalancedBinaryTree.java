@@ -38,35 +38,20 @@ public class Solution {
      */
     public boolean isBalanced(TreeNode root) {
         // write your code here
-        if(root == null){
-            return true;
-        }
-        int num = isBalance(root);
-        if(num == -1){
-            return false;
-        }else{
-            return true;
-        }
+        return isBalance(root) >= 0;
     }
     public int isBalance(TreeNode p){
         if(p == null){
             return 0;
         }
         int left = isBalance(p.left);
-        if(left == -1){
-            return -1;
-        }
         int right = isBalance(p.right);
-        if(right == -1){
+        if(left == -1 || right == -1){
             return -1;
         }
         if(Math.abs(left - right) > 1){
             return -1;
         }
-        if(left > right){
-            return 1 + left;
-        }else{
-            return 1 + right;
-        }
+        return 1 + Math.max(left, right);
     }
 }
