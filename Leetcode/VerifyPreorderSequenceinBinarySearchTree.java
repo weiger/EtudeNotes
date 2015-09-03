@@ -23,20 +23,20 @@ public class Solution {
 
 public class Solution {
     public boolean verifyPreorder(int[] preorder) {
-        if(preorder == null || preorder.length == 0)
+        if(preorder == null || preorder.length == 0){
             return true;
-        int idx = -1;
-        int min = Integer.MIN_VALUE;
-        for(int i = 0 ; i < preorder.length; i++){
-            if(preorder[i] < min){
-                return false;
-            }
-            while(idx >= 0 && preorder[i] > preorder[idx]){
-                int val = preorder[idx--];
-                min = val;
-            }
-            preorder[++idx] = preorder[i];
         }
-        return true;
+        return helper(preorder, 0, preorder.length - 1);
+    }
+    public boolean helper(int[] preorder, int beg, int end){
+        if(beg >= end) return true;
+        int pivot = preorder[beg];
+        int bigger = -1;
+        for(int i = beg + 1; i <= end; i++){
+            if(bigger == -1 && preorder[i] > pivot) bigger = i;
+            if(bigger != -1 && preorder[i] < pivot) return false;
+        }
+        if(bigger == -1) return helper(preorder, beg + 1, end);
+        else return helper(preorder, beg + 1, bigger - 1) && helper(preorder, bigger, end);
     }
 }
