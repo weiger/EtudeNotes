@@ -42,3 +42,39 @@ public class Solution {
         return false;
     }
 }
+//Slightly different
+public class Solution {
+    public boolean validTree(int n, int[][] edges) {
+        Map<Integer, HashSet<Integer>> g = new HashMap<>();
+        for(int i = 0 ; i < edges.length; i++){
+            int a = edges[i][0];
+            int b = edges[i][1];
+            if(!g.containsKey(a)){
+                g.put(a, new HashSet<Integer>());
+            }
+            if(!g.containsKey(b)){
+                g.put(b, new HashSet<Integer>());
+            }
+            g.get(a).add(b);
+            g.get(b).add(a);
+        }
+        HashSet<Integer> isVisited = new HashSet<>();
+        if(dfs(g, isVisited, 0, -1)){
+            return false;
+        }
+        return isVisited.size() == n;
+    }
+
+    public boolean dfs(Map<Integer, HashSet<Integer>> g, HashSet<Integer> isVisited, int curNode, int prevNode){
+        isVisited.add(curNode);
+        if(g.get(curNode) == null) return false;
+        for(int adj: g.get(curNode)){
+            if(isVisited.contains(adj) && prevNode != adj) return true;
+            if(isVisited.contains(adj)) continue;
+            if(dfs(g, isVisited, adj, curNode)){
+                return true;
+            }
+        }
+        return false;
+    }
+}
