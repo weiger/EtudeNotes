@@ -7,6 +7,23 @@ You may imagine that num[-1] = num[n] = -∞.
 
 For example, in array [1, 2, 3, 1], 3 is a peak element and your function should return the index number 2.
 */
+public class Solution {
+    public int findPeakElement(int[] nums) {
+        int beg = 0, end = nums.length-1;
+        while(beg < end) {
+            int mid = beg + (end - beg)/2;
+            if(beg == end){
+                return beg;
+            }
+            if(nums[mid] < nums[mid + 1]){
+                beg = mid + 1;
+            }else{
+                end = mid;
+            }
+        }
+        return beg;
+    }
+}
 
 public class Solution {
     public int findPeakElement(int[] num) {
