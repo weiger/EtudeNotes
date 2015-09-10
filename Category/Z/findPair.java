@@ -2,56 +2,56 @@ import java.io.*;
 import java.util.*;
 import java.text.*;
 import java.math.*;
-import java.util.regex.*;
 
 public class Solution {
-    public int findPair1(long[] nums,long k){
+
+    public static int findPair1(long[] nums,long k){
         HashMap<Long, Integer> map = new HashMap<>();
         int cnt = 0;
         for(int i = 0 ; i < nums.length; i++){
-            if(!map.containsKey(nums[i])){
-                if(!map.containsKey(k - nums[i]))
-                    map.put(k - nums[i], 1);
-                else
-                    map.put(k - nums[i], map.get(k - nums[i]) + 1);
-            }else{
-                map.put(nums[i], map.get(nums[i]) - 1);
-                if(map.get(nums[i]) == 0){
-                    map.remove(nums[i]);
-                }
+            if(map.containsKey(nums[i])){
                 cnt++;
             }
+
+            if(!map.containsKey(nums[i] - k))
+                map.put(nums[i] - k, 1);
+
+            if(!map.containsKey(k + nums[i]))
+                map.put(nums[i] + k, 1);
         }
         return cnt;
     }
 
-    public int findPair2(long[] nums,long k){
-        Arrays.sort(nums);
-        int cnt = 0;
-        int beg = 0; int end = nums.length - 1;
-        while(beg < end){
-            long sum = nums[beg] + nums[end];
-            if(sum == k){
-                cnt++;
-                beg++;end--;
-            }else if(sum > k){
-                end--;
-            }else if(sum < k){
-                beg++;
-            }
-        }
-        return cnt;
-    }
-
-    public int findPair3(long[] A, int K){
-        Set<Long> set = new HashSet<>();
+    public static int findPair2(long[] A, int K){
+        int count = 0;
         Arrays.sort(A);
+
+        int l = 0;
+        int r = 0;
+        while(r < A.length)
+        {
+            if(A[r] - A[l] == K)
+            {
+                count++;
+                l++;
+                r++;
+            }
+            else if(A[r] - A[l] > K)
+                l++;
+            else // arr[r] - arr[l] < sum
+                r++;
+        }
+        return count;
+    }
+
+    public static int findPair3(long[] A, int K){
+        Set<Long> set = new HashSet<>();
         int cnt = 0;
         for(int i = 0 ; i < A.length; i++){
-            if(set.contains(K - A[i])){
+            if(set.contains(A[i] - K)){
                 cnt++;
             }
-            if(set.contains(K + A[i])){
+            if(set.contains(A[i] + K)){
                 cnt++;
             }
             set.add(A[i]);
@@ -59,13 +59,11 @@ public class Solution {
         return cnt;
     }
 
-    public static void main(String[] args) {
-        long[] arr = {1,0,2,5,8,9,7};
 
-        Arrays.sort(arr);
-        System.out.println(Arrays.toString(arr));
-        System.out.println(new Solution().findPair1(arr, 9));
-        System.out.println(new Solution().findPair2(arr, 9));
-        System.out.println(new Solution().findPair3(arr, 9));
+
+    public static void main(String[] args) {
+        long[] data = {1 ,2, 3, 4, 5};
+        int cnt = findPair2(data, 2);
+        System.out.println(cnt);
     }
 }
