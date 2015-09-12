@@ -6,30 +6,25 @@
  * Given [0,1,0,2,1,0,1,3,2,1,2,1], return 6.
  */
  public class Solution {
-    public int trap(int[] A) {
-        if (A == null || A.length < 3)
-	    return 0;
-    	int[] left = new int[A.length];
-    	int[] right = new int[A.length];
-    	int lmax = Integer.MIN_VALUE;
-    	int rmax = Integer.MIN_VALUE;
-    	left[0] = 0;
-    	right[A.length - 1] = 0;
-    	for (int i = 1; i < A.length; i++) {
-    	    lmax = Math.max(lmax, A[i - 1]);
-    	    left[i] = lmax;
-    	}
-    	for (int i = A.length - 2; i >= 0; i--) {
-    	    rmax = Math.max(rmax, A[i + 1]);
-    	    right[i] = rmax;
-    	}
-    
-    	int sum = 0;
-    	for (int i = 0; i < A.length; i++) {
-    	    if (Math.min(left[i], right[i]) > A[i])
-    		sum += Math.min(left[i], right[i]) - A[i];
-    	}
-    	return sum;
+    public int trap(int[] height) {
+        if(height == null || height.length == 0){
+            return 0;
+        }
+        int beg = 0;
+        int end = height.length - 1;
+        int lmax = 0;
+        int rmax = 0;
+        int sum = 0;
+        while(beg <= end){
+            lmax = Math.max(lmax, height[beg]);
+            rmax = Math.max(rmax, height[end]);
+            if(lmax < rmax){
+                sum += (Math.min(lmax, rmax) - height[beg++]);
+            }else{
+                sum += (Math.min(lmax, rmax) - height[end--]);
+            }
+        }
+        return sum;
     }
 }
  
