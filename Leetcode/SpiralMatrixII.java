@@ -12,57 +12,34 @@
  * ] 
  */
  //Same as Spiral Matrix I
- public class Solution {
+public class Solution {
     public int[][] generateMatrix(int n) {
+        if(n <= 0) return new int[0][0];
         int[][] res = new int[n][n];
-        int value = 1;
-        int len = n;
-        int x = 0;
-        int y = 0;
-        while(len>0){
-            if(len==1){
-                res[x][y] = value;
-                return res;
+        int x = 0; int y = 0; int num = 1;
+        while(n > 0){
+            if(n == 1){
+                res[x][y] = num++;
             }
-            for(int i=0;i<len-1;i++){
-                res[x][y++] = value++;
+            for(int i = 0 ; i < n - 1; i++){
+                System.out.println(x + " : " + y);
+                res[x][y++] = num++;
             }
-            for(int i=0;i<len-1;i++){
-                res[x++][y] = value++;
+            for(int i = 0 ; i < n - 1; i++){
+                System.out.println(x + " : " + y);
+                res[x++][y] = num++;
             }
-            for(int i=0;i<len-1;i++){
-                res[x][y--] = value++;
+            for(int i = 0 ; i < n - 1; i++){
+                System.out.println(x + " : " + y);
+                res[x][y--] = num++;
             }
-            for(int i=0;i<len-1;i++){
-                res[x--][y] = value++;
+            for(int i = 0 ; i < n - 1; i++){
+                System.out.println(x + " : " + y);
+                res[x--][y] = num++;
             }
-            x++;
-            y++;
-            len -=2;
+            n = n - 2;
+            y++;x++;
         }
         return res;
-    }
-}
- 
- 
-public class SpiralMatrixII {
-    public int[][] generateMatrix(int n) {
-        int[][] result = new int[n][n];
-        int value = 1;
-        for(int i = 0; i < (n + 1) / 2; i++) {
-            for(int j = i; j < n - i; j++) {
-                result[i][j] = value++;
-            }
-            for(int j = i + 1; j < n - i; j++) {
-                result[j][n - 1 - i] = value++;
-            }
-            for(int j = n - 2 - i; j >= i; j--) {
-                result[n - 1 - i][j] = value++;
-            }
-            for(int j = n - 2 - i; j > i; j--) {
-                result[j][i] = value++;
-            }
-        }
-        return result;
     }
 }
