@@ -1,3 +1,6 @@
+// 一个数组 选择一段范围 1 -> 0, 0 -> 1， 问怎样选择最后获得1最多
+// 第一种为Kadane Algorithm
+
 import java.io.*;
 import java.util.*;
 import java.text.*;
