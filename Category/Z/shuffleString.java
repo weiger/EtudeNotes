@@ -1,3 +1,4 @@
+//给个句子，每个单词首尾不变中间随机。
 public class Solution {
     public String shuffleStr(String str){
         if(str == null || str.length() <= 1){
