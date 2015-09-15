@@ -1,4 +1,5 @@
 // 矩阵，0表示通路，1表示block.从左上角走到右下角一共有多少走法, 可以上下左右走
+// Unique path2 变种， 以下方法被面试官否定，复杂度太高
 public class Solution {
     int res = 0;
 
