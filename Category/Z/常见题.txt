@@ -6,3 +6,4 @@ Number Of Islands
 Trie
 Sliding Window Minimum/Maximum
 Rotate Array
+strstr
