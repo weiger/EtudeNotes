@@ -1,23 +1,23 @@
 public class LRUCache {
-    Map<Integer, Node> map;
+    HashMap<Integer, Node> map;
+    Node head;
+    Node tail;
     int len;
     int capacity;
-    Node head;
-    Node end;
     public LRUCache(int capacity) {
-        head = null;
-        end = null;
-        map = new HashMap<Integer, Node>();
-        this.len = 0;
+        map = new HashMap<>();
+        len = 0;
         this.capacity = capacity;
+        head = null;
+        tail = null;
     }
 
     public int get(int key) {
-        if(map.containsKey(key)){
-            Node curNode = map.get(key);
-            int val = curNode.value;
-            deleteNode(curNode);
-            setHead(curNode);
+        if (map.containsKey(key)){
+            Node cur = map.get(key);
+            int val = cur.val;
+            deleteNode(cur);
+            setHead(cur);
             return val;
         }else{
             return -1;
@@ -25,60 +25,69 @@ public class LRUCache {
     }
 
     public void set(int key, int value) {
-        if(map.containsKey(key)){
-            Node curNode = map.get(key);
-            curNode.value = value;
-            deleteNode(curNode);
-            setHead(curNode);
-        }else{
-            Node newNode = new Node(key, value);
-            if(len == capacity){
-                map.remove(end.key);
-                deleteNode(end);
-                setHead(newNode);
-                map.put(key, newNode);
-            }else{
-                setHead(newNode);
-                map.put(newNode.key, newNode);
+        if (map.containsKey(key)) {
+            Node cur = map.get(key);
+            cur.val = value;
+            deleteNode(cur);
+            setHead(cur);
+        } else {
+            Node newnode = new Node(key, value);
+            if (len == capacity) {
+                map.remove(tail.key);
+                deleteNode(tail);
+            } else{
                 len++;
             }
+            setHead(newnode);
+            map.put(key, newnode);
         }
     }
 
     public void setHead(Node node){
-        if(head != null){
-            node.next = head;
-            node.pre = null;
-            head.pre = node;
+        if (head == null) {
             head = node;
-        }else{
-            node.pre = null;
+            tail = node;
             node.next = null;
+            node.prev = null;
+        } else {
+            node.next = head;
+            node.prev = null;
+            head.prev = node;
             head = node;
-            end = node;
         }
     }
 
     public void deleteNode(Node node){
-        Node pre = node.pre;
-        Node post = node.next;
-        if(pre != null){
-            if(post != null){
-                post.pre = pre;
-                pre.next = post;
-            }else{
-                pre.next = null;
-                end = pre;
-            }
-        }else{
-            if(post != null){
-                post.pre = null;
-                head = post;
-            }else{
+        Node prev = node.prev;
+        Node next = node.next;
+        if (prev == null) {
+            if (next == null){
                 head = null;
-                end = null;
+                tail = null;
+            } else {
+                next.prev = null;
+                head = next;
+            }
+        } else {
+            if (next == null) {
+                prev.next = null;
+                tail = prev;
+            } else {
+                prev.next = next;
+                next.prev = prev;
             }
         }
+    }
+}
+
+class Node {
+    Node prev;
+    Node next;
+    int key;
+    int val;
+    Node(int key, int val){
+        this.key = key;
+        this.val = val;
     }
 }
 
