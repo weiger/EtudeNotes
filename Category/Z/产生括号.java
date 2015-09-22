@@ -45,34 +45,31 @@ public class Solution {
 public class Solution {
     public List<String> generate(int n) {
         List<String> res = new ArrayList<>();
-        helper(res, n, n, "\n", n);
+        helper(res, "\n", n, n);
         return res;
     }
 
-    public void helper(List<String> list, int L, int R, String str, int n) {
-        if (L == 0 && R == 0) {
-            list.add(str);
+    public void helper(List<String> res, String str, int left, int right){
+        if (left == 0 && right == 0) {
+            res.add(str);
             return;
         }
-        if (L > 0) {
-            int val = Math.abs(L - R);
+        if (left > 0) {
+            int val = Math.abs(left - right);
             String tab = "";
             for (int i = 0 ; i < val; i++){
                 tab += "    ";
             }
-
-            helper(list, L - 1, R,  str +  tab + "(\n", n);
-
-
+            helper(res, str + tab + "{\n", left - 1, right);
         }
-        if (R > L) {
-            int val = Math.abs(L - R + 1);
+
+        if (left < right) {
+            int val = Math.abs(left - right);
             String tab = "";
-            for (int i = 0 ; i < val; i++){
+            for (int i = 0 ; i < val - 1; i++){
                 tab += "    ";
             }
-
-            helper(list, L, R - 1, str +  tab +  ")\n", n);
+            helper(res, str + tab + "}\n", left, right - 1);
         }
     }
 
