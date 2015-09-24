@@ -7,3 +7,5 @@ Trie
 Sliding Window Minimum/Maximum
 Rotate Array
 strstr
+
+Desing: survey, tinyURL
