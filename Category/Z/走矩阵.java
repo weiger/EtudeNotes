@@ -14,7 +14,7 @@ public class Solution {
             res++;
             return;
         }
-        if (A[x][y] == 1) {
+        if (A[x][y] == 1 || rec[x][y]) {
             return;
         }
         rec[x][y] = true;
@@ -40,7 +40,7 @@ public class Solution {
     public static void main(String[] args) {
         int[][] arr = {
                 {0, 0, 0},
-                {0, 1, 0},
+                {0, 0, 0},
                 {0, 0, 0}
         };
         int res = new Solution().findWay(arr);
