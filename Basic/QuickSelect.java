@@ -1,6 +1,6 @@
 public class Solution {
     public static int quickselect(int[] A, int k) {
-        if (k < 0 || k > A.length - 1)
+        if (k <= 0 || k > A.length - 1)
             return -1;
         int beg = 0;
         int end = A.length - 1;
