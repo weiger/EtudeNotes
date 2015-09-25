@@ -2,7 +2,20 @@
 You are given a binary tree as a sequence of parent-child pairs. For example, the tree represented by the node pairs below:
 (A,B) (A,C) (B,G) (C,H) (E,F) (B,D) (C,E)
 may be illustrated in many ways, with two possible representations below:
-     A   /  \  B    C / \  / \G  D  E   H       \            F        A   /  \  B    C / \  / \D  G H   E        /       F
+     A
+   /   \
+  B     C
+/  \   /  \
+G  D  E   H
+       \    
+        F       
+    A
+   /  \
+  B    C
+/  \   / \
+D  G  H   E
+         /
+        F
 Below is the recursive definition for the S-expression of a tree:
 
 S-exp(node) = ( node->val (S-exp(node->first_child))(S-exp(node->second_child))), if node != NULL
