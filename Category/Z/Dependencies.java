@@ -63,7 +63,7 @@ public class Solution {
         g.addDependency("bar.js", "lib.js");
         // add cycle here
         // g.addDependency("lib.js", "xm.js");
-         g.addDependency("xm.js", "foo.js");
+        g.addDependency("xm.js", "foo.js");
         List<String> result = toposort(g, "xm.js");
         System.out.println(result);
     }
