@@ -6,11 +6,11 @@ public class Solution {
         int end = A.length - 1;
         while (beg < end) {
             int j = partition(A, beg, end);
-            if (j < k) beg = j + 1;
-            else if (j > k) end = j - 1;
-            else return A[j - 1];
+            if (j < k - 1) beg = j + 1;
+            else if (j > k - 1) end = j - 1;
+            else return A[k - 1];
         }
-        return A[k];
+        return A[k - 1];
     }
 
     public static int partition(int[] A, int beg, int end) {
