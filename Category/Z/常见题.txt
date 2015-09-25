@@ -10,4 +10,4 @@ strstr
 Fibonacci 
 
 
-Desing: survey, tinyURL
+Desing: survey, tinyURL, 电梯
