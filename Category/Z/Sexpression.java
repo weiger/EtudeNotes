@@ -62,6 +62,8 @@ Node D is both a child of B and a parent of C, but C and B are both child nodes 
 */
 import java.io.*;
 import java.util.*;
+import java.text.*;
+import java.math.*;
 
 public class Solution {
     public static class TreeNode{
@@ -74,7 +76,7 @@ public class Solution {
             left = right = null;
         }
     }
-    
+
     private static String helper(TreeNode root){
         if (root == null){
             return "";
@@ -90,16 +92,15 @@ public class Solution {
         }
         return "(" + root.val + left + right + ")";
     }
-    
+
     public static void main(String args[] ) throws Exception {
         /* Enter your code here. Read input from STDIN. Print output to STDOUT */
-        InputStreamReader isr = new InputStreamReader(System.in);
-        BufferedReader br = new BufferedReader(isr);
+        Scanner cin = new Scanner(System.in);
         Set<Character> parents = new HashSet<Character>();
         Set<Character> children = new HashSet<Character>();
         Map<Character, TreeNode> total = new HashMap<Character, TreeNode>();
         boolean[] errors = new boolean[5];
-        String line = br.readLine();
+        String line = cin.nextLine();
         String[] pairs = line.split(" ");
         for (String s: pairs){
             char parent = s.charAt(1);
@@ -158,11 +159,11 @@ public class Solution {
         }
         String rst = null;
         for (TreeNode root: roots){
-        	rst = helper(root);
-        	if (rst.equals("E3")){
-            	System.out.println("E3");
-            	return;
-        	}
+            rst = helper(root);
+            if (rst.equals("E3")){
+                System.out.println("E3");
+                return;
+            }
         }
         if (errors[3]){
             System.out.println("E4");
