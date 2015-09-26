@@ -1,7 +1,6 @@
 public Cache{
 	HashMap<Integer, Integer> map;
 	int num;
-
 	public Cache () {
 		map = new HashMap<>();
 		num = 1;
