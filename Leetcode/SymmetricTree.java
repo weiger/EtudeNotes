@@ -44,51 +44,33 @@
  */
 public class Solution {
     public boolean isSymmetric(TreeNode root) {
-        if(root==null)
-            return true;
-        return helper(root.left,root.right);
+        if (root == null) return true;
+        return helper(root, root);
     }
-    public boolean helper(TreeNode p1,TreeNode p2){
-        if(p1==null && p2==null)
-            return true;
-        if(p1==null || p2==null)
-            return false;
-        if(p1.val==p2.val)
-            return helper(p1.left,p2.right)&&helper(p1.right,p2.left);
-        else
-            return false;
+    public boolean helper(TreeNode p, TreeNode q){
+        if (p == null && q == null) return true;
+        if (p == null || q == null) return false;
+        if (p.val != q.val) return false;
+        return helper(p.left, q.right) && helper(p.right, q.left);
     }
 }
 
-
+public class Solution {
     public boolean isSymmetric(TreeNode root) {
-        return root == null || isSymmetricHelper(root.left, root.right);
-    }
-
-    public boolean isSymmetricHelper(TreeNode p, TreeNode q) {
-        if(p == null && q == null || p != null && q == null || p == null && q != null) 
-            return p == null && q == null;
-        return (p.val == q.val) && isSymmetricHelper(p.left, q.right) && isSymmetricHelper(p.right, q.left);
-    } 
-/***********************************************************************************************************/
-
-    public boolean isSymmetric(TreeNode root) {
-        if(root == null)
-            return true;
-        Queue<TreeNode> queue = new LinkedList<TreeNode>();
-        queue.offer(root.left);
-        queue.offer(root.right);
-        while(!queue.isEmpty()) {
-            TreeNode lNode = queue.poll();
-            TreeNode rNode = queue.poll();
-            if(lNode == null && rNode == null)
-                continue;
-            if(lNode == null || rNode == null || lNode.val != rNode.val)
-                return false;
-            queue.offer(lNode.left);
-            queue.offer(rNode.right);
-            queue.offer(lNode.right);
-            queue.offer(rNode.left);
+        if (root == null) return true;
+        Queue<TreeNode> q = new LinkedList<>();
+        q.offer(root.left);
+        q.offer(root.right);
+        while (!q.isEmpty()) {
+            TreeNode left = q.poll();
+            TreeNode right = q.poll();
+            if (left == null && right == null) continue;
+            if (left == null || right == null) return false;
+            if (left.val != right.val) return false;
+            q.offer(left.left);
+            q.offer(right.right);
+            q.offer(left.right);
+            q.offer(right.left);
         }
         return true;
     }
