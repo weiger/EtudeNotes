@@ -51,3 +51,41 @@ public class Solution {
         }
     }
 }
+
+public class Solution {
+    public void wallsAndGates(int[][] rooms) {
+        if (rooms == null || rooms.length == 0) return;
+        Queue<Integer> rq = new LinkedList<>();
+        Queue<Integer> cq = new LinkedList<>();
+        for (int i = 0 ; i < rooms.length; i++) {
+            for (int j = 0; j < rooms[i].length; j++) {
+                if (rooms[i][j] == 0) {
+                    rq.offer(i);
+                    cq.offer(j);
+                }
+            }
+        }
+        int INF = Integer.MAX_VALUE;
+        while (!rq.isEmpty() && !cq.isEmpty()) {
+            int row = rq.poll();
+            int col = cq.poll();
+            int num = rooms[row][col];
+            if (row - 1 >= 0 && rooms[row - 1][col] == INF) {
+                rooms[row - 1][col] = num + 1;
+                rq.offer(row - 1);cq.offer(col);
+            }
+            if (row + 1 < rooms.length && rooms[row + 1][col] == INF) {
+                rooms[row + 1][col] = num + 1;
+                rq.offer(row + 1);cq.offer(col);
+            }
+            if (col - 1 >= 0 && rooms[row][col - 1] == INF) {
+                rooms[row][col - 1] = num + 1;
+                rq.offer(row);cq.offer(col - 1);
+            }
+            if (col + 1 < rooms[0].length && rooms[row][col + 1] == INF) {
+                rooms[row][col + 1] = num + 1;
+                rq.offer(row);cq.offer(col + 1);
+            }
+        }
+    }
+}
