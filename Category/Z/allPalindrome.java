@@ -17,6 +17,22 @@ public class Solution {
         }
         return res;
     }
+    
+    public List<String> findAllPalindrome(String str) {
+        HashSet<String> set = new HashSet<>();
+        if (str == null || str.length() == 0 ) return res;
+        int len = str.length();
+        boolean[][] rec = new boolean[len][len];
+        for (int i = 0 ; i < str.length(); i++) {
+            for (int j = 0 ; j <= i; j++) {
+                if (str.charAt(i) == str.charAt(j) && (i - j <= 1 || rec[j + 1][i - 1])) {
+                    rec[i][j] = true;
+                    set.add(str.substring(j, i + 1));
+                }
+            }
+        }
+        return new ArrayList<>(set);
+    }
 
     public static List<String> expand(String s, int beg, int end){
         List<String> list = new ArrayList<>();
