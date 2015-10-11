@@ -27,6 +27,20 @@ public class Solution {
         }
         return fibonacci2(n - 1) + fibonacci2(n - 2);
     }
+    
+    public static int fibonacciListSum(int n) {
+        int[] result = new int[n + 1];
+        result[0] = 0;
+        result[1] = 1;
+        for (int i = 2; i <= n; i++) {
+            result[i] = result[i - 1] + result[i - 2];
+        }
+        int sum = 0;
+        for (int i = 0; i <= n; i++) {
+            sum += result[i];
+        }
+        return sum;
+    }
 
     public static void main(String[] args) {
         Solution s = new Solution();
