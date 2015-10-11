@@ -19,7 +19,7 @@ public class Solution {
         char c = pattern.charAt(p);
         if(map.containsKey(c)){
             int len = map.get(c).length();
-            if(s + len > str.length() - 1 || !str.substring(s, s + len).equals(map.get(c))){
+            if(s + len > str.length() || !str.substring(s, s + len).equals(map.get(c))){
                 return false;
             }else{
                 return isMatch(pattern, p + 1, str, s + len, map);
