@@ -25,31 +25,32 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
-public class BinaryTreeLevelOrderTraversal {
-    public ArrayList<ArrayList<Integer>> levelOrder(TreeNode root) {
-        ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
-        if(root != null) {
-            Queue<TreeNode> curLevel = new LinkedList<TreeNode>();
-            Queue<TreeNode> nextLevel = new LinkedList<TreeNode>();
-            ArrayList<Integer> saveNodeVal = new ArrayList<Integer>();
-            curLevel.offer(root);
-            while(!curLevel.isEmpty()) {
-                TreeNode cur = curLevel.poll();
-                if(cur.left != null)
-                    nextLevel.offer(cur.left);
-                if(cur.right != null)
-                    nextLevel.offer(cur.right);
-                saveNodeVal.add(cur.val);
-                if(curLevel.isEmpty()) {
-                    res.add(saveNodeVal);
-                    saveNodeVal = new ArrayList<Integer>();
-                    curLevel = nextLevel;
-                    nextLevel = new LinkedList<TreeNode>();
-                }
+public class Solution {
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<>();
+        if (root == null) return res;
+        Queue<TreeNode> cur = new LinkedList<>();
+        Queue<TreeNode> next = new LinkedList<>();
+        List<Integer> list = new ArrayList<>();
+        cur.offer(root);
+        while (!cur.isEmpty()) {
+            TreeNode curNode = cur.poll();
+            list.add(curNode.val);
+            if (curNode.left != null) {
+                next.offer(curNode.left);
+            }
+            if (curNode.right != null) {
+                next.offer(curNode.right);
+            }
+            if (cur.isEmpty()) {
+                res.add(list);
+                list = new ArrayList<>();
+                cur = next;
+                next = new LinkedList<>();
             }
         }
         return res;
-    }
+    } 
 }
 
 public class Solution {
