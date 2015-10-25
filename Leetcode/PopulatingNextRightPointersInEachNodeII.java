@@ -29,6 +29,30 @@
  *     TreeLinkNode(int x) { val = x; }
  * }
  */
+ 
+ public class Solution {
+    public void connect(TreeLinkNode root) {
+        if(root == null) return;
+        TreeLinkNode cur = root;
+        while(cur != null) {
+            TreeLinkNode nextCur = new TreeLinkNode(0);
+            TreeLinkNode save = nextCur;
+            while(cur != null){
+                if(cur.left != null){
+                    nextCur.next = cur.left;
+                    nextCur = nextCur.next;
+                }
+                if(cur.right != null) {
+                    nextCur.next = cur.right;
+                    nextCur = nextCur.next;
+                }
+                cur = cur.next;
+            }
+            cur = save.next;
+        }
+    }
+}
+ 
 public PopulatingNextRightPointersInEachNodeII {
     public void connect(TreeLinkNode root) {
         if(root == null)
@@ -49,6 +73,31 @@ public PopulatingNextRightPointersInEachNodeII {
             if(curLevel.isEmpty()) { 
                 curLevel = nextLevel;
                 nextLevel = new LinkedList<TreeLinkNode>();
+            }
+        }
+    }
+}
+
+public class Solution {
+    public void connect(TreeLinkNode root) {
+        if(root == null) return;
+        Queue<TreeLinkNode> q = new LinkedList<>();
+        q.offer(root);
+        while(!q.isEmpty()){
+            int len = q.size();
+            for(int i = 0 ; i < len; i++){
+                TreeLinkNode cur = q.poll();
+                if(!q.isEmpty() && i != len - 1) {
+                    cur.next = q.peek();
+                } else {
+                    cur.next = null;
+                }
+                if(cur.left != null) {
+                    q.offer(cur.left);
+                }
+                if(cur.right != null) {
+                    q.offer(cur.right);
+                }
             }
         }
     }
