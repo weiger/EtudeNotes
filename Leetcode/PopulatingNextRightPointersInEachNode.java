@@ -56,3 +56,26 @@ public class Solution {
         }
     }
 }
+// AC by I&II
+public class Solution {
+    public void connect(TreeLinkNode root) {
+        if(root == null) return;
+        TreeLinkNode cur = root;
+        while(cur != null) {
+            TreeLinkNode nextCur = new TreeLinkNode(0);
+            TreeLinkNode save = nextCur;
+            while(cur != null){
+                if(cur.left != null){
+                    nextCur.next = cur.left;
+                    nextCur = nextCur.next;
+                }
+                if(cur.right != null) {
+                    nextCur.next = cur.right;
+                    nextCur = nextCur.next;
+                }
+                cur = cur.next;
+            }
+            cur = save.next;
+        }
+    }
+}
