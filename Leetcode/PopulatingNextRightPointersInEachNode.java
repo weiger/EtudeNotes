@@ -39,55 +39,20 @@
  *     TreeLinkNode(int x) { val = x; }
  * }
  */
-public class PopulatingNextRightPointersInEachNode {
-/*  public void connect(TreeLinkNode root) {
-        if(root == null)
-            return;
-        Queue<TreeLinkNode> curLevel = new LinkedList<TreeLinkNode>();
-        Queue<TreeLinkNode> nextLevel = new LinkedList<TreeLinkNode>();
-        curLevel.offer(root);
-        while(!curLevel.isEmpty()) {
-            TreeLinkNode curNode = curLevel.poll();
-            if(!curLevel.isEmpty())
-                curNode.next = curLevel.peek();
-            else
-                curNode.next = null;
-            if(curNode.left != null)
-                nextLevel.offer(curNode.left);
-            if(curNode.right != null)
-                nextLevel.offer(curNode.right);
-            if(curLevel.isEmpty()) { 
-                curLevel = nextLevel;
-                nextLevel = new LinkedList<TreeLinkNode>();
-            }
-        }
-    }
-
-
+public class Solution {
     public void connect(TreeLinkNode root) {
-        if(root == null || root.left == null)
-            return;
-        root.left.next = root.right;
-        root.right.next = root.next != null ? root.next.left : null;
-        connect(root.left);
-        connect(root.right);
-    }
-*/
-
-
-    public void connect(TreeLinkNode root) {
-        if(root == null)
-            return;
-        while(root != null) {
-            TreeLinkNode cur = root;
+        if (root == null || root.left == null) return;
+        TreeLinkNode p = root;
+        while(p.left != null) {
+            TreeLinkNode cur = p;
             while(cur != null) {
-                if(cur.left != null)
-                    cur.left.next = cur.right;
-                if(cur.right != null && cur.next != null)
+                cur.left.next = cur.right;
+                if(cur.next != null){
                     cur.right.next = cur.next.left;
+                }
                 cur = cur.next;
             }
-            root = root.left;
+            p = p.left;
         }
     }
 }
