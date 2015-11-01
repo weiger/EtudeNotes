@@ -16,19 +16,19 @@
   res[4] = res[0] * res[3] + res[1]*res[2] + res[2]*[1] + res[3]*[0];
   res[0],res[1] repsents only one node
 */
-public class UniqueBinarySearchTrees {
+public class Solution {
     public int numTrees(int n) {
-        int[] result = new int[n + 1];
-        result[0] = 1;
-        result[1] = 1;
-        for(int i = 2; i <= n; i++) 
-            for(int j = 0; j < i; j++) 
-                result[i] += result[j] * result[i - 1 - j];
-        return result[n];
+        int[] dp = new int[n + 1];
+        dp[0] = dp[1] = 1;
+        for (int i = 2; i <= n; i++) {
+            for (int j = 0; j < i; j++) {
+                dp[i] += dp[j] * dp[i - j - 1];
+            }
+        }
+        return dp[n];
     }
-
-/********************updated 2013/11/19 ***********************/
-
+}
+public class Solution {
     public int numTrees(int n) {
         if(n == 0 || n == 1)
             return 1;
