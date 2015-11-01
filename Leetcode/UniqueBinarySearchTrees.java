@@ -1,17 +1,16 @@
 /*
- * Given n, how many structurally unique BST's (binary search trees) that store 
- * values 1...n?
 
- * For example,
- * Given n = 3, there are a total of 5 unique BST's.
+  1         3     3      2      1
+  \       /     /      / \      \
+   3     2     1      1   3      2
+  /     /       \                 \
+  2     1         2                 3
+ 
+  Example: n = 3 node: 1 2 3
+  res[3] = 1*(23) + (1)*2*(3) + (12)*3
+  res[3] = res[0] * res[2] + res[1] * res[1] + res[2] * res[0]           
 
- *    1         3     3      2      1
- *     \       /     /      / \      \
- *      3     2     1      1   3      2
- *     /     /       \                 \
- *    2     1         2                 3
- */
-/*Example: n = 4 node: 1 2 3 4
+  Example: n = 4 node: 1 2 3 4
   res[4] = 1*(234) + (1)*2*(34)+(12)*3*(4) + (123)*4  -- 0*(1234) (1234)*0 impossible null can't be root 
   res[4] = res[0] * res[3] + res[1]*res[2] + res[2]*[1] + res[3]*[0];
   res[0],res[1] repsents only one node
