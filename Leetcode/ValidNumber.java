@@ -54,3 +54,32 @@ public class Solution {
         return isNum && i == n;
     }
 }
+
+public class Solution {
+    public boolean isNumber(String s) {
+        if (s == null || s.length() == 0) return false;
+        s = s.trim();
+        int i = 0; int len = s.length();
+        if (i < len && (s.charAt(i) == '+' || s.charAt(i) == '-')) i++;
+        boolean isValid = false;
+        while (i < len && Character.isDigit(s.charAt(i))) {
+            isValid = true;
+            i++;
+        }
+        if (i < len && s.charAt(i) == '.') i++;
+        while (i < len && Character.isDigit(s.charAt(i))) {
+            isValid = true;
+            i++;
+        }
+        if (isValid && i < len && s.charAt(i) == 'e') {
+            isValid = false;
+            i++;
+            if (i < len && (s.charAt(i) == '+' || s.charAt(i) == '-')) i++;
+            while (i < len && Character.isDigit(s.charAt(i))) {
+                isValid = true;
+                i++;
+            }
+        }
+        return isValid && i == len;
+    }
+}
