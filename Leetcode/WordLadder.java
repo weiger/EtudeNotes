@@ -3,33 +3,31 @@
 //curNum is next level node numbers, lastnum is current level, when lastnum is zero it need to forward to next level
 public class Solution {
     public int ladderLength(String start, String end, Set<String> dict) {
-         if(start==null || end==null || dict==null || start.length()!=end.length()) return 0;
+        if (start == null || end == null || dict == null || start.length() != end.length()) return 0;
         Queue<String> queue = new LinkedList<String>();
         HashSet<String> isVisit = new HashSet<String>();
         int level = 1;
         int curNum = 0;
         int lastNum = 1;
         queue.offer(start);
-        while(!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             String cur = queue.poll();
             lastNum--;
-            for(int i=0;i<cur.length();i++){
+            for (int i = 0; i < cur.length(); i++) {
                 char[] charcur = cur.toCharArray();
-                for(char c='a';c<='z';c++){
-                     charcur[i] = c;
-                     String temp = new String(charcur);
-                    if(temp.equals(end))
-                        return level+1;
-                    else{
-                        if(dict.contains(temp) && !isVisit.contains(temp)){
-                            curNum++;
-                            queue.offer(temp);
-                            isVisit.add(temp);
-                        }
-                    }   
+                for (char c = 'a'; c <= 'z'; c++) {
+                    charcur[i] = c;
+                    String temp = new String(charcur);
+                    if (temp.equals(end))
+                        return level + 1;
+                    else if (dict.contains(temp) && !isVisit.contains(temp)) {
+                        curNum++;
+                        queue.offer(temp);
+                        isVisit.add(temp);
+                    }
                 }
             }
-            if(lastNum==0){
+            if (lastNum == 0) {
                 lastNum = curNum;
                 curNum = 0;
                 level++;
