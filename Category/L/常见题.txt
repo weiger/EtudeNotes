@@ -1,6 +1,29 @@
-
+Two Sum III
 Search Insert Position
 Search for a Range
 2,3 sum
 String to Integer
+Singleton
+Multiply two matrix
+word break
+implement hashtable
+tinyurl
+First Missing Positive
+1. Given an array, print all the item that only has one occurance. e.g.: [1,2,2,3] > [1,3]
+2. Merge two ordered lists
+sqrt
+数组中左边的和 等于右边的和的点
+
+process: address, 
+Thread: stack, local variable
+Thread process difference
+进程间通信：pipe, message, shared memory
+
+Array intersection
+same tree
+min stack
+skyline
+shuffle array 
+up side down
+设计浏览器
 
