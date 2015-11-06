@@ -1,3 +1,27 @@
+// O(nlogn)
+public class Solution {
+    public List<Interval> merge(List<Interval> intervals) {
+        List<Interval> res = new ArrayList<>();
+        if(intervals == null || intervals.size() == 0)
+            return res;
+        Collections.sort(intervals, new Comparator<Interval>(){
+            public int compare(Interval a, Interval b){
+                return a.start - b.start;
+            }
+        });
+        Interval prev = null;
+        for(Interval cur: intervals){
+            if (prev == null || cur.start > prev.end) {
+                res.add(cur);
+                prev = cur;
+            } else {
+                prev.end = Math.max(prev.end, cur.end);
+            }
+        }
+        return res;
+    }
+}
+// O(n^2) remove exists
 public class Solution {
     public List<Interval> merge(List<Interval> intervals) {
         if (intervals == null || intervals.size() <= 1) return intervals;
