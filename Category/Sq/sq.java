@@ -4,27 +4,25 @@ import java.text.*;
 import java.math.*;
 
 public class Solution {
-    public static long solve(char[][] fields, Point squirrel, Point tree, Point[] nuts) {
-        long res = 0;
-
-
+    public static int solve(char[][] fields, Point squirrel, Point tree, Point[] nuts){
+        int res = 0;
+        fields[squirrel.x][squirrel.y] = 'S';
         for (int i = 0; i < nuts.length; i++) {
             fields[nuts[i].x][nuts[i].y] = 'N';
         }
-        if (squirrel.x >= 0 && squirrel.x < fields.length && squirrel.y < fields[0].length) {
-            fields[squirrel.x][squirrel.y] = 'S';
-            res += BFS(fields, squirrel, tree);
-            for (int i = 0; i < nuts.length; i++) {
-                if (fields[nuts[i].x][nuts[i].y] == 'N') {
-                    res += 2 * (Math.abs(tree.x - nuts[i].x) + Math.abs(tree.y - nuts[i].y));
-                }
 
+        res  += BFS(fields, squirrel, tree);
+
+        for (int i = 0; i < nuts.length; i++) {
+            if (fields[nuts[i].x][nuts[i].y] == 'N') {
+                res += 2 * (Math.abs(tree.x - nuts[i].x) + Math.abs(tree.y - nuts[i].y));
             }
+
         }
         return res;
     }
 
-    public static int BFS(char[][] fields, Point squirrel, Point tree) {
+    public static int BFS(char[][] fields, Point squirrel, Point tree){
         Queue<Integer> rowQ = new LinkedList<>();
         Queue<Integer> colQ = new LinkedList<>();
         rowQ.offer(squirrel.x);
@@ -41,22 +39,22 @@ public class Solution {
                 level += (Math.abs(tree.x - curX) + Math.abs(tree.y - curY));
                 return level;
             }
-            if (curX - 1 >= 0 && (fields[curX - 1][curY] == 'O' || fields[curX - 1][curY] == 'N')) {
+            if (curX - 1 >= 0 && (fields[curX - 1][curY] =='O' || fields[curX - 1][curY] =='N')) {
                 rowQ.offer(curX - 1);
                 colQ.offer(curY);
                 next++;
             }
-            if (curX + 1 < fields.length && (fields[curX + 1][curY] == 'O' || fields[curX + 1][curY] == 'N')) {
+            if (curX + 1 < fields.length && (fields[curX + 1][curY] =='O' || fields[curX + 1][curY] =='N')) {
                 rowQ.offer(curX + 1);
                 colQ.offer(curY);
                 next++;
             }
-            if (curY - 1 >= 0 && (fields[curX][curY - 1] == 'O' || fields[curX][curY - 1] == 'N')) {
+            if (curY - 1 >= 0 && (fields[curX][curY - 1] =='O' || fields[curX][curY - 1] =='N')) {
                 rowQ.offer(curX);
                 colQ.offer(curY - 1);
                 next++;
             }
-            if (curY + 1 < fields[0].length && (fields[curX][curY + 1] == 'O' || fields[curX][curY + 1] == 'N')) {
+            if (curY + 1 < fields[0].length && (fields[curX][curY + 1] =='O' || fields[curX][curY + 1] =='N' )) {
                 rowQ.offer(curX);
                 colQ.offer(curY + 1);
                 next++;
@@ -70,32 +68,34 @@ public class Solution {
         return -1;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
         int maxRow = 0;
         int maxCol = 0;
         Scanner cin = new Scanner(System.in);
         String sPoint = cin.nextLine();
         String[] strs = sPoint.split(" ");
-        Point SP = new Point(Integer.parseInt(strs[0]), Integer.parseInt(strs[1]));
+        Point SP = new Point(Math.round(Float.parseFloat(strs[0])), Math.round(Float.parseFloat(strs[1])));
         String tPoint = cin.nextLine();
         strs = tPoint.split(" ");
-        Point TP = new Point(Integer.parseInt(strs[0]), Integer.parseInt(strs[1]));
+        Point TP = new Point(Math.round(Float.parseFloat(strs[0])), Math.round(Float.parseFloat(strs[1])));
         int N = Integer.parseInt(cin.nextLine());
         Point[] NPs = new Point[N];
-        for (int i = 0; i < N; i++) {
+        for (int i = 0 ; i < N; i++) {
             String nPoint = cin.nextLine();
             strs = nPoint.split(" ");
-            NPs[i] = new Point(Integer.parseInt(strs[0]), Integer.parseInt(strs[1]));
-            maxRow = Math.max(maxRow, NPs[i].x);
-            maxCol = Math.max(maxCol, NPs[i].y);
+            NPs[i] = new Point(Math.round(Float.parseFloat(strs[0])), Math.round(Float.parseFloat(strs[1])));
+            maxRow = Math.max(maxRow, NPs[i].x + 1);
+            maxCol = Math.max(maxCol, NPs[i].y + 1);
         }
-        char[][] fields = new char[maxRow + 1][maxCol + 1];
+        maxRow++;
+        maxCol++;
+        char[][] fields = new char[maxRow][maxCol];
         for (int i = 0; i < maxRow; i++) {
             for (int j = 0; j < maxCol; j++) {
                 fields[i][j] = 'O';
             }
         }
-        long res = solve(fields, SP, TP, NPs);
+        int res = solve(fields, SP, TP, NPs);
         System.out.println(res);
     }
 }
@@ -103,13 +103,11 @@ public class Solution {
 class Point {
     int x;
     int y;
-
-    Point(int x, int y) {
+    Point(int x, int y){
         this.x = x;
         this.y = y;
     }
-
-    public String toString() {
+    public String toString(){
         return x + " : " + y;
     }
 }
