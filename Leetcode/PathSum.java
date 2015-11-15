@@ -34,15 +34,16 @@ public class PathSum {
 
 public class Solution {
     public boolean hasPathSum(TreeNode root, int sum) {
-        return recpath(root,0,sum);
+        return helper(root, 0, sum);
     }
-    public boolean recpath(TreeNode p,int sum,int tar){
-        if(p==null) return false;
-        sum+=p.val;
-        if(p.left==null && p.right==null) {
-            if(sum==tar) return true;
-            else return false;
+    public boolean helper(TreeNode p, int sum, int target){
+        if (p == null) {
+            return false;
         }
-        return recpath(p.left,sum,tar)||recpath(p.right,sum,tar) ;
+        sum += p.val;
+        if (p.left == null && p.right == null && sum == target) {
+            return true;
+        }
+        return helper(p.left, sum, target) || helper(p.right, sum, target);
     }
 }
