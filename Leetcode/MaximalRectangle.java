@@ -19,15 +19,15 @@ public class Solution {
                     }
                 }
                 if (stack.isEmpty() || H[stack.peek()] <= H[i]) {
-                    stack.push(i);
+                    ;
                 } else {
                     while (!stack.isEmpty() && H[stack.peek()] > H[i]) {
                         int top = stack.pop();
                         int cur = H[top] * (stack.isEmpty() ? i : (i - stack.peek() - 1));
                         res = Math.max(res, cur);
                     }
-                    stack.push(i);
-                }    
+                }
+                stack.push(i);
             }
         }
         return res;
