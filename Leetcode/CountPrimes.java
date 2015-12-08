@@ -1,4 +1,5 @@
 //Count the number of prime numbers less than a non-negative number, n.
+//Sieve of Eratosthenes
 public class Solution {
     public int countPrimes(int n) {
         boolean[] rec = new boolean[n];
@@ -15,24 +16,24 @@ public class Solution {
         return count;
     }
 }
-//Sieve of Eratosthenes
+// Native approach
 public class Solution {
     public int countPrimes(int n) {
-        int cnt = 0;
-        for(int i = 1 ; i < n; i++){
-            if(isPrime(i)){
-                cnt++;
-            }
+        int count = 0;
+        for (int i = 1; i < n; i++) {
+            if(isPrime(i)) count++;
         }
-        return cnt;
+        return count;
     }
-    public boolean isPrime(int n) {
-        if(n == 1) return false;
-        if(n == 2) return true;
+    public boolean isPrime(int n){
+        if (n <= 1) return false;
+        if (n == 2) return true;
         if (n % 2 == 0) return false;
-        for(int i = 3; i *  i<= n;i += 2) {
-            if(n % i==0)
+        int m = (int)(Math.sqrt(n));
+        for (int i = 3; i <= m; i+=2) {
+            if (n % i == 0) {
                 return false;
+            }
         }
         return true;
     }
