@@ -94,3 +94,49 @@ public class Solution {
         }
     }
 }
+
+public class Solution {
+    public int numIslands(char[][] grid) {
+        if (grid == null || grid.length == 0) return 0;
+        int count = 0;
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                if (grid[i][j] == '1') {
+                    count++;
+                    bfs(grid, i, j);
+                }
+            }
+        }
+        return count;
+    }
+    public void bfs(char[][] grid, int i, int j){
+        Queue<Integer> q = new LinkedList<>();
+        q.offer(i);
+        q.offer(j);
+        grid[i][j] = '0';
+        while (!q.isEmpty()) {
+            int X = q.poll();
+            int Y = q.poll();
+            if (X - 1 >= 0 && grid[X - 1][Y] == '1') {
+                q.offer(X - 1);
+                q.offer(Y);
+                grid[X - 1][Y] = '0';
+            }
+            if (Y - 1 >= 0 && grid[X][Y - 1] == '1') {
+                q.offer(X);
+                q.offer(Y - 1);
+                grid[X][Y - 1] = '0';
+            }
+            if (X + 1 < grid.length && grid[X + 1][Y] == '1') {
+                q.offer(X + 1);
+                q.offer(Y);
+                grid[X + 1][Y] = '0';
+            }
+            if (Y + 1 < grid[0].length && grid[X][Y + 1] == '1') {
+                q.offer(X);
+                q.offer(Y + 1);
+                grid[X][Y + 1] = '0';
+            }
+        }
+    }
+}
