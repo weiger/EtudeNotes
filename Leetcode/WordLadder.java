@@ -2,35 +2,36 @@
 //same idea as clone graph
 //curNum is next level node numbers, lastnum is current level, when lastnum is zero it need to forward to next level
 public class Solution {
-    public int ladderLength(String start, String end, Set<String> dict) {
-        if (start == null || end == null || dict == null || start.length() != end.length()) return 0;
-        Queue<String> queue = new LinkedList<String>();
-        HashSet<String> isVisit = new HashSet<String>();
-        int level = 1;
-        int curNum = 0;
-        int lastNum = 1;
-        queue.offer(start);
+    public int ladderLength(String beginWord, String endWord, Set<String> wordDict) {
+        if (beginWord == null || endWord == null || wordDict == null) return 0;
+        Queue<String> queue = new LinkedList<>();
+        HashSet<String> set = new HashSet<>();
+        queue.offer(beginWord);
+        int res = 1;
+        int curLevel = 1;
+        int nextLevel = 0;
         while (!queue.isEmpty()) {
             String cur = queue.poll();
-            lastNum--;
+            curLevel--;
             for (int i = 0; i < cur.length(); i++) {
-                char[] charcur = cur.toCharArray();
+                char[] arr = cur.toCharArray();
                 for (char c = 'a'; c <= 'z'; c++) {
-                    charcur[i] = c;
-                    String temp = new String(charcur);
-                    if (temp.equals(end))
-                        return level + 1;
-                    else if (dict.contains(temp) && !isVisit.contains(temp)) {
-                        curNum++;
-                        queue.offer(temp);
-                        isVisit.add(temp);
+                    arr[i] = c;
+                    String newstr = new String(arr);
+                    if (newstr.equals(endWord)) {
+                        return res + 1;
+                    }
+                    if (wordDict.contains(newstr) && !set.contains(newstr)) {
+                        queue.offer(newstr);
+                        set.add(newstr);
+                        nextLevel++;
                     }
                 }
             }
-            if (lastNum == 0) {
-                lastNum = curNum;
-                curNum = 0;
-                level++;
+            if (curLevel == 0) {
+                curLevel = nextLevel;
+                nextLevel = 0;
+                res++;
             }
         }
         return 0;
