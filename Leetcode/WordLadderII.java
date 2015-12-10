@@ -1,52 +1,45 @@
-//Linkedlist to track searching, BFS to search goal
-//the reason why search from end is to avoid reverse arraylist
-public class Solution{
-    public class Ladder{
-        Ladder parent;
+public class Solution {
+    public List<List<String>> findLadders(String beginWord, String endWord, Set<String> wordList) {
+        List<List<String>> res = new ArrayList<>();
+        Queue<Ladder> queue = new LinkedList<>();
+        queue.offer(new Ladder(null, beginWord));
+        while (!queue.isEmpty()) {
+            HashSet<String> rec = new HashSet<>();
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                Ladder cur = queue.poll();
+                for (int j = 0; j < cur.word.length(); j++) {
+                    char[] arr = cur.word.toCharArray();
+                    for (char c = 'a'; c <= 'z'; c++) {
+                        arr[j] = c;
+                        String newstr = new String(arr);
+                        Ladder newladder = new Ladder(cur, newstr);
+                        if (newstr.equals(endWord)) {
+                            List<String> list = new ArrayList<>();
+                            while (newladder != null) {
+                                list.add(newladder.word);
+                                newladder = newladder.prev;
+                            }
+                            Collections.reverse(list);
+                            res.add(list);
+                        } else if (wordList.contains(newstr) && !cur.word.equals(newstr)){
+                            rec.add(newstr);
+                            queue.offer(newladder);
+                        }
+                    }
+                }
+            }
+            if (res.size() > 0) return res; 
+            wordList.removeAll(rec);
+        }
+        return res;
+    }
+    class Ladder{
+        Ladder prev;
         String word;
-        Ladder(Ladder parent,String word){
-            this.parent = parent;
+        Ladder(Ladder prev, String word){
+            this.prev = prev;
             this.word = word;
         }
     }
-    public ArrayList<ArrayList<String>> findLadders(String start, String end, HashSet<String> dict) { 
-        ArrayList<ArrayList<String>> res = new ArrayList<ArrayList<String>>();
-        Queue<Ladder> q = new LinkedList<Ladder>();
-        Ladder endLadder = new Ladder(null,end);
-        q.offer(endLadder);
-        int count = 1;
-        while(!q.isEmpty()){
-            HashSet<String> map = new HashSet<String>();
-            int cur = 0;
-            for(int i=0;i<count;i++){
-                Ladder curLadder = q.poll();
-                String str = curLadder.word;
-                for(int j=0;j<str.length();j++){
-                    char[] charArray = str.toCharArray();
-                    for(char c='a';c<='z';c++){
-                        charArray[j]=c;
-                        String temp = new String(charArray);
-                        Ladder newLadder = new Ladder(curLadder,temp);
-                        if(temp.equals(start)){
-                            ArrayList<String> list = new ArrayList<String>();
-                            while(newLadder!=null){
-                                list.add(newLadder.word);
-                                newLadder = newLadder.parent;
-                            }
-                            res.add(list);
-                        }else if(dict.contains(temp) && !temp.equals(str)){
-                            q.offer(newLadder);
-                            map.add(temp);
-                            cur++;
-                        }
-                    }
-                    
-                }
-            }
-            if(res.size()>0) return res;
-            dict.removeAll(map);
-            count = cur;
-        }
-        return res;
-    }  
 }
