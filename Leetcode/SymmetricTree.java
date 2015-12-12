@@ -74,3 +74,25 @@ public class Solution {
         return true;
     }
 }
+
+public class Solution {
+    public boolean isSymmetric(TreeNode root) {
+        if(root == null) return true;
+        Queue<TreeNode> q1 = new LinkedList<>();
+        Queue<TreeNode> q2 = new LinkedList<>();
+        q1.offer(root);
+        q2.offer(root);
+        while (!q1.isEmpty() && !q2.isEmpty()) {
+            TreeNode cur1 = q1.poll();
+            TreeNode cur2 = q2.poll();
+            if (cur1 == null && cur2 == null) continue;
+            if (cur1 == null || cur2 == null || cur1.val != cur2.val) return false;
+            q1.offer(cur1.left);
+            q1.offer(cur1.right);
+            q2.offer(cur2.right);
+            q2.offer(cur2.left);
+        }
+        if (!q1.isEmpty() || !q2.isEmpty()) return false;
+        return true;
+    }
+}
