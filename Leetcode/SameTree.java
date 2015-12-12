@@ -24,6 +24,27 @@ public class SameTree {
 
 public class Solution {
     public boolean isSameTree(TreeNode p, TreeNode q) {
+        if(p == null && q == null) return true;
+        if(p == null || q == null) return false;
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(p);
+        queue.offer(q);
+        while (!queue.isEmpty()) {
+            TreeNode L = queue.poll();
+            TreeNode R = queue.poll();
+            if (L == null && R == null) continue;
+            if (L == null || R == null || L.val != R.val) return false;
+            queue.offer(L.left);
+            queue.offer(R.left);
+            queue.offer(L.right);
+            queue.offer(R.right);
+        }
+        return true;
+    }
+}
+
+public class Solution {
+    public boolean isSameTree(TreeNode p, TreeNode q) {
         if (p == null && q == null) return true;
         if (p == null || q == null) return false;
         Queue<TreeNode> q1 = new LinkedList<>();
