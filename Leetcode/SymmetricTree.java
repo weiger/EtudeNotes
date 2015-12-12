@@ -57,20 +57,19 @@ public class Solution {
 
 public class Solution {
     public boolean isSymmetric(TreeNode root) {
-        if (root == null) return true;
+        if(root == null) return true;
         Queue<TreeNode> q = new LinkedList<>();
         q.offer(root.left);
         q.offer(root.right);
         while (!q.isEmpty()) {
-            TreeNode left = q.poll();
-            TreeNode right = q.poll();
-            if (left == null && right == null) continue;
-            if (left == null || right == null) return false;
-            if (left.val != right.val) return false;
-            q.offer(left.left);
-            q.offer(right.right);
-            q.offer(left.right);
-            q.offer(right.left);
+            TreeNode L = q.poll();
+            TreeNode R = q.poll();
+            if (L == null && R == null) continue;
+            if (L == null || R == null || L.val != R.val) return false;
+            q.offer(L.left);
+            q.offer(R.right);
+            q.offer(L.right);
+            q.offer(R.left);
         }
         return true;
     }
