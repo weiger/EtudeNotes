@@ -11,9 +11,6 @@
  */
 
 public class BestTimeToBuyAndSellStockIII {
-
-/**************************** updated 2014.03.08 *****************************/
-
     public int maxProfit(int[] prices) {
         if (prices.length <= 1)
             return 0;
