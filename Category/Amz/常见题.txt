@@ -34,3 +34,6 @@ Remove Nth Node From End of List
 Linked List Cycle
 Linked List Cycle II
 Sqrt, Pow
+Wall and Gate
+Majority Element
+Best Time to Buy and Sell Stock
