@@ -1,3 +1,4 @@
+电梯，停车场，网页变慢
 Validate Binary Search Tree
 Valid Parentheses
 Valid Anagram
@@ -37,3 +38,7 @@ Sqrt, Pow
 Wall and Gate
 Majority Element
 Best Time to Buy and Sell Stock
+Trie
+Shortest Word Distance
+word break
+Populating Next Right Pointers in Each Node
