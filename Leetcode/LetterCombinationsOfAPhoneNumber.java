@@ -13,49 +13,20 @@
 public class Solution {
     public List<String> letterCombinations(String digits) {
         List<String> res = new ArrayList<>();
-        String[] dig = {" ","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
-        helper(res,digits,dig,0,"");
+        if (digits == null || digits.length() == 0) {
+            return res;
+        }
+        String[] nums = {" ", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        helper(res, nums, "", 0, digits);
         return res;
     }
-    public void helper(List<String> res,String digits,String[] dig,int pos,String buff){
-        if(pos==digits.length()){
-            res.add(buff);
+    public void helper(List<String> res, String[] nums, String buffer, int deep, String input) {
+        if (deep == input.length()) {
+            res.add(buffer);
             return;
         }
-        for(int i=0;i<dig[digits.charAt(pos)-'0'].length();i++){
-            String tmp = buff;
-            buff+=dig[digits.charAt(pos)-'0'].charAt(i);
-            helper(res,digits,dig,pos+1,buff);
-            buff = tmp;
+        for (int i = 0; i < nums[input.charAt(deep) - '0'].length(); i++) {
+            helper(res, nums, buffer + nums[input.charAt(deep) - '0'].charAt(i), deep + 1, input);
         }
     }
-} 
- 
- 
-public class Solution {
-    public List<String> letterCombinations(String digits) {
-        List<String> res = new ArrayList<String>();
-		String[] dials =
-		{" ", "", "abc", "edf", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
-		String buffer ="";
-		helper(res, dials, digits, 0, buffer);
-		return res;
-    }
-    public void helper(List<String> res, String[] dials, String digits,
-			int deep, String buffer)
-	{
-		if (deep == digits.length())
-		{
-			res.add(buffer);
-			return;
-		}
-
-		int index = digits.charAt(deep) - 48;
-		for (int i = 0; i < dials[index].length(); i++)
-		{
-			buffer = buffer + dials[index].charAt(i);
-			helper(res, dials, digits, deep + 1, buffer);
-			buffer = buffer.substring(0,buffer.length()-1);
-		}
-	}
 }
