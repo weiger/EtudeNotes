@@ -9,20 +9,23 @@
 public class Solution {
     public List<String> generateParenthesis(int n) {
         List<String> res = new ArrayList<>();
-        helper(res,n,n,"");
+        if (n == 0) return res;
+        helper(res, "", n, n);
         return res;
     }
-    public void helper(List<String> res,int left,int right,String str){
-        if(left==0 && right==0){
-            res.add(str);
-            return; 
+    public void helper(List<String> res, String buffer, int L, int R){
+        if (L == 0 && R == 0) {
+            res.add(buffer);
+            return;
         }
-        if(left>0)
-            helper(res,left-1,right,str+"(");
-        if(left<right)
-            helper(res,left,right-1,str+")");
+        if (L > 0) {
+            helper(res, buffer + "(", L - 1, R);
+        }
+        if (L < R && R > 0) {
+            helper(res, buffer + ")", L, R - 1);
+        }
     }
-} 
+}
  
 public class Solution {
     public static List<String> generateParenthesis(int n) {
