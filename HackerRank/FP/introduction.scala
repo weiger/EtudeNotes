@@ -16,5 +16,18 @@ def f(num:Int, arr:List[Int]):List[Int] = {
 
 //Filter Array
 def f(delim:Int, arr:List[Int]): List[Int] = {
-    arr.filter( _ < delim)
+  arr.filter( _ < delim)
 }
+
+//Filter Positions in a List
+def f(arr:List[Int]): List[Int] = {
+  arr.zipWithIndex.filter(x => (x._2 % 2) == 1).map(x => x._1)
+}
+
+//Array Of N Elements
+def f(num:Int) : List[Int] = {
+  List.fill(num)(scala.util.Random.nextInt(num))
+}
+
+//Reverse a List
+def f(arr:List[Int]):List[Int] = arr.reverse
