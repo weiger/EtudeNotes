@@ -25,7 +25,7 @@ public class Solution {
             helper(res, buffer + ")", L, R - 1);
         }
     }
-}
+}q
  
 public class Solution {
     public static List<String> generateParenthesis(int n) {
