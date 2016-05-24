@@ -31,3 +31,30 @@ def f(num:Int) : List[Int] = {
 
 //Reverse a List
 def f(arr:List[Int]):List[Int] = arr.reverse
+
+//Sum of Odd Elements
+def f(arr:List[Int]):Int = arr.filter(x => (x & 1) == 1).sum
+
+//List Length
+def f(arr:List[Int]):Int = { (arr.zipWithIndex.last)._2 + 1 }
+
+//Update List
+def f(arr:List[Int]):List[Int] = { arr.map(x => x.abs) }
+
+//Eval ex
+object Solution {
+
+  def f(x: Float) = {
+    val N = 10
+    def helper(n: Int, term: Double, sum: Double): Float = {
+      if (n == N) sum.toFloat
+      else helper(n + 1, term * x / (n + 1), sum + term)
+    }
+    helper(1, x, 1.0F)
+  }
+
+  def main(args: Array[String]) {
+    var n = readInt
+    (1 to n) foreach (x => println(f(readFloat())))
+  }
+}
