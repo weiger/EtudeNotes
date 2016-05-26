@@ -3,7 +3,7 @@ public class Solution {
         int a = -1;
         int b = -1;
         int res = Integer.MAX_VALUE;
-        for (int i = 0 ; i < words.length; i++) {
+        for (int i = 0; i < words.length; i++) {
             if (words[i].equals(word1)) {
                 a = i;
             }

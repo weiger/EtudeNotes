@@ -15,16 +15,17 @@ Ex: 6, [2,5,7]
 */
 public class Solution {
     public int nthSuperUglyNumber(int n, int[] primes) {
+        int len = primes.length;
+        int[] index = new int[len];
         int[] res = new int[n];
         Arrays.fill(res, Integer.MAX_VALUE);
         res[0] = 1;
-        int[] index = new int[primes.length];
         for (int i = 1; i < n; i++) {
-            for (int j = 0; j < primes.length; j++) {
+            for (int j = 0; j < len; j++) {
                 res[i] = Math.min(res[i], primes[j] * res[index[j]]);
             }
-            for (int j = 0; j < primes.length; j++) {
-                if (res[i] == primes[j] * res[index[j]]) {
+            for (int j = 0; j < len; j++) {
+                if (res[i] == primes[j] * res[index[j]] ) {
                     index[j]++;
                 }
             }
